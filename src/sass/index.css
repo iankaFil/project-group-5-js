@@ -1,0 +1,29 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+.container {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+@media screen and (min-width: 480px) {
+  .container {
+    max-width: 480px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}/*# sourceMappingURL=index.css.map */

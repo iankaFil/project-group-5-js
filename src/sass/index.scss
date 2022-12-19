@@ -1,5 +1,6 @@
-@import './common';
-@import './mixin';
-@import './header';
-@import './body';
-@import './footer';
+@import './base/common';
+@import './utils/mixin';
+@import './utils/vars';
+@import './components/header';
+@import './components/body';
+@import './components/footer';

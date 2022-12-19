@@ -31,3 +31,12 @@
     @content;
   }
 }
+
+@mixin btn {
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-align: center;
+  letter-spacing: 0.1em;
+}

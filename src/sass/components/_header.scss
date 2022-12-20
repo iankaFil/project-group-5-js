@@ -4,16 +4,46 @@
   background-size: cover;
 }
 .header--home {
-  background-image: url(../images/abstract-background-with-red-lines\ 1280.jpg);
-  padding-top: 40px;
-  padding-bottom: 44px;
-  @include tablet {
-    padding-top: 40px;
-    padding-bottom: 45px;
+  background-image: url(../images/main-header-bg/main-bg-320.jpg);
+  height: 230px;
+  @include retina {
+    background-image: url(../images/main-header-bg/main-bg-320@2x.jpg);
   }
-  @include desktop {
+
+  @include tablet {
+    background-image: url(../images/main-header-bg/main-bg-768.jpg);
+
+    @include retina {
+      background-image: url(../images/main-header-bg/main-bg-768@2x.jpg);
+    }
+    height: 216px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../images/main-header-bg/main-bg-1280.jpg);
+
+    @include retina {
+      background-image: url(../images/main-header-bg/main-bg-1280@2x.jpg);
+    }
   }
 }
+
+.container--header {
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 45;
+  @include tablet {
+    padding-top: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.header__btn {
+  visibility: hidden;
+}
+
 .header--library {
   background-image: url(../images/background_img_library1280px.jpg);
   padding-top: 40px;
@@ -45,6 +75,7 @@
 .logo__icon {
   margin-right: 8px;
 }
+
 .logo__text {
   font-size: 30px;
   line-height: 35px;

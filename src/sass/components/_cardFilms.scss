@@ -1,7 +1,7 @@
 .card__colection {
   padding-top: 20px;
   padding-bottom: 40px;
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: 768px) {
     // padding-top: 60px;
     padding-bottom: 50px;
     display: flex;
@@ -20,11 +20,11 @@
       margin-bottom: 20px;
     }
   }
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: 768px) {
     margin: 15px;
     flex-basis: calc((100% - 2 * 30px) / 2);
   }
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: 1024px) {
     flex-basis: calc((100% - 3 * 30px) / 3);
   }
 }
@@ -38,20 +38,20 @@
   border-radius: 5px;
   margin-bottom: 10px;
   height: 402px;
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: 768px) {
     height: 398px;
   }
 }
 .card__title,
 .card__text {
-  font-family: $mainFont;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
 }
 .card__title {
   text-transform: uppercase;
-  color: $dark;
+  color: $mainTextColor;
 }
 .card__text {
   color: $accentColor;
@@ -70,11 +70,11 @@
 
   width: 50px;
   height: 20px;
-  font-family: $mainFont;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 15px;
   line-height: 1.17;
-  color: $white;
+  color: $headerTextColor;
   background-color: $accentColor;
   border-radius: 5px;
 }

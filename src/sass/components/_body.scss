@@ -1,0 +1,115 @@
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+.text-hidden {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.movies {
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  @include tablet {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+.movies__list {
+  margin: 0 auto;
+  margin-bottom: 40px;
+  background-color: transparent;
+  @include tablet {
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  @include desktop {
+    row-gap: 32px;
+    column-gap: 16px;
+  }
+}
+
+.movies__item {
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+
+  @media screen and (max-width: 768px) {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+  @include tablet {
+    margin-bottom: 0;
+    @include item(2, 32px);
+  }
+  @include desktop {
+    @include item(3, 16px);
+  }
+}
+.movies__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.movies__img-wrap {
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+
+.movies__picture,
+.movies__img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  transition: transform $animation-duration $timing-function;
+}
+.movies__img-wrap:hover .movies__picture,
+.movies__img-wrap:hover .movies__img {
+  transform: scale(1.1);
+}
+
+.movies__info-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  //   background-color: #ffffff;
+}
+.movies__subtitle {
+  padding-top: 12px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: $mainTextColor;
+}
+// .gallery__info {
+//   display: flex;
+//   color: var(--text-color-primary);
+//   padding-bottom: 5px;
+// }
+
+.movies__data {
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: capitalize;
+  color: $accentColor;
+}

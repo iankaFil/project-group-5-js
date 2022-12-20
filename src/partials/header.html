@@ -1,40 +1,52 @@
-<header class="header">
-  <div class="container">
-    <div class="header__container-navigation">
-      <a class="logo" href="./"
-        ><svg class="logo__svg" width="24" height="24">
+<header class="header header--home">
+  <div class="container container--header">
+    <nav class="navigation header__navigation">
+      <a href="./index.html" lang="en" class="logo header__logo">
+        <svg class="logo__icon" width="24" height="24">
           <use
             class="logo__icon"
             href="./images/svg/sprite.svg#logo-film"
           ></use>
         </svg>
+        <span class="logo__text">Filmoteka</span>
       </a>
-      <form class="search-form">
+      <ul class="navigation__list">
+        <li class="navigation__item">
+          <a class="navigation__link" href="#" id="home">
+            <button class="navigation__btn">Home</button>
+          </a>
+        </li>
+        <li class="navigation__item">
+          <a class="navigation__link" href="#" id="library"
+            ><button class="navigation__btn">My library</button></a
+          >
+        </li>
+      </ul>
+    </nav>
+    <div class="header__wrap header__wrap--form">
+      <form action="" name="subscribe" class="form">
         <input
           type="text"
-          name="search"
+          name="guery"
           placeholder="Movie search"
-          class="search-form__input"
+          class="form__query"
         />
-        <button class="search-form__button" type="submit">
-          <svg class="search-form__icon" width="24" height="24">
-            <use
-              class="search__icon"
-              href="./images/svg/sprite.svg#symbol-search"
-            ></use>
+        <button type="submit" class="form__button">
+          <svg class="form__icon" width="12" height="12">
+            <use href="./images/svg/sprite.svg#symbol-search"></use>
           </svg>
         </button>
       </form>
-      <ul class="header__menu">
-        <li class="header__menu-item">
-          <a class="header__menu-link active" href="./">Home</a>
-        </li>
-        <li class="header__menu-item">
-          <a class="header__menu-link" href="./library.html">my library</a>
-        </li>
-      </ul>
+      <p class="header__warning">
+        Search result not successful. Enter the correct movie name and
+      </p>
     </div>
-
-    <!-- <include src="./partials/components/search-form.html"></include> -->
+    <div class="header__wrap header__wrap--btn visually-hidden">
+      <button class="header__btn js-active" type="button">Watched</button>
+      <button class="header__btn" type="button">Queue</button>
+    </div>
+  </div>
+  <div class="switsh-wrap">
+    <div class="switch-btn"></div>
   </div>
 </header>

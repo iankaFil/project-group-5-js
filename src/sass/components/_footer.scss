@@ -1,14 +1,94 @@
-footer {
+.footer {
+  padding: 28.71px 0 29.7px 0;
+  background-color: $footerBckg;
+  color: #545454;
+
+  @include font(400, 14px, 1.14, #545454);
+
+  @include tablet {
+    padding: 30px 0;
+    @include font(400, 16px, 1.19, #545454);
+  }
+
+  @include desktop {
+    padding: 30px 0 28px 0;
+  }
+}
+
+.container--footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0 32px;
+
+  @include tablet {
+    flex-direction: row;
+  }
+}
+
+.footer__wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
-  background-color: #f7f7f7;
-  height: 100px;
-  text-align: center;
-  color: #545454;
+  gap: 10px;
 }
 
-.footer__text {
-  margin-bottom: 10px;
+.footer__open-modal {
+  text-decoration: underline;
+}
+
+// modal window footer
+
+.hystmodal__window {
+  padding: 15px;
+}
+
+.hystmodal__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  @include tablet {
+    margin-bottom: 25px;
+  }
+}
+
+.hystmodal__title {
+  font-weight: bold;
+  text-transform: uppercase;
+
+  @include font(400, 20px, 1.14, #545454);
+
+  @include tablet {
+    @include font(400, 25px, 1.19, #545454);
+  }
+}
+
+.hystmodal__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  @include tablet {
+    gap: 20px;
+  }
+}
+
+.hystmodal__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.hystmodal__img {
+  margin: 0;
+  border-radius: 10px;
 }

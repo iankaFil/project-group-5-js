@@ -19,7 +19,7 @@
     height: 216px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @mixin desktop {
     background-image: url(../images/main-header-bg/main-bg-1280.jpg);
 
     @include retina {
@@ -74,14 +74,14 @@
 
 .logo__icon {
   margin-right: 8px;
-  stroke: #ffffff;
+  stroke: $headerTextColor;
   fill: transparent;
   animation: 4s rotate infinite linear;
 }
 
 .header__logo:hover .logo__icon,
 .header__logo:focus .logo__icon {
-  stroke: #ff6b08;
+  stroke: $accentColor;
 }
 
 .header__logo:hover .logo__text,
@@ -91,14 +91,14 @@
 
 @keyframes Glow {
   from {
-    text-shadow: 0 0 10px #ff6b08, 0 0 20px #ff6b08, 0 0 30px #ff6b08,
-      0 0 40px #ff6b08, 0 0 70px #ff6b08, 0 0 80px #ff6b08, 0 0 100px #ff6b08,
-      0 0 150px #ff6b08;
+    text-shadow: 0 0 10px $accentColor, 0 0 20px $accentColor,
+      0 0 30px $accentColor, 0 0 40px $accentColor, 0 0 70px $accentColor,
+      0 0 80px $accentColor, 0 0 100px $accentColor, 0 0 150px $accentColor;
   }
   to {
-    text-shadow: 0 0 5px #ff6b08, 0 0 10px #ff6b08, 0 0 15px #ff6b08,
-      0 0 20px #ff6b08, 0 0 35px #ff6b08, 0 0 40px #ff6b08, 0 0 50px #ff6b08,
-      0 0 75px #ff6b08;
+    text-shadow: 0 0 5px $accentColor, 0 0 10px $accentColor,
+      0 0 15px $accentColor, 0 0 20px $accentColor, 0 0 35px $accentColor,
+      0 0 40px $accentColor, 0 0 50px $accentColor, 0 0 75px $accentColor;
   }
 }
 
@@ -114,7 +114,7 @@
 .logo__text {
   font-size: 30px;
   line-height: 35px;
-  color: #ffffff;
+  color: $headerTextColor;
   display: none;
   @include tablet {
     display: block;
@@ -180,7 +180,7 @@
   margin-left: auto;
   margin-bottom: 16px;
 
-  border-bottom: 0.5px solid #ffffff;
+  border-bottom: 0.5px solid $headerTextColor;
 
   @media screen and (max-width: 1279px) {
     max-width: 336px;
@@ -199,7 +199,7 @@
   width: 100%;
   border: none;
   background-color: transparent;
-  color: #ffffff;
+  color: $headerTextColor;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
@@ -210,7 +210,7 @@
   outline: none;
 }
 .form__query::placeholder {
-  color: #ffffff;
+  color: $headerTextColor;
   background-color: transparent;
 }
 .form__button {

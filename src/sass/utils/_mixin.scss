@@ -40,3 +40,7 @@
   text-align: center;
   letter-spacing: 0.1em;
 }
+
+@mixin item($q, $gp) {
+  flex-basis: calc((100% - ($q - 1) * $gp) / $q);
+}

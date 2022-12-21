@@ -591,3 +591,64 @@ function renderMovies({ data }) {
 
   addClickListenerToMovie();
 }
+
+// TODO переписать на клин по родителю, а не вешать обработчики на каждую ссылку....
+function addClickListenerToMovie() {
+  document.querySelectorAll('.movie__link').forEach(element => {
+    element.addEventListener('click', event => {
+      showMovieDetails(element.dataset.movie);
+      event.preventDefault(); // предотвращаем открытие ссылки на карточке фильма
+    });
+  });
+}
+
+// API запрос возвращает список фильмов по URL запроса
+function getFilmsByUrl(url) {
+  axios
+    .get(url)
+    .then(response => {
+      renderMovies(response);
+      currentPage = response.data.page;
+      totalPages = response.data.total_pages;
+      displayPagination(response.data);
+    })
+    .catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.data.status_message);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
+    });
+}
+
+// API запрос на сервер получает список жанров
+async function getGenres() {
+  return axios
+    .get(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
+    )
+    .then(({ data }) => {
+      // console.log('ЖАНРЫ ', data.genres);
+      return data.genres;
+    });
+}
+
+function getGenreById(ids, arrGanres) {
+  let arrNamesGenres = [];
+
+  for (const id of ids) {
+    for (const genre of arrGanres) {
+      if (genre.id === id) {
+        arrNamesGenres.push(genre.name);
+      }
+    }
+  }
+
+  // console.log(arrNamesGenres);
+  return arrNamesGenres.length > 0
+    ? arrNamesGenres.join(', ')
+    : 'Genre not set';
+}

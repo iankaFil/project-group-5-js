@@ -1,5 +1,6 @@
-// -----------стили бэкдропа без vars------------
+//----------------------------------------------------------
 .backdrop {
+  z-index: 1000;
   width: 100%;
   min-height: 100%;
   opacity: 1;
@@ -42,11 +43,16 @@
 }
 
 // .movie-info {
+//   background-color: #fff;
 //   width: 100%;
+//   padding: 48px 20px 40px;
 //   height: 93vh;
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: 1.33;
+//   overflow-y: scroll;
 // }
 
-// -----------стили renderMovieDetails без vars------------
 .movie-detail__image {
   width: 100%;
   border-radius: 5px;

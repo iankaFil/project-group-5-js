@@ -8,7 +8,7 @@ const API_KEY = '31449444226ba6345698313fe055564a';
 const LANGUAGE = 'en-US';
 const BASE_PATH = 'https://image.tmdb.org/t/p/';
 let genres = [];
-page = 1;
+let page = 1;
 
 export function renderMovies(data) {
   console.log(data);
@@ -58,8 +58,8 @@ function templateMovie({ id, title, poster_path, release_date, genre_ids }) {
               ${title}
             </h2>
             <p class="movies__data">${getGenreById(genre_ids)
-              .slice(0, 2)
-              .join(', ')} | <span>${getYearFromDate(release_date)}</span></p>
+      .slice(0, 2)
+      .join(', ')} | <span>${getYearFromDate(release_date)}</span></p>
           </div>
         </a>
       </li>`;

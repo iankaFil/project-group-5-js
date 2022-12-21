@@ -16,5 +16,6 @@ export const refs = {
   buttonLibraryWatched: document.querySelector('.js-watched'),
   buttonLibraryQueue: document.querySelector('.js-queue'),
   pagination: document.querySelector('.js-paginator'),
-  backdrop: document.querySelector('.backdrop'),
+  searchForm: document.querySelector('.js-search-form'),
+  searchMovieInput: document.querySelector('.form__query'),
 };

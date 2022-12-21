@@ -28,7 +28,7 @@
           type="text"
           name="guery"
           placeholder="Movie search"
-          class="form__query"
+          class="form__query js-search-form__input"
         />
         <button type="submit" class="form__button">
           <svg class="form__icon" width="12" height="12">
@@ -40,9 +40,13 @@
         Search result not successful. Enter the correct movie name.
       </p>
     </div>
-    <div class="header__wrap header__wrap--btn visually-hidden">
-      <button class="header__btn js-active" type="button">Watched</button>
-      <button class="header__btn" type="button">Queue</button>
+    <div
+      class="header__wrap header__wrap--btn visually-hidden js-library-buttons-block"
+    >
+      <button class="header__btn js-active js-watched" type="button">
+        Watched
+      </button>
+      <button class="header__btn js-queue" type="button">Queue</button>
     </div>
   </div>
   <div class="switsh-wrap">

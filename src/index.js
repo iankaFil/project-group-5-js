@@ -3,7 +3,7 @@ const API_KEY = '31449444226ba6345698313fe055564a';
 const LANGUAGE = 'ru';
 //https://api.themoviedb.org/3/configuration/languages?api_key=31449444226ba6345698313fe055564a
 
-import noImg from '../images/no-image.jpg';
+import noImg from './images/no-image.jpg';
 
 let genres = [];
 
@@ -28,20 +28,20 @@ const buttonLibraryQueue = document.querySelector('.js-queue');
 window.addEventListener('load', highlightActiveLink); // подсветка кнопок текущей страницы в хедере
 
 // Клик на кнопку  WATCHED в хедере
-buttonLibraryWatched.addEventListener('click', () => {
-  showMoviesFromLocalstorage('watched');
-  buttonLibraryWatched.classList.add('highlighted');
-  buttonLibraryQueue.classList.remove('highlighted');
-  setRoute('library', { mode: 'watched' }); // переходим на  список watched
-});
+// buttonLibraryWatched.addEventListener('click', () => {
+//   showMoviesFromLocalstorage('watched');
+//   buttonLibraryWatched.classList.add('highlighted');
+//   buttonLibraryQueue.classList.remove('highlighted');
+//   setRoute('library', { mode: 'watched' }); // переходим на  список watched
+// });
 
 // Клик на кнопку  QUEUE в хедере
-buttonLibraryQueue.addEventListener('click', () => {
-  showMoviesFromLocalstorage('queue');
-  buttonLibraryQueue.classList.add('highlighted');
-  buttonLibraryWatched.classList.remove('highlighted');
-  setRoute('library', { mode: 'queue' }); // переходим на  список queue
-});
+// buttonLibraryQueue.addEventListener('click', () => {
+//   showMoviesFromLocalstorage('queue');
+//   buttonLibraryQueue.classList.add('highlighted');
+//   buttonLibraryWatched.classList.remove('highlighted');
+//   setRoute('library', { mode: 'queue' }); // переходим на  список queue
+// });
 
 // Объект с обработчиками роутов (навигация)
 const routes = {

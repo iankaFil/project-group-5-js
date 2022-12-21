@@ -3,7 +3,7 @@ const API_KEY = '31449444226ba6345698313fe055564a';
 const LANGUAGE = 'ru';
 //https://api.themoviedb.org/3/configuration/languages?api_key=31449444226ba6345698313fe055564a
 
-import noImg from '../images/no-image.jpg';
+import noImg from './images/no-image.jpg';
 
 let genres = [];
 
@@ -46,9 +46,9 @@ buttonLibraryQueue.addEventListener('click', () => {
 // Объект с обработчиками роутов (навигация)
 const routes = {
   '/': home,
-  '/js-group-project/': home, // ИСПРАВИТЬ НА ПУТЬ ПРОЕКТА НА GITHUB
+  '/project-group-5-js/': home, // ИСПРАВИТЬ НА ПУТЬ ПРОЕКТА НА GITHUB
   '/library': library,
-  '/js-group-project/library': library, // ИСПРАВИТЬ НА ПУТЬ ПРОЕКТА НА GITHUB
+  '/project-group-5-js/library': library, // ИСПРАВИТЬ НА ПУТЬ ПРОЕКТА НА GITHUB
 };
 
 // Получаем текущий роут из URL

@@ -316,12 +316,10 @@
   }
 }
 
-.js-show {
-  visibility: visible;
-}
-.is-hidden {
-  visibility: hidden;
-}
 .highlighted {
   filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+}
+
+.js-library-buttons-block {
+  display: none;
 }

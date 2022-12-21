@@ -22,12 +22,11 @@
         </li>
       </ul>
     </nav>
-    <div
-      class="header__wrap--btn js-library-buttons-wrap js-library-buttons-block"
-    >
-      <!-- <div class="header__wrap header__wrap--btn visually-hidden"></div> -->
-      <button class="header__btn js-watched" type="button">WATCHED</button>
-      <button class="header__btn js-queue" type="button">QUEUE</button>
+    <div class="js-library-buttons-wrap js-library-buttons-block">
+      <div class="header__wrap--btn">
+        <button class="header__btn js-watched" type="button">WATCHED</button>
+        <button class="header__btn js-queue" type="button">QUEUE</button>
+      </div>
     </div>
     <div class="header__wrap header__wrap--form">
       <form action="" name="subscribe" class="form js-search-form">
@@ -35,7 +34,7 @@
           type="text"
           name="guery"
           placeholder="Movie search"
-          class="form__query"
+          class="form__query js-search-form__input"
         />
         <button type="submit" class="form__button">
           <svg class="form__icon" width="12" height="12">
@@ -43,9 +42,9 @@
           </svg>
         </button>
       </form>
-      <p class="header__warning">
+      <!-- <p class="header__warning">
         Search result not successful. Enter the correct movie name.
-      </p>
+      </p> -->
     </div>
     <div class="header__wrap header__wrap--btn visually-hidden">
       <button class="header__btn js-active" type="button">Watched</button>

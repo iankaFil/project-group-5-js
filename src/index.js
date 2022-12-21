@@ -63,3 +63,88 @@ if (routes[route]) {
 } else {
   console.log('Route not found');
 }
+
+//-------------------------------------- BACKDROP
+//
+// обработчик кликов на бэкдропе, закрытие его, реакция на кнопки ...
+backdrop.addEventListener('click', ({ target }) => {
+  // закрытие бэкдропа
+  if (target === backdrop) {
+    backdrop.classList.add('is-hidden');
+  }
+
+  // ловим нажатие на кнопку js-watched
+  if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {
+    const idMovie = target.dataset.id;
+    console.log('PRESSED js-watched', idMovie);
+
+    // проверка, есть ли ужу в watched такой фильм если есть то deleteMovieFromLocalStorage
+    if (loadArayFromLocalStorage('watched').includes(String(idMovie))) {
+      console.log('УДАЛИТЬ ', idMovie);
+      deleteMovieFromLocalStorage(idMovie, 'watched');
+    } else {
+      // если же нет, то добавляем в список watched
+      addMovieToWatchedList(target.dataset.id);
+    }
+    renderBackdropButtonsState(target);
+
+    //проверяем, есть ли запрос mode
+    if (getRoute('mode')) {
+      showMoviesFromLocalstorage(getRoute('mode')); // обновляем содержимое списка на странице
+    }
+  }
+
+  // ловим нажатие на кнопку js-queue
+  if (target.tagName === 'BUTTON' && target.classList.contains('js-queue')) {
+    const idMovie = target.dataset.id;
+    console.log('PRESSED js-queue');
+
+    // проверка, есть ли ужу в queue такой фильм если есть то deleteMovieFromLocalStorage
+    if (loadArayFromLocalStorage('queue').includes(String(idMovie))) {
+      console.log('УДАЛИТЬ ', idMovie);
+      deleteMovieFromLocalStorage(idMovie, 'queue');
+    } else {
+      // если же нет, то добавляем в список queue
+      addMovieToQueueList(target.dataset.id);
+    }
+    renderBackdropButtonsState(target);
+
+    //проверяем, есть ли запрос mode
+    if (getRoute('mode')) {
+      showMoviesFromLocalstorage(getRoute('mode')); // обновляем содержимое списка на странице
+    }
+  }
+  // в консоль выводим место куда нажали
+  console.dir(target);
+});
+
+searchForm.addEventListener('submit', checkForm); // проверка формы при поиске фильма
+pagination.addEventListener('click', gotoPage); // переход на страницу в пагинаторе
+
+// показывает или склывает элемент true показать, false скрыть, также передаем элемент
+function displayElement(element, isHide) {
+  if (element) {
+    // Скрываем элемент
+    element.style.display = isHide ? 'block' : 'none';
+  }
+}
+
+async function showMoviesFromLocalstorage(keyOfStorage) {
+  //  показывает фильмы по ключу переменной в Localstorage
+  const queueArray = loadArayFromLocalStorage(keyOfStorage);
+  if (queueArray.length > 0) {
+    // проверка на пустой массив
+    const arrayOfPromises = queueArray.map(async movieId => {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
+      );
+      return data;
+    });
+    // 2. Запускаем все промисы параллельно и ждем их завершения
+    const movies = await Promise.all(arrayOfPromises);
+    console.log(movies);
+    renderMoviesFromLocalstorageArray(movies);
+  } else {
+    movieContainer.innerHTML = ''; // Если фильмов нет, то очищаем
+  }
+}

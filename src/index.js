@@ -1,3 +1,3 @@
-import Pagination from './js/pagination';
+import './js/pagination';
 import './js/searchForm';
-import { renderMovies } from './js/renderMovies';
+import './js/renderMovies';

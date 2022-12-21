@@ -1,58 +1,3 @@
-
-//244-295
-
-// обновляет визуальное и текстовое состояния кнопок на бэкдропе TODO переписать на render и брать статус кнопок в свойствах объекта
-function renderBackdropButtonsState() {
-  const buttonJsWatched = backdrop.querySelector('button.js-watched');
-
-  const buttonJsQueue = backdrop.querySelector('button.js-queue');
-
-  // вынести этот код в отдельную функцию
-  if (
-    loadArayFromLocalStorage('watched').includes(
-      String(buttonJsWatched.dataset.id)
-    )
-  ) {
-    buttonJsWatched.textContent = 'remove from watched';
-    buttonJsWatched.classList.add('highlighted');
-  } else {
-    buttonJsWatched.classList.remove('highlighted');
-    buttonJsWatched.textContent = 'add to watched';
-  }
-
-  if (
-    loadArayFromLocalStorage('queue').includes(String(buttonJsQueue.dataset.id))
-  ) {
-    buttonJsQueue.textContent = 'remove from queue';
-    buttonJsQueue.classList.add('highlighted');
-  } else {
-    buttonJsQueue.classList.remove('highlighted');
-    buttonJsQueue.textContent = 'add to queue';
-  }
-}
-
-//  проверка данных  в форме и если все гуд то отправка
-function checkForm(event) {
-  event.preventDefault();
-  let inputValue = searchForm.elements.search.value;
-
-  inputValue = inputValue.trim();
-
-  if (inputValue.length === 0) {
-    return false;
-  } else {
-    searchForm.elements.search.value = inputValue;
-    searchForm.submit();
-  }
-}
-
-function searchWordToInput() {
-  const currentURL = window.location.href;
-  const searchWord = new URL(currentURL).searchParams.get('search');
-  if (searchWord !== null) {
-    searchMovieInput.value = searchWord.trim();
-  }
-
 const axios = require('axios').default;
 const API_KEY = '31449444226ba6345698313fe055564a';
 const LANGUAGE = 'ru';
@@ -117,7 +62,6 @@ if (routes[route]) {
   routes[route]();
 } else {
   console.log('Route not found');
-
 }
 
 //-------------------------------------- BACKDROP
@@ -256,9 +200,9 @@ function home() {
     genres = genresArray;
     getFilmsByUrl(getUrlFromSearchParam());
   });
-  }
+}
 
-  // Функция, которая будет вызываться для обработки роута '/library'
+// Функция, которая будет вызываться для обработки роута '/library'
 function library() {
   displayElement(searchForm, false); // убираю форму поиска
   displayElement(libraryButtonsBlock, true); // показываю кнопки watched и queue
@@ -295,4 +239,112 @@ function setRoute(route, params) {
 
   // Задаем URL в строке браузера
   window.history.pushState({}, '', url);
+}
+
+// обновляет визуальное и текстовое состояния кнопок на бэкдропе TODO переписать на render и брать статус кнопок в свойствах объекта
+function renderBackdropButtonsState() {
+  const buttonJsWatched = backdrop.querySelector('button.js-watched');
+
+  const buttonJsQueue = backdrop.querySelector('button.js-queue');
+
+  // вынести этот код в отдельную функцию
+  if (
+    loadArayFromLocalStorage('watched').includes(
+      String(buttonJsWatched.dataset.id)
+    )
+  ) {
+    buttonJsWatched.textContent = 'remove from watched';
+    buttonJsWatched.classList.add('highlighted');
+  } else {
+    buttonJsWatched.classList.remove('highlighted');
+    buttonJsWatched.textContent = 'add to watched';
+  }
+
+  if (
+    loadArayFromLocalStorage('queue').includes(String(buttonJsQueue.dataset.id))
+  ) {
+    buttonJsQueue.textContent = 'remove from queue';
+    buttonJsQueue.classList.add('highlighted');
+  } else {
+    buttonJsQueue.classList.remove('highlighted');
+    buttonJsQueue.textContent = 'add to queue';
+  }
+}
+
+//  проверка данных  в форме и если все гуд то отправка
+function checkForm(event) {
+  event.preventDefault();
+  let inputValue = searchForm.elements.search.value;
+
+  inputValue = inputValue.trim();
+
+  if (inputValue.length === 0) {
+    return false;
+  } else {
+    searchForm.elements.search.value = inputValue;
+    searchForm.submit();
+  }
+}
+
+function searchWordToInput() {
+  const currentURL = window.location.href;
+  const searchWord = new URL(currentURL).searchParams.get('search');
+  if (searchWord !== null) {
+    searchMovieInput.value = searchWord.trim();
+  }
+}
+// генерит URL запроса к API в зависимости от параметров в адресной строке браузера
+function getUrlFromSearchParam() {
+  const currentURL = window.location.href;
+  const searchWord = new URL(currentURL).searchParams.get('search');
+  const page = new URL(currentURL).searchParams.get('page');
+  let query = '';
+  if (searchWord) {
+    query = page
+      ? `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchWord}&page=${page}&language=${LANGUAGE}`
+      : `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchWord}&language=${LANGUAGE}`;
+  } else {
+    query = page
+      ? `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${page}&language=${LANGUAGE}`
+      : `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=${LANGUAGE}`;
+  }
+  return query;
+}
+
+// меняет url в строке браузера
+function setPageToUrl(page) {
+  const currentUrl = new URL(window.location.href);
+  currentUrl.searchParams.set('page', page);
+  history.pushState({}, '', currentUrl.toString());
+}
+
+// подсветка активной ссылки my-library и Home
+function highlightActiveLink() {
+  const currentURL = window.location.href;
+  const currentPage = new URL(currentURL).pathname;
+
+  const links = document.querySelectorAll('a.header__menu-link');
+  for (const link of links) {
+    const linkPage = new URL(link.href).pathname;
+    if (currentPage === linkPage) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  }
+}
+
+// скролит страницу  вверх
+function scrollTop() {
+  window.scrollTo(0, 0);
+}
+
+// пагинация перейти на указанную  страницу
+function gotoPage({ target }) {
+  if (target.tagName === 'BUTTON') {
+    currentPage = Number(target.dataset.gotopage);
+    setPageToUrl(currentPage);
+    getFilmsByUrl(getUrlFromSearchParam());
+    scrollTop();
+  }
 }

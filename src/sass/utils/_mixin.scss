@@ -44,3 +44,15 @@
 @mixin item($q, $gp) {
   flex-basis: calc((100% - ($q - 1) * $gp) / $q);
 }
+
+@mixin animation(
+  $one,
+  $two,
+  $three,
+  $time: $animation-duration,
+  $func: $timing-function
+) {
+  transition-property: $one, $two, $three;
+  transition-duration: $time;
+  transition-timing-function: $func;
+}

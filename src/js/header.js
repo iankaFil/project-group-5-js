@@ -65,3 +65,74 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
         movieContainer.innerHTML = '';
     }
 }
+
+function library() {
+    displayElement(searchForm, false);
+    displayElement(libraryButtonsBlock, true);
+    showMoviesFromLocalstorage('queue');
+    setRoute('library', { mode: 'queue' });
+    highlighteHeaderButtons();
+}
+
+// подсветка кнопок (Watched queue) на странице my -library
+function highlighteHeaderButtons() {
+    // подсветка кнопок ЦФ
+    if (getRoute('mode') === 'queue') {
+        buttonLibraryQueue.classList.add('highlighted');
+    }
+    if (getRoute('mode') === 'watched') {
+        buttonLibraryWatched.classList.add('highlighted');
+    }
+}
+
+function getRoute(key) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(key);
+}
+
+//setRoute('/', { search: 'avatar' }).
+function setRoute(route, params) {
+    // Генерируем URL с параметрами
+    const searchParams = new URLSearchParams(params);
+    const url = `${route}?${searchParams.toString()}`;
+
+    // Задаем URL в строке браузера
+    window.history.pushState({}, '', url);
+}
+
+// Получаем текущий роут из URL
+const route = window.location.pathname;
+console.log('ROUTE', route);
+console.log('window.location', window.location);
+
+// Проверяем, что у нас есть обработчик для этого роута
+if (routes[route]) {
+    // Вызываем обработчик роута
+    routes[route]();
+} else {
+    console.log('Route not found');
+}
+
+// обработчик кликов на бэкдропе, закрытие его, реакция на кнопки ...
+backdrop.addEventListener('click', ({ target }) => {
+    // закрытие бэкдропа
+    if (target === backdrop) {
+        backdrop.classList.add('is-hidden');
+    }
+
+    // ловим нажатие на кнопку js-watched
+    if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {
+        console.log('PRESSED js-watched');
+        addMovieToWatchedList(target.dataset.id);
+        renderBackdropButtonsState(target);
+    }
+
+    // ловим нажатие на кнопку js-queue
+    if (target.tagName === 'BUTTON' && target.classList.contains('js-queue')) {
+        console.log('PRESSED js-queue');
+        addMovieToQueueList(target.dataset.id);
+        renderBackdropButtonsState(target);
+    }
+    // в консоль выводим место куда нажали
+    console.dir(target);
+});

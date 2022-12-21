@@ -15,4 +15,5 @@ export const refs = {
   libraryButtonsBlock: document.querySelector('.js-library-buttons-wrap'),
   buttonLibraryWatched: document.querySelector('.js-watched'),
   buttonLibraryQueue: document.querySelector('.js-queue'),
+  pagination: document.querySelector('.js-paginator'),
 };

@@ -32,3 +32,36 @@ export function onHomePageActive() {
     refs.header.classList.add('header--home');
     onCreateLibraryPage();
 }
+
+// Клик на кнопку  WATCHED в хедере
+buttonLibraryWatched.addEventListener('click', () => {
+    showMoviesFromLocalstorage('watched');
+    buttonLibraryWatched.classList.add('highlighted');
+    buttonLibraryQueue.classList.remove('highlighted');
+});
+
+// Клик на кнопку  QUEUE в хедере
+buttonLibraryQueue.addEventListener('click', () => {
+    showMoviesFromLocalstorage('queue');
+    buttonLibraryQueue.classList.add('highlighted');
+    buttonLibraryWatched.classList.remove('highlighted');
+});
+async function showMoviesFromLocalstorage(keyOfStorage) {
+    //  показывает фильмы по ключу переменной в Localstorage
+    const queueArray = loadArayFromLocalStorage(keyOfStorage);
+    if (queueArray.length > 0) {
+        // проверка на пустой массив
+        const arrayOfPromises = queueArray.map(async movieId => {
+            const { data } = await axios.get(
+                `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
+            );
+            return data;
+        });
+
+        const movies = await Promise.all(arrayOfPromises);
+        console.log(movies);
+        renderMoviesFromLocalstorageArray(movies);
+    } else {
+        movieContainer.innerHTML = '';
+    }
+}

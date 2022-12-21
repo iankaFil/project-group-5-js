@@ -32,7 +32,7 @@
   padding-top: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 45px;
+  // padding-bottom: 45px;
   @include tablet {
     padding-top: 40px;
     padding-left: 32px;
@@ -40,23 +40,22 @@
   }
 }
 
-.header__btn {
-  visibility: hidden;
-}
-
+// .header__btn {
+//   visibility: hidden;
+// }
 
 .header--library {
   position: relative;
   top: 0;
   left: 0;
-  padding-top: 40px;
-  padding-bottom: 62px;
+  // padding-top: 40px;
+  // padding-bottom: 62px;
   background-color: rgba(0, 0, 0, 0.56);
   background-image: url(../images/library-mobile-min.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 100;
+  // z-index: 100;
 
   @include retina {
     background-image: $bg-header-gradient,
@@ -65,8 +64,8 @@
 
   @include tablet {
     background-image: $bg-header-gradient, url(../images/library-tablet-min.png);
-    padding-top: 40px;
-    padding-bottom: 62px;
+    // padding-top: 40px;
+    // padding-bottom: 62px;
 
     @include retina {
       background-image: $bg-header-gradient,
@@ -94,7 +93,7 @@
 .header__btn {
   width: 148px;
   height: 42px;
-  border: 1px solid transparent;
+  border: 1px solid #fff;
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -109,9 +108,9 @@
   &:focus {
     background-color: $accentColor;
     border: none;
+    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
   }
 }
-
 
 .navigation {
   display: flex;

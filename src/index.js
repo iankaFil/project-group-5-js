@@ -348,3 +348,159 @@ function gotoPage({ target }) {
     scrollTop();
   }
 }
+//  функция отображения пагинации TODO устранить глюк при приближении к концу страниц, отображается меньше кнопок,
+// Добавить последнюю страницу и три точки ... на версии больше мобилки
+function displayPagination(response) {
+  let pages = [];
+
+  // if (totalPages > 1) {
+  if (response.total_pages > 1) {
+    if (pageLinks >= response.total_pages) {
+      pageLinks = response.total_pages;
+    }
+
+    if (currentPage <= 1 + paginationRange) {
+      startPaginationPage = 1;
+      stopPaginationPage = pageLinks;
+    } else {
+      startPaginationPage = currentPage - paginationRange;
+
+      stopPaginationPage = currentPage + paginationRange;
+      if (stopPaginationPage > response.total_pages) {
+        stopPaginationPage = response.total_pages;
+      }
+    }
+
+    if (currentPage > 1) {
+      pages.push(
+        `<button data-gotopage="${
+          currentPage - 1
+        }" class="pagination__button back" type="button"></button>`
+      );
+    }
+
+    for (let i = startPaginationPage; i <= stopPaginationPage; i += 1) {
+      console.log('🚀 ~ file: index.js:333 ~ i', i);
+
+      if (currentPage === i) {
+        pages.push(
+          `<button data-gotopage="${i}" class="pagination__button current" type="button">${i}</button>`
+        );
+      } else {
+        pages.push(
+          `<button data-gotopage="${i}" class="pagination__button" type="button">${i}</button>`
+        );
+      }
+    }
+
+    if (currentPage < response.total_pages) {
+      pages.push(
+        `<button data-gotopage="${
+          currentPage + 1
+        }" class="pagination__button forward" type="button"></button>`
+      );
+    }
+
+    pagination.innerHTML = pages.join('');
+  }
+}
+
+// функция формирует год из полной даты с API
+function getYearFromDate(date) {
+  const dateRelease = new Date(date);
+  return dateRelease.getFullYear();
+}
+
+// рендерит фильм на бэкдроп
+function renderMovieDetails(data) {
+  console.log(data);
+  backdrop.classList.remove('is-hidden');
+  const content = `
+  
+  <img class="movie-detail__image" ${
+    data.poster_path
+      ? 'src="https://image.tmdb.org/t/p/w300' + data.poster_path + '">'
+      : 'src="' + noImg + '">'
+  }
+  <h1 class="movie-detail__title">${data.title}</h1>
+  <table class="movie-detail__table">
+<tbody>
+  <tr>
+    <td><span class="movie-detail__title-table-titles">Vote / Votes</span></td>
+    <td>${data.vote_average} / ${data.vote_count}</td>
+  </tr>
+  <tr>
+    <td><span class="movie-detail__title-table-titles">Popularity</span></td>
+    <td>${data.popularity}</td>
+  </tr>
+  <tr>
+    <td><span class="movie-detail__title-table-titles">Original Title</span></td>
+    <td>${data.original_title}</td>
+  </tr>
+  <tr>
+    <td><span class="movie-detail__title-table-titles">Genre</span></td>
+    <td>${getGenre(data.genres)}</td>
+  </tr>
+</tbody>
+</table>
+<h2 class="movie-detail__about">About</h2>
+  <p class="movie-detail__about-text">
+  ${data.overview}
+  </p>
+  <div class="movie-detail__buttons-wrapper">
+  <button
+  class="movie-detail__button js-watched" data-id="${
+    data.id
+  }" type="button">add to Watched</button>
+  <button
+  class="movie-detail__button js-queue" data-id="${
+    data.id
+  }" type="button">add to queue</button>
+  </div>
+  `;
+  backdrop.querySelector('.movie-info').innerHTML = content;
+  renderBackdropButtonsState();
+}
+
+// функция генерирует жанры TODO пересмотреть устройство, возможно заменить просто join
+function getGenre(arr) {
+  let genresOutput = [];
+  for (const genre of arr) {
+    genresOutput.push(genre.name);
+  }
+
+  return genresOutput.join(', ');
+}
+
+// сохраняет айди фильма в локалсторедж под ключем watched
+function addMovieToWatchedList(id) {
+  saveIdMovieToLocalStorage(id, 'watched', 'queue');
+}
+
+// сохраняет айди фильма в локалсторедж под ключем queue
+function addMovieToQueueList(id) {
+  saveIdMovieToLocalStorage(id, 'queue', 'watched');
+}
+
+// начинка функции addMovieToWatchedList
+function saveIdMovieToLocalStorage(idMovie, key, keyToFindDuplicate) {
+  let args = loadFromLocalStorage(key); // переписать на loadArayFromLocalStorage
+  let duplicateKey = loadFromLocalStorage(keyToFindDuplicate); //  переписать на loadArayFromLocalStorage
+  let arr = [];
+  if (!args) {
+    arr.push(idMovie);
+  } else {
+    arr.push(...args);
+    if (!arr.includes(idMovie)) {
+      arr.push(idMovie);
+    }
+  }
+  saveToLocalStorage(key, arr);
+  // удаление дубликата в массиве keyToFindDuplicate
+  if (duplicateKey) {
+    if (duplicateKey.indexOf(idMovie) !== -1) {
+      duplicateKey.splice(duplicateKey.indexOf(idMovie), 1);
+      saveToLocalStorage(keyToFindDuplicate, duplicateKey);
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { refs } from "./refs";
-export function Pagination(e) {
+export default function Pagination() {
     let totalPages = 0;
     let currentPage = 1;
     let pageLinks = 5; //   количество кнопок ((нечетные числа, пример - 1 2 [3] 4 5))
@@ -66,3 +66,5 @@ export function Pagination(e) {
         }
     }
 }
+
+console.log(Pagination)

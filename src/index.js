@@ -1,1 +1,2 @@
-import Pagination from "./js/pagination"
+import Pagination from './js/pagination';
+import './js/searchForm';

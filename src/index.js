@@ -348,3 +348,152 @@ function gotoPage({ target }) {
     scrollTop();
   }
 }
+
+// сохраняет в локалсторедж переменную value по ключу key
+function saveToLocalStorage(key, value) {
+  try {
+    const serializedState = JSON.stringify(value);
+    localStorage.setItem(key, serializedState);
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
+}
+
+// удаляет фильм  из списка в локалсторедж по ключу 'key' -watched или queue и значению id фильма
+function deleteMovieFromLocalStorage(movieId, key) {
+  try {
+    const Movies = JSON.parse(localStorage.getItem(key));
+    const updatedMovies = Movies.filter(id => id !== movieId);
+    localStorage.setItem(key, JSON.stringify(updatedMovies));
+  } catch (error) {}
+}
+
+// достает переменную из локалсторедж по ключу
+function loadFromLocalStorage(key) {
+  try {
+    const serializedState = localStorage.getItem(key);
+    return serializedState === null ? undefined : JSON.parse(serializedState);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
+}
+
+// достает массив из локалсторедж по ключу, если нет массива или переменнос этим ключем то выводит []
+function loadArayFromLocalStorage(key) {
+  try {
+    const serializedState = localStorage.getItem(key);
+    return serializedState === null ? [] : JSON.parse(serializedState);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
+}
+
+// API запрос, получаем инфу о фильме по его ID
+function showMovieDetails(id) {
+  console.log(id);
+  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=${LANGUAGE}`;
+  axios
+    .get(url)
+    .then(response => {
+      renderMovieDetails(response.data);
+    })
+    .catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.data.status_message);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
+    });
+}
+
+// создает разметку списка фильмов и добавляет его в movieContainer
+function renderMovies({ data }) {
+  const movie = data.results
+    .map(movie => {
+      return `
+      <li class="movie">
+        <a href="#show-moovie=${movie.id}" 
+         class="movie__link" data-movie="${movie.id}">
+        <img class="movie__image" ${
+          movie.poster_path
+            ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
+            : 'src="' + noImg + '">'
+        }
+        </a>
+        <h2 class="movie__title">${movie.title}</h2>
+        <p class="movie__description">${getGenreById(
+          movie.genre_ids,
+          genres
+        )} | <span>${getYearFromDate(movie.release_date)}</span></p>
+        </li>`;
+    })
+    .join('');
+
+  movieContainer.innerHTML = movie;
+
+  addClickListenerToMovie();
+}
+
+// TODO переписать на клин по родителю, а не вешать обработчики на каждую ссылку....
+function addClickListenerToMovie() {
+  document.querySelectorAll('.movie__link').forEach(element => {
+    element.addEventListener('click', event => {
+      showMovieDetails(element.dataset.movie);
+      event.preventDefault(); // предотвращаем открытие ссылки на карточке фильма
+    });
+  });
+}
+
+// API запрос возвращает список фильмов по URL запроса
+function getFilmsByUrl(url) {
+  axios
+    .get(url)
+    .then(response => {
+      renderMovies(response);
+      currentPage = response.data.page;
+      totalPages = response.data.total_pages;
+      displayPagination(response.data);
+    })
+    .catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.data.status_message);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
+    });
+}
+
+// API запрос на сервер получает список жанров
+async function getGenres() {
+  return axios
+    .get(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
+    )
+    .then(({ data }) => {
+      // console.log('ЖАНРЫ ', data.genres);
+      return data.genres;
+    });
+}
+
+function getGenreById(ids, arrGanres) {
+  let arrNamesGenres = [];
+
+  for (const id of ids) {
+    for (const genre of arrGanres) {
+      if (genre.id === id) {
+        arrNamesGenres.push(genre.name);
+      }
+    }
+  }
+
+  // console.log(arrNamesGenres);
+  return arrNamesGenres.length > 0
+    ? arrNamesGenres.join(', ')
+    : 'Genre not set';
+}

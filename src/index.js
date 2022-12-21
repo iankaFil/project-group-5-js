@@ -204,3 +204,56 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
     movieContainer.innerHTML = ''; // Если фильмов нет, то очищаем
   }
 }
+
+// выводит на страницу список фильмов из локалсторедж, тебует параметр data массив с списком объектов - фильмов
+// TODO Неплохо бы заменить эту функцию renderMovies предварительно приготовив нормально данные с локалстореджа, которые она сможет съесть
+function renderMoviesFromLocalstorageArray(data) {
+  const movies = data
+    .map(movie => {
+      return `
+      <li class="movie">
+        <a href="#show-moovie=${movie.id}"
+         class="movie__link" data-movie="${movie.id}">
+        <img class="movie__image" ${
+          movie.poster_path
+            ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
+            : 'src="' + noImg + '">'
+        }
+        </a>
+        <h2 class="movie__title">${movie.title}</h2>
+        <p class="movie__description">
+          ${movie.genres.map(({ name }) => name).join(', ')}
+         | <span>
+        ${getYearFromDate(movie.release_date)}
+        </span>
+        <span class="movie__rating">${movie.vote_average}</span>
+        </p>
+        </li>`;
+    })
+    .join(''); //${getYearFromDate(movie.release_date)}    ${getGenreById(
+  console.log(data);
+
+  movieContainer.innerHTML = movies;
+
+  addClickListenerToMovie();
+}
+
+// Функция, которая будет вызываться для обработки роута '/'
+function home() {
+  console.log('Home page');
+
+  // Парсим параметры запроса
+  const params = new URLSearchParams(window.location.search);
+
+  // Проверяем, что есть параметр search
+  if (params.has('search')) {
+    console.log(`Search: ${params.get('search')}`);
+  }
+
+  searchWordToInput();
+
+  getGenres().then(genresArray => {
+    genres = genresArray;
+    getFilmsByUrl(getUrlFromSearchParam());
+  });
+  }

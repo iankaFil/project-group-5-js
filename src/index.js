@@ -257,3 +257,42 @@ function home() {
     getFilmsByUrl(getUrlFromSearchParam());
   });
   }
+
+  // Функция, которая будет вызываться для обработки роута '/library'
+function library() {
+  displayElement(searchForm, false); // убираю форму поиска
+  displayElement(libraryButtonsBlock, true); // показываю кнопки watched и queue
+
+  const mode = getRoute('mode') || 'queue'; // если маршрут пустой то по умолчанию переходим на страницу 'queue'
+  console.log('🚀 ~ file: index.js:200 ~ library ~ mode', mode);
+
+  showMoviesFromLocalstorage(mode); // показываю фильмы из сохраненных в локалсторедже
+  setRoute('library', { mode: mode }); // по умочанию переходим на  список queue
+  highlighteHeaderButtons(); // крашу кнопки
+}
+
+// подсветка кнопок (Watched queue) на странице my -library
+function highlighteHeaderButtons() {
+  // подсветка кнопок ЦФ
+  if (getRoute('mode') === 'queue') {
+    buttonLibraryQueue.classList.add('highlighted');
+  }
+  if (getRoute('mode') === 'watched') {
+    buttonLibraryWatched.classList.add('highlighted');
+  }
+}
+
+function getRoute(key) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(key);
+}
+
+//setRoute('/', { search: 'avatar' }).
+function setRoute(route, params) {
+  // Генерируем URL с параметрами
+  const searchParams = new URLSearchParams(params);
+  const url = `${route}?${searchParams.toString()}`;
+
+  // Задаем URL в строке браузера
+  window.history.pushState({}, '', url);
+}

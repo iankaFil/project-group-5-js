@@ -16,4 +16,5 @@ export const refs = {
   buttonLibraryWatched: document.querySelector('.js-watched'),
   buttonLibraryQueue: document.querySelector('.js-queue'),
   pagination: document.querySelector('.js-paginator'),
+  backdrop: document.querySelector('.backdrop'),
 };

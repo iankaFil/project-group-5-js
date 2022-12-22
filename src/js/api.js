@@ -55,6 +55,9 @@ async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
 
 // функция формирует год из полной даты с API
 function getYearFromDate(date) {
+  if (!date) {
+    return 'no data';
+  }
   const dateRelease = new Date(date);
   return dateRelease.getFullYear();
 }

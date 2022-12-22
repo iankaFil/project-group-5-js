@@ -4,21 +4,14 @@ import { getYearFromDate } from './api';
 import { addClickListenerToMovie } from './clickToMovie';
 import { objParam } from './routes';
 
-let listGenresArrayFromApi = [];
+// let listGenresArrayFromApi = [];
 
 import noImg from '../images/no-image.jpg';
 
 // создает разметку списка фильмов и добавляет его в movieContainer
 export function renderMovies({ data }) {
-  console.log(
-    '🚀 ~ file: rendering.js:13 ~ listGenresArrayFromApi',
-    listGenresArrayFromApi
-  );
-
   const movie = data.results
     .map(movie => {
-      console.log('YYYYYYYYYYYYYYYYYYY', objParam);
-
       return `
       <li class="movie__item">
         <a href="#show-moovie=${movie.id}" 

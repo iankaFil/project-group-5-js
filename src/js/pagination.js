@@ -79,4 +79,9 @@ function displayPagination(response) {
   }
 }
 
+// скролит страницу  вверх
+function scrollTop() {
+  window.scrollTo(0, 0);
+}
+
 export { gotoPage, displayPagination };

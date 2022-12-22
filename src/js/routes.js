@@ -1,3 +1,8 @@
+import { refs } from './refs';
+import { getGenres } from './api';
+import { showMoviesFromLocalstorage } from './localstorage';
+import { highlighteHeaderButtons } from './header';
+
 // Объект с обработчиками роутов (навигация)
 const routes = {
   '/': home,
@@ -31,12 +36,18 @@ function home() {
     console.log(`Search: ${params.get('search')}`);
   }
 
-  searchWordToInput();
-
   getGenres().then(genresArray => {
     genres = genresArray;
     getFilmsByUrl(getUrlFromSearchParam());
   });
+}
+
+function searchWordToInput() {
+  const currentURL = window.location.href;
+  const searchWord = new URL(currentURL).searchParams.get('search');
+  if (searchWord !== null) {
+    refs.searchMovieInput.value = searchWord.trim();
+  }
 }
 
 // Функция, которая будет вызываться для обработки роута '/library'
@@ -51,3 +62,28 @@ function library() {
   setRoute('library', { mode: mode }); // по умочанию переходим на  список queue
   highlighteHeaderButtons(); // крашу кнопки
 }
+
+function getRoute(key) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(key);
+}
+
+//setRoute('/', { search: 'avatar' }).
+function setRoute(route, params) {
+  // Генерируем URL с параметрами
+  const searchParams = new URLSearchParams(params);
+  const url = `${route}?${searchParams.toString()}`;
+
+  // Задаем URL в строке браузера
+  window.history.pushState({}, '', url);
+}
+
+// показывает или склывает элемент true показать, false скрыть, также передаем элемент
+function displayElement(element, isHide) {
+  if (element) {
+    // Скрываем элемент
+    element.style.display = isHide ? 'block' : 'none';
+  }
+}
+
+export { getRoute, searchWordToInput };

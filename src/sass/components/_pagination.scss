@@ -1,5 +1,9 @@
 .paginator {
-  margin-top: 40px;
+  padding-bottom: 40px;
+
+  @include tablet {
+    padding-bottom: 60px;
+  }
 }
 
 .pagination {
@@ -22,35 +26,35 @@
 .pagination__button.back {
   background-color: #f7f7f7;
   position: relative;
+
+  &::after {
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    content: '';
+    position: absolute;
+    background-image: url('./../images/svg/arrow-left.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .pagination__button.forward {
   background-color: #f7f7f7;
   position: relative;
-}
 
-.pagination__button.back::after {
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  content: '';
-  position: absolute;
-  background-image: url('./../images/svg/arrow-left.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.pagination__button.forward::after {
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  content: '';
-  position: absolute;
-  background-image: url('./../images/svg/arrow-right.svg');
-  background-repeat: no-repeat;
-  background-position: center;
+  &::after {
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    content: '';
+    position: absolute;
+    background-image: url('./../images/svg/arrow-right.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .current {

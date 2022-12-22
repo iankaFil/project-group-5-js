@@ -10,6 +10,11 @@
   clip-path: inset(50%);
   margin: -1px;
 }
+
+.hidden {
+  overflow: hidden;
+}
+
 .text-hidden {
   white-space: nowrap;
   overflow: hidden;

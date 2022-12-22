@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { getGenres } from './api';
+import { getGenres, getFilmsByUrl, getUrlFromSearchParam } from './api';
 import { showMoviesFromLocalstorage } from './localstorage';
 import { highlighteHeaderButtons } from './header';
 

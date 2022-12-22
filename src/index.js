@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 const API_KEY = '31449444226ba6345698313fe055564a';
-const LANGUAGE = 'ru';
+const LANGUAGE = 'en';
 //https://api.themoviedb.org/3/configuration/languages?api_key=31449444226ba6345698313fe055564a
 
 import noImg from './images/no-image.jpg';
@@ -213,6 +213,7 @@ function library() {
     showMoviesFromLocalstorage(mode); // показываю фильмы из сохраненных в локалсторедже
     setRoute('library', { mode: mode }); // по умочанию переходим на  список queue
     highlighteHeaderButtons(); // крашу кнопки
+    checkCurrentPage(); //выбор текущей страницы
 }
 
 // подсветка кнопок (Watched queue) на странице my -library
@@ -225,6 +226,7 @@ function highlighteHeaderButtons() {
         buttonLibraryWatched.classList.add('highlighted');
     }
 }
+
 
 function getRoute(key) {
     const params = new URLSearchParams(window.location.search);
@@ -326,12 +328,18 @@ function highlightActiveLink() {
     const currentPage = new URL(currentURL).pathname;
 
     const links = document.querySelectorAll('a.header__menu-link');
+    const background = document.querySelector('.header');
     for (const link of links) {
         const linkPage = new URL(link.href).pathname;
         if (currentPage === linkPage) {
             link.classList.add('active');
+            background.classList.add('header--library');
+            background.classList.remove('header--home');
+
         } else {
             link.classList.remove('active');
+            background.classList.add('header--home');
+            background.classList.remove('header--library');
         }
     }
 }

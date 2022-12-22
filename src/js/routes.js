@@ -2,7 +2,6 @@ import { refs } from './refs';
 import { getGenres, getFilmsByUrl, getUrlFromSearchParam } from './api';
 import { showMoviesFromLocalstorage } from './localstorage';
 import { highlighteHeaderButtons } from './header';
-import { genres } from './rendering';
 
 // Объект с обработчиками роутов (навигация)
 const routes = {
@@ -27,6 +26,10 @@ if (routes[route]) {
 
 //---------
 
+const objParam = {
+  arrayOfGenres: [],
+};
+
 // Функция, которая будет вызываться для обработки роута '/'
 function home() {
   console.log('Home page');
@@ -39,9 +42,10 @@ function home() {
     console.log(`Search: ${params.get('search')}`);
   }
 
-  getGenres().then(genresArray => {
-    genres = genresArray;
-    console.log('🚀 ~ file: routes.js:44 ~ getGenres ~ genres', genres);
+  getGenres().then(({ genres }) => {
+    // genres = genresArray;
+    objParam.arrayOfGenres = genres;
+    console.log('🚀 ~ file: routes.js:44 ~ getGenres ~ genres', objParam);
 
     getFilmsByUrl(getUrlFromSearchParam());
   });
@@ -90,5 +94,6 @@ function displayElement(element, isHide) {
     element.style.display = isHide ? 'block' : 'none';
   }
 }
+// export const genres = [];
 
-export { getRoute, setRoute, searchWordToInput };
+export { getRoute, setRoute, searchWordToInput, objParam };

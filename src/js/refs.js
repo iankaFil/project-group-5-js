@@ -7,4 +7,5 @@ export const refs = {
   libraryButtonsBlock: document.querySelector('.js-library-buttons-block'),
   buttonLibraryWatched: document.querySelector('.js-watched'),
   buttonLibraryQueue: document.querySelector('.js-queue'),
+  notificationWarning: document.querySelector('.header__warning'),
 };

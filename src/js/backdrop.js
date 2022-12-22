@@ -8,6 +8,7 @@ import {
 } from './localstorage';
 import { getRoute } from './routes';
 import { getGenre } from './genres';
+import { startLoading, stopLoading } from './loader';
 
 // рендерит фильм на бэкдроп
 function renderMovieDetails(data) {
@@ -61,7 +62,9 @@ function renderMovieDetails(data) {
   }" type="button">add to queue</button>
   </div>
   `;
+  startLoading();
   refs.backdrop.querySelector('.movie-info').innerHTML = content;
+  stopLoading();
   renderBackdropButtonsState();
 }
 

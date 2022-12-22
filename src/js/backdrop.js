@@ -4,6 +4,7 @@ import {
   deleteMovieFromLocalStorage,
   addMovieToWatchedList,
   showMoviesFromLocalstorage,
+  addMovieToQueueList,
 } from './localstorage';
 import { getRoute } from './routes';
 import { getGenre } from './genres';

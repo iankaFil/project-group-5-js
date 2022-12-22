@@ -202,6 +202,11 @@
   border: none;
   //   transition: color ;
   //   @include font(14px, 500, 16px, 0.02em);
+
+  &:hover,
+  &:focus {
+    animation: Glow 0.5s ease infinite alternate;
+  }
 }
 
 .current.navigation__link::after {

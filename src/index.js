@@ -24,6 +24,7 @@ import { searchWordToInput } from './js/routes';
 import { checkForm } from './js/searchForm';
 import { onThemeToggle } from './js/switch-btn';
 import noImg from './images/no-image.jpg';
+// import { closeModalbyEscape } from './js/backdrop';
 
 // let genres = [];
 

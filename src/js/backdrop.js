@@ -155,8 +155,16 @@ function renderBackdropButtonsState() {
 function closeModalbyEscape(event) {
   const isEscape = event.code === 'Escape';
   if (isEscape) {
-    // closeModal();
+    closeModal();
     refs.backdrop.classList.add('is-hidden');
+    console.log(event.code);
   }
 }
+
+function closeModal() {
+  if (refs.backdrop.classList.contains('is-hidden')) {
+    window.removeEventListener('keydown', closeModalbyEscape);
+  }
+}
+
 export { renderMovieDetails };

@@ -1,8 +1,13 @@
 .dark {
   background: $bgDarkTheme;
 }
+.dark .footer {
+  background-color: #2b2727;
+  color: #baaeae;
+}
+
 .dark .movie__title {
-  color: $headerTextColor;
+  color: #baaeae;
 }
 // .dark .pagination__button
 .switch-wrap {

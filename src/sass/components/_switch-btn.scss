@@ -1,0 +1,32 @@
+.dark {
+  background: $bgDarkTheme;
+}
+.dark .movie__title {
+  color: $headerTextColor;
+}
+// .dark .pagination__button
+.switch-wrap {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: 20px;
+  right: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  background-color: transparent;
+}
+
+.themetoggle {
+}
+
+.switch-wrap:hover .material-icons {
+  text-shadow: 0 0 10px #ff6b08, 0 0 20px #ff6b08, 0 0 30px #ff6b08,
+    0 0 40px #ff6b08, 0 0 70px #ff6b08, 0 0 80px #ff6b08, 0 0 100px #ff6b08,
+    0 0 150px #ff6b08;
+}
+.material-icons {
+  color: $headerTextColor;
+}

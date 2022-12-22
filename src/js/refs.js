@@ -8,4 +8,5 @@ export const refs = {
   buttonLibraryWatched: document.querySelector('.js-watched'),
   buttonLibraryQueue: document.querySelector('.js-queue'),
   notificationWarning: document.querySelector('.header__warning'),
+  themeToggle: document.querySelector('.themetoggle'),
 };

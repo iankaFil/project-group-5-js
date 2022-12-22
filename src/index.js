@@ -22,7 +22,7 @@ import { getGenreById, getGenre } from './js/genres';
 import { highlightActiveLink } from './js/header';
 import { searchWordToInput } from './js/routes';
 import { checkForm } from './js/searchForm';
-
+import { onThemeToggle } from './js/switch-btn';
 import noImg from './images/no-image.jpg';
 
 // let genres = [];
@@ -46,7 +46,10 @@ import noImg from './images/no-image.jpg';
 // const buttonLibraryQueue = document.querySelector('.js-queue');
 
 window.addEventListener('load', highlightActiveLink); // подсветка кнопок текущей страницы в хедере
-
+refs.themeToggle.addEventListener(
+  'click',
+  onThemeToggle
+); /* переключение тем */
 // // Клик на кнопку  WATCHED в хедере
 // refs.buttonLibraryWatched.addEventListener('click', () => {
 //   showMoviesFromLocalstorage('watched');

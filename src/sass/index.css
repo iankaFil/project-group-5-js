@@ -42,7 +42,7 @@ picture {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -82,9 +82,9 @@ body {
 }
 
 @media (min-device-pixel-ratio: 2),
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx) {
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
   .header--home {
     background-image: url(../images/main-header-bg/main-bg-320@2x.jpg);
   }
@@ -98,9 +98,9 @@ body {
 }
 
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
-screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
-screen and (min-width: 768px) and (min-resolution: 192dpi),
-screen and (min-width: 768px) and (min-resolution: 2dppx) {
+  screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-width: 768px) and (min-resolution: 192dpi),
+  screen and (min-width: 768px) and (min-resolution: 2dppx) {
   .header--home {
     background-image: url(../images/main-header-bg/main-bg-768@2x.jpg);
   }
@@ -113,9 +113,9 @@ screen and (min-width: 768px) and (min-resolution: 2dppx) {
 }
 
 @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
-screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
-screen and (min-width: 1280px) and (min-resolution: 192dpi),
-screen and (min-width: 1280px) and (min-resolution: 2dppx) {
+  screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-width: 1280px) and (min-resolution: 192dpi),
+  screen and (min-width: 1280px) and (min-resolution: 2dppx) {
   .header--home {
     background-image: url(../images/main-header-bg/main-bg-1280@2x.jpg);
   }
@@ -155,43 +155,48 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 }
 
 @media (min-device-pixel-ratio: 2),
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx) {
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
   .header--library {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/library-mobile@2x-min.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-mobile@2x-min.png);
   }
 }
 
 @media screen and (min-width: 768px) {
   .header--library {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/library-tablet-min.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-tablet-min.png);
     padding-top: 40px;
     padding-bottom: 62px;
   }
 }
 
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
-screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
-screen and (min-width: 768px) and (min-resolution: 192dpi),
-screen and (min-width: 768px) and (min-resolution: 2dppx) {
+  screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-width: 768px) and (min-resolution: 192dpi),
+  screen and (min-width: 768px) and (min-resolution: 2dppx) {
   .header--library {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/library-tablet@2x-min.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-tablet@2x-min.png);
   }
 }
 
 @media screen and (min-width: 1280px) {
   .header--library {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/library-desktop-min.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-desktop-min.png);
   }
 }
 
 @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
-screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
-screen and (min-width: 1280px) and (min-resolution: 192dpi),
-screen and (min-width: 1280px) and (min-resolution: 2dppx) {
+  screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-width: 1280px) and (min-resolution: 192dpi),
+  screen and (min-width: 1280px) and (min-resolution: 2dppx) {
   .header--library {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/library-desktop@2x-min.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/library-desktop@2x-min.png);
   }
 }
 
@@ -267,21 +272,29 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 
 @-webkit-keyframes Glow {
   from {
-    text-shadow: 0 0 10px #ff6b08, 0 0 20px #ff6b08, 0 0 30px #ff6b08, 0 0 40px #ff6b08, 0 0 70px #ff6b08, 0 0 80px #ff6b08, 0 0 100px #ff6b08, 0 0 150px #ff6b08;
+    text-shadow: 0 0 10px #ff6b08, 0 0 20px #ff6b08, 0 0 30px #ff6b08,
+      0 0 40px #ff6b08, 0 0 70px #ff6b08, 0 0 80px #ff6b08, 0 0 100px #ff6b08,
+      0 0 150px #ff6b08;
   }
 
   to {
-    text-shadow: 0 0 5px #ff6b08, 0 0 10px #ff6b08, 0 0 15px #ff6b08, 0 0 20px #ff6b08, 0 0 35px #ff6b08, 0 0 40px #ff6b08, 0 0 50px #ff6b08, 0 0 75px #ff6b08;
+    text-shadow: 0 0 5px #ff6b08, 0 0 10px #ff6b08, 0 0 15px #ff6b08,
+      0 0 20px #ff6b08, 0 0 35px #ff6b08, 0 0 40px #ff6b08, 0 0 50px #ff6b08,
+      0 0 75px #ff6b08;
   }
 }
 
 @keyframes Glow {
   from {
-    text-shadow: 0 0 10px #ff6b08, 0 0 20px #ff6b08, 0 0 30px #ff6b08, 0 0 40px #ff6b08, 0 0 70px #ff6b08, 0 0 80px #ff6b08, 0 0 100px #ff6b08, 0 0 150px #ff6b08;
+    text-shadow: 0 0 10px #ff6b08, 0 0 20px #ff6b08, 0 0 30px #ff6b08,
+      0 0 40px #ff6b08, 0 0 70px #ff6b08, 0 0 80px #ff6b08, 0 0 100px #ff6b08,
+      0 0 150px #ff6b08;
   }
 
   to {
-    text-shadow: 0 0 5px #ff6b08, 0 0 10px #ff6b08, 0 0 15px #ff6b08, 0 0 20px #ff6b08, 0 0 35px #ff6b08, 0 0 40px #ff6b08, 0 0 50px #ff6b08, 0 0 75px #ff6b08;
+    text-shadow: 0 0 5px #ff6b08, 0 0 10px #ff6b08, 0 0 15px #ff6b08,
+      0 0 20px #ff6b08, 0 0 35px #ff6b08, 0 0 40px #ff6b08, 0 0 50px #ff6b08,
+      0 0 75px #ff6b08;
   }
 }
 
@@ -342,7 +355,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 }
 
 .current.navigation__link::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -506,7 +519,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 }
 
 .search-form__button {
-  background-image: url("../images/svg/sprite.svg#symbol-search");
+  background-image: url('../images/svg/sprite.svg#symbol-search');
   width: 12px;
   height: 12px;
   border: none;
@@ -663,7 +676,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
     justify-content: center;
     width: 100%;
     height: 30px;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #ffffff;
     background-color: #ff6b08;
   }
@@ -704,7 +717,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 }
 
 .cardItem__name {
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: 'Roboto', 'Arial', sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 30px;
@@ -717,7 +730,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 .cardItem__wrapper p {
   font-size: 12px;
   font-weight: 500;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   line-height: 1.333;
   margin-bottom: 18px;
   letter-spacing: 1px;
@@ -804,7 +817,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 .cardItem__button {
   padding: 0 15px;
   font-size: 12px;
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: 'Roboto', 'Arial', sans-serif;
   color: rgb(0, 0, 0);
   text-transform: uppercase;
   line-height: 1.333;
@@ -948,7 +961,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 
 .card__title,
 .card__text {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -976,7 +989,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
   justify-content: center;
   width: 50px;
   height: 20px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 15px;
   line-height: 1.17;

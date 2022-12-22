@@ -29,12 +29,7 @@
 }
 
 .container--header {
-  padding-top: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  // padding-bottom: 45px;
   @include tablet {
-    padding-top: 40px;
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -48,8 +43,7 @@
   position: relative;
   top: 0;
   left: 0;
-  // padding-top: 40px;
-  // padding-bottom: 62px;
+
   background-color: rgba(0, 0, 0, 0.56);
   background-image: url(../images/library-mobile-min.png);
   background-size: cover;
@@ -64,8 +58,6 @@
 
   @include tablet {
     background-image: $bg-header-gradient, url(../images/library-tablet-min.png);
-    // padding-top: 40px;
-    // padding-bottom: 62px;
 
     @include retina {
       background-image: $bg-header-gradient,
@@ -131,6 +123,7 @@
 .logo {
   display: flex;
   align-items: center;
+  padding-top: 40px;
 }
 
 .logo__icon {
@@ -203,6 +196,7 @@
   color: $headerTextColor;
   font-size: 12px;
   line-height: 14px;
+  padding-top: 40px;
   padding-bottom: 3px;
   text-transform: uppercase;
   border: none;

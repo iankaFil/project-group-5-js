@@ -213,7 +213,6 @@ function library() {
     showMoviesFromLocalstorage(mode); // показываю фильмы из сохраненных в локалсторедже
     setRoute('library', { mode: mode }); // по умочанию переходим на  список queue
     highlighteHeaderButtons(); // крашу кнопки
-    checkCurrentPage(); //выбор текущей страницы
 }
 
 // подсветка кнопок (Watched queue) на странице my -library

@@ -65,8 +65,8 @@ function getFilmsByUrl(url) {
     .get(url)
     .then(response => {
       renderMovies(response);
-      currentPage = response.data.page;
-      totalPages = response.data.total_pages;
+      // currentPage = response.data.page;
+      // totalPages = response.data.total_pages;
       displayPagination(response.data);
     })
     .catch(function (error) {

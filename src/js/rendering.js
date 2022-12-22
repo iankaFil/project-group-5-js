@@ -7,6 +7,7 @@ import { objParam } from './routes';
 // let listGenresArrayFromApi = [];
 
 import noImg from '../images/no-image.jpg';
+import { startLoading, stopLoading } from './loader';
 
 // создает разметку списка фильмов и добавляет его в movieContainer
 export function renderMovies({ data }) {
@@ -36,7 +37,9 @@ export function renderMovies({ data }) {
     })
     .join('');
 
+  startLoading();
   refs.movieContainer.innerHTML = movie;
+  stopLoading();
 
   addClickListenerToMovie();
 }

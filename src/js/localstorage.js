@@ -11,6 +11,7 @@ import {
 } from './api-vars';
 
 import noImg from '../images/no-image.jpg';
+import { startLoading, stopLoading } from './loader';
 
 // const axios = require('axios').default;
 // достает массив из локалсторедж по ключу, если нет массива или переменнос этим ключем то выводит []
@@ -145,7 +146,9 @@ function renderMoviesFromLocalstorageArray(data) {
     .join(''); //${getYearFromDate(movie.release_date)}    ${getGenreById(
   console.log(data);
 
+  startLoading();
   refs.movieContainer.innerHTML = movies;
+  stopLoading();
 
   addClickListenerToMovie();
 }

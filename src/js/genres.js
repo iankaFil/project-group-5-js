@@ -10,7 +10,7 @@ function getGenreById(ids, arrGanres) {
   }
   // console.log(arrNamesGenres);
   return arrNamesGenres.length > 0
-    ? arrNamesGenres.join(', ')
+    ? arrNamesGenres.slice(0, 3).join(', ')
     : 'Genre not set';
 }
 

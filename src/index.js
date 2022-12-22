@@ -1,7 +1,24 @@
 const axios = require('axios').default;
-const API_KEY = '31449444226ba6345698313fe055564a';
-const LANGUAGE = 'en';
+// const BASE_URL = 'https://api.themoviedb.org/3';
+// const TREND_URL = `${BASE_URL}/trending/movie/week`;
+// const SEARCH_URL = `${BASE_URL}/search/movie`;
+// const ID_URL = `${BASE_URL}/movie/`;
+// const API_KEY = '31449444226ba6345698313fe055564a';
+// const LANGUAGE = 'en';
 //https://api.themoviedb.org/3/configuration/languages?api_key=31449444226ba6345698313fe055564a
+
+import { refs } from './js/refs';
+import {
+    API_KEY,
+    BASE_URL,
+    TREND_URL,
+    SEARCH_URL,
+    ID_URL,
+    LANGUAGE,
+} from './js/api-vars';
+import { displayPagination } from './js/pagination';
+import { getGenres } from './js/api';
+import { getGenreById, getGenre } from './js/genres';
 
 import noImg from './images/no-image.jpg';
 
@@ -16,14 +33,14 @@ let startPaginationPage = 1;
 let stopPaginationPage = pageLinks;
 //------------------------------------------------
 
-const movieContainer = document.querySelector('.js-movies-container');
-const pagination = document.querySelector('.js-paginator');
-const searchMovieInput = document.querySelector('.js-search-form__input');
-const searchForm = document.querySelector('.js-search-form');
-const backdrop = document.querySelector('.backdrop');
-const libraryButtonsBlock = document.querySelector('.js-library-buttons-block');
-const buttonLibraryWatched = document.querySelector('.js-watched');
-const buttonLibraryQueue = document.querySelector('.js-queue');
+// const refs.movieContainer = document.querySelector('.js-movies-container');
+// const pagination = document.querySelector('.js-paginator');
+// const searchMovieInput = document.querySelector('.js-search-form__input');
+// const searchForm = document.querySelector('.js-search-form');
+// const backdrop = document.querySelector('.backdrop');
+// const libraryButtonsBlock = document.querySelector('.js-library-buttons-block');
+// const buttonLibraryWatched = document.querySelector('.js-watched');
+// const buttonLibraryQueue = document.querySelector('.js-queue');
 
 window.addEventListener('load', highlightActiveLink); // подсветка кнопок текущей страницы в хедере
 
@@ -71,10 +88,10 @@ if (routes[route]) {
 //-------------------------------------- BACKDROP
 //
 // обработчик кликов на бэкдропе, закрытие его, реакция на кнопки ...
-backdrop.addEventListener('click', ({ target }) => {
+refs.backdrop.addEventListener('click', ({ target }) => {
     // закрытие бэкдропа
-    if (target === backdrop) {
-        backdrop.classList.add('is-hidden');
+    if (target === refs.backdrop) {
+        refs.backdrop.classList.add('is-hidden');
     }
 
     // ловим нажатие на кнопку js-watched
@@ -122,8 +139,8 @@ backdrop.addEventListener('click', ({ target }) => {
     console.dir(target);
 });
 
-searchForm.addEventListener('submit', checkForm); // проверка формы при поиске фильма
-pagination.addEventListener('click', gotoPage); // переход на страницу в пагинаторе
+refs.searchForm.addEventListener('submit', checkForm); // проверка формы при поиске фильма
+// refs.pagination.addEventListener('click', gotoPage); // переход на страницу в пагинаторе
 
 // показывает или склывает элемент true показать, false скрыть, также передаем элемент
 function displayElement(element, isHide) {
@@ -140,7 +157,7 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
         // проверка на пустой массив
         const arrayOfPromises = queueArray.map(async movieId => {
             const { data } = await axios.get(
-                `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
+                `${ID_URL}${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
             );
             return data;
         });
@@ -149,7 +166,7 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
         console.log(movies);
         renderMoviesFromLocalstorageArray(movies);
     } else {
-        movieContainer.innerHTML = ''; // Если фильмов нет, то очищаем
+        refs.movieContainer.innerHTML = ''; // Если фильмов нет, то очищаем
     }
 }
 
@@ -180,7 +197,7 @@ function renderMoviesFromLocalstorageArray(data) {
         .join(''); //${getYearFromDate(movie.release_date)}    ${getGenreById(
     console.log(data);
 
-    movieContainer.innerHTML = movies;
+    refs.movieContainer.innerHTML = movies;
 
     addClickListenerToMovie();
 }
@@ -207,8 +224,8 @@ function home() {
 
 // Функция, которая будет вызываться для обработки роута '/library'
 function library() {
-    displayElement(searchForm, false); // убираю форму поиска
-    displayElement(libraryButtonsBlock, true); // показываю кнопки watched и queue
+    displayElement(refs.searchForm, false); // убираю форму поиска
+    displayElement(refs.libraryButtonsBlock, true); // показываю кнопки watched и queue
 
     const mode = getRoute('mode') || 'queue'; // если маршрут пустой то по умолчанию переходим на страницу 'queue'
     console.log('🚀 ~ file: index.js:200 ~ library ~ mode', mode);
@@ -222,13 +239,12 @@ function library() {
 function highlighteHeaderButtons() {
     // подсветка кнопок ЦФ
     if (getRoute('mode') === 'queue') {
-        buttonLibraryQueue.classList.add('highlighted');
+        refs.buttonLibraryQueue.classList.add('highlighted');
     }
     if (getRoute('mode') === 'watched') {
-        buttonLibraryWatched.classList.add('highlighted');
+        refs.buttonLibraryWatched.classList.add('highlighted');
     }
 }
-
 
 function getRoute(key) {
     const params = new URLSearchParams(window.location.search);
@@ -247,9 +263,9 @@ function setRoute(route, params) {
 
 // обновляет визуальное и текстовое состояния кнопок на бэкдропе TODO переписать на render и брать статус кнопок в свойствах объекта
 function renderBackdropButtonsState() {
-    const buttonJsWatched = backdrop.querySelector('button.js-watched');
+    const buttonJsWatched = refs.backdrop.querySelector('button.js-watched');
 
-    const buttonJsQueue = backdrop.querySelector('button.js-queue');
+    const buttonJsQueue = refs.backdrop.querySelector('button.js-queue');
 
     // вынести этот код в отдельную функцию
     if (
@@ -278,17 +294,16 @@ function renderBackdropButtonsState() {
 //  проверка данных  в форме и если все гуд то отправка
 function checkForm(event) {
     event.preventDefault();
-    let inputValue = searchForm.elements.search.value;
+    let inputValue = refs.searchForm.elements.search.value;
 
     inputValue = inputValue.trim();
 
     if (inputValue.length === 0) {
         // console.log('Search result not successful. Enter the correct movie name.');
         return false;
-
     } else {
-        searchForm.elements.search.value = inputValue;
-        searchForm.submit();
+        refs.searchForm.elements.search.value = inputValue;
+        refs.searchForm.submit();
     }
 }
 
@@ -296,7 +311,7 @@ function searchWordToInput() {
     const currentURL = window.location.href;
     const searchWord = new URL(currentURL).searchParams.get('search');
     if (searchWord !== null) {
-        searchMovieInput.value = searchWord.trim();
+        refs.searchMovieInput.value = searchWord.trim();
     }
 }
 // генерит URL запроса к API в зависимости от параметров в адресной строке браузера
@@ -307,17 +322,17 @@ function getUrlFromSearchParam() {
     let query = '';
     if (searchWord) {
         query = page
-            ? `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchWord}&page=${page}&language=${LANGUAGE}`
-            : `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchWord}&language=${LANGUAGE}`;
+            ? `${SEARCH_URL}?api_key=${API_KEY}&query=${searchWord}&page=${page}&language=${LANGUAGE}`
+            : `${SEARCH_URL}?api_key=${API_KEY}&query=${searchWord}&language=${LANGUAGE}`;
     } else {
         query = page
-            ? `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${page}&language=${LANGUAGE}`
-            : `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=${LANGUAGE}`;
+            ? `${TREND_URL}?api_key=${API_KEY}&page=${page}&language=${LANGUAGE}`
+            : `${TREND_URL}?api_key=${API_KEY}&language=${LANGUAGE}`;
     }
     return query;
 }
 
-// меняет url в строке браузера
+// // меняет url в строке браузера
 function setPageToUrl(page) {
     const currentUrl = new URL(window.location.href);
     currentUrl.searchParams.set('page', page);
@@ -337,7 +352,6 @@ function highlightActiveLink() {
             link.classList.add('active');
             background.classList.add('header--library');
             background.classList.remove('header--home');
-
         } else {
             link.classList.remove('active');
             background.classList.add('header--home');
@@ -351,69 +365,71 @@ function scrollTop() {
     window.scrollTo(0, 0);
 }
 
-// пагинация перейти на указанную  страницу
-function gotoPage({ target }) {
-    if (target.tagName === 'BUTTON') {
-        currentPage = Number(target.dataset.gotopage);
-        setPageToUrl(currentPage);
-        getFilmsByUrl(getUrlFromSearchParam());
-        scrollTop();
-    }
-}
-//  функция отображения пагинации TODO устранить глюк при приближении к концу страниц, отображается меньше кнопок,
-// Добавить последнюю страницу и три точки ... на версии больше мобилки
-function displayPagination(response) {
-    let pages = [];
+// // пагинация перейти на указанную  страницу
+// function gotoPage({ target }) {
+//   if (target.tagName === 'BUTTON') {
+//     currentPage = Number(target.dataset.gotopage);
+//     setPageToUrl(currentPage);
+//     getFilmsByUrl(getUrlFromSearchParam());
+//     scrollTop();
+//   }
+// }
+// //  функция отображения пагинации TODO устранить глюк при приближении к концу страниц, отображается меньше кнопок,
+// // Добавить последнюю страницу и три точки ... на версии больше мобилки
+// function displayPagination(response) {
+//   let pages = [];
 
-    // if (totalPages > 1) {
-    if (response.total_pages > 1) {
-        if (pageLinks >= response.total_pages) {
-            pageLinks = response.total_pages;
-        }
+//   // if (totalPages > 1) {
+//   if (response.total_pages > 1) {
+//     if (pageLinks >= response.total_pages) {
+//       pageLinks = response.total_pages;
+//     }
 
-        if (currentPage <= 1 + paginationRange) {
-            startPaginationPage = 1;
-            stopPaginationPage = pageLinks;
-        } else {
-            startPaginationPage = currentPage - paginationRange;
+//     if (currentPage <= 1 + paginationRange) {
+//       startPaginationPage = 1;
+//       stopPaginationPage = pageLinks;
+//     } else {
+//       startPaginationPage = currentPage - paginationRange;
 
-            stopPaginationPage = currentPage + paginationRange;
-            if (stopPaginationPage > response.total_pages) {
-                stopPaginationPage = response.total_pages;
-            }
-        }
+//       stopPaginationPage = currentPage + paginationRange;
+//       if (stopPaginationPage > response.total_pages) {
+//         stopPaginationPage = response.total_pages;
+//       }
+//     }
 
-        if (currentPage > 1) {
-            pages.push(
-                `<button data-gotopage="${currentPage - 1
-                }" class="pagination__button back" type="button"></button>`
-            );
-        }
+//     if (currentPage > 1) {
+//       pages.push(
+//         `<button data-gotopage="${
+//           currentPage - 1
+//         }" class="pagination__button back" type="button"></button>`
+//       );
+//     }
 
-        for (let i = startPaginationPage; i <= stopPaginationPage; i += 1) {
-            console.log('🚀 ~ file: index.js:333 ~ i', i);
+//     for (let i = startPaginationPage; i <= stopPaginationPage; i += 1) {
+//       console.log('🚀 ~ file: index.js:333 ~ i', i);
 
-            if (currentPage === i) {
-                pages.push(
-                    `<button data-gotopage="${i}" class="pagination__button current" type="button">${i}</button>`
-                );
-            } else {
-                pages.push(
-                    `<button data-gotopage="${i}" class="pagination__button" type="button">${i}</button>`
-                );
-            }
-        }
+//       if (currentPage === i) {
+//         pages.push(
+//           `<button data-gotopage="${i}" class="pagination__button current" type="button">${i}</button>`
+//         );
+//       } else {
+//         pages.push(
+//           `<button data-gotopage="${i}" class="pagination__button" type="button">${i}</button>`
+//         );
+//       }
+//     }
 
-        if (currentPage < response.total_pages) {
-            pages.push(
-                `<button data-gotopage="${currentPage + 1
-                }" class="pagination__button forward" type="button"></button>`
-            );
-        }
+//     if (currentPage < response.total_pages) {
+//       pages.push(
+//         `<button data-gotopage="${
+//           currentPage + 1
+//         }" class="pagination__button forward" type="button"></button>`
+//       );
+//     }
 
-        pagination.innerHTML = pages.join('');
-    }
-}
+//     refs.pagination.innerHTML = pages.join('');
+//   }
+// }
 
 // функция формирует год из полной даты с API
 function getYearFromDate(date) {
@@ -424,7 +440,7 @@ function getYearFromDate(date) {
 // рендерит фильм на бэкдроп
 function renderMovieDetails(data) {
     console.log(data);
-    backdrop.classList.remove('is-hidden');
+    refs.backdrop.classList.remove('is-hidden');
     const content = `
   
   <img class="movie-detail__image" ${data.poster_path
@@ -465,19 +481,19 @@ function renderMovieDetails(data) {
         }" type="button">add to queue</button>
   </div>
   `;
-    backdrop.querySelector('.movie-info').innerHTML = content;
+    refs.backdrop.querySelector('.movie-info').innerHTML = content;
     renderBackdropButtonsState();
 }
 
-// функция генерирует жанры TODO пересмотреть устройство, возможно заменить просто join
-function getGenre(arr) {
-    let genresOutput = [];
-    for (const genre of arr) {
-        genresOutput.push(genre.name);
-    }
+// // функция генерирует жанры TODO пересмотреть устройство, возможно заменить просто join
+// function getGenre(arr) {
+//   let genresOutput = [];
+//   for (const genre of arr) {
+//     genresOutput.push(genre.name);
+//   }
 
-    return genresOutput.join(', ');
-}
+//   return genresOutput.join(', ');
+// }
 
 // сохраняет айди фильма в локалсторедж под ключем watched
 function addMovieToWatchedList(id) {
@@ -553,7 +569,7 @@ function loadArayFromLocalStorage(key) {
 // API запрос, получаем инфу о фильме по его ID
 function showMovieDetails(id) {
     console.log(id);
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=${LANGUAGE}`;
+    const url = `${ID_URL}${id}?api_key=${API_KEY}&language=${LANGUAGE}`;
     axios
         .get(url)
         .then(response => {
@@ -597,7 +613,7 @@ function renderMovies({ data }) {
         })
         .join('');
 
-    movieContainer.innerHTML = movie;
+    refs.movieContainer.innerHTML = movie;
 
     addClickListenerToMovie();
 }
@@ -612,7 +628,7 @@ function addClickListenerToMovie() {
     });
 }
 
-// API запрос возвращает список фильмов по URL запроса
+// // API запрос возвращает список фильмов по URL запроса
 function getFilmsByUrl(url) {
     axios
         .get(url)
@@ -634,31 +650,31 @@ function getFilmsByUrl(url) {
         });
 }
 
-// API запрос на сервер получает список жанров
-async function getGenres() {
-    return axios
-        .get(
-            `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
-        )
-        .then(({ data }) => {
-            // console.log('ЖАНРЫ ', data.genres);
-            return data.genres;
-        });
-}
+// // API запрос на сервер получает список жанров
+// async function getGenres() {
+//   return axios
+//     .get(
+//       `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
+//     )
+//     .then(({ data }) => {
+//       // console.log('ЖАНРЫ ', data.genres);
+//       return data.genres;
+//     });
+// }
 
-function getGenreById(ids, arrGanres) {
-    let arrNamesGenres = [];
+// function getGenreById(ids, arrGanres) {
+//   let arrNamesGenres = [];
 
-    for (const id of ids) {
-        for (const genre of arrGanres) {
-            if (genre.id === id) {
-                arrNamesGenres.push(genre.name);
-            }
-        }
-    }
+//   for (const id of ids) {
+//     for (const genre of arrGanres) {
+//       if (genre.id === id) {
+//         arrNamesGenres.push(genre.name);
+//       }
+//     }
+//   }
 
-    // console.log(arrNamesGenres);
-    return arrNamesGenres.length > 0
-        ? arrNamesGenres.join(', ')
-        : 'Genre not set';
-}
+//   // console.log(arrNamesGenres);
+//   return arrNamesGenres.length > 0
+//     ? arrNamesGenres.join(', ')
+//     : 'Genre not set';
+// }

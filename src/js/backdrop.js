@@ -13,6 +13,11 @@ import { getGenre } from './genres';
 function renderMovieDetails(data) {
   console.log(data);
   refs.backdrop.classList.remove('is-hidden');
+  // событие закрытия по escape, это событие не забыть удалить. когда модалка закрыта
+  window.addEventListener('keydown', closeModalbyEscape);
+  // удаление слушателя кнопки escape:
+  //  window.removeEventListener("keydown", closeModalbyEscape);
+
   const content = `
   
   <img class="movie-detail__image" ${
@@ -141,5 +146,12 @@ function renderBackdropButtonsState() {
     buttonJsQueue.textContent = 'add to queue';
   }
 }
-
+// ф-я закрытия модалки по escape
+function closeModalbyEscape(event) {
+  const isEscape = event.code === 'Escape';
+  if (isEscape) {
+    // closeModal();
+    refs.backdrop.classList.add('is-hidden');
+  }
+}
 export { renderMovieDetails };

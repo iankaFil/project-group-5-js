@@ -9,20 +9,30 @@ import {
   ID_URL,
   LANGUAGE,
 } from './api-vars';
+
 import { displayPagination } from './pagination';
 import { renderMovies } from './rendering';
 import { renderMovieDetails } from './backdrop';
 
 // API запрос на сервер получает список жанров
+// async function getGenres() {
+//   return axios
+//     .get(
+//       `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
+//     )
+//     .then(({ data }) => {
+//       console.log('ЖАНРЫ ', data.genres);
+//       return data.genres;
+//     });
+// }
+
 async function getGenres() {
-  return axios
-    .get(
-      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
-    )
-    .then(({ data }) => {
-      // console.log('ЖАНРЫ ', data.genres);
-      return data.genres;
-    });
+  return fetch(
+    `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
+  ).then(({ data }) => {
+    console.log('ЖАНРЫ ', data);
+    return data;
+  });
 }
 
 // функция формирует год из полной даты с API

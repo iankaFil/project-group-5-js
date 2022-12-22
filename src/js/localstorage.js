@@ -1,9 +1,18 @@
 import { refs } from './refs';
 import { getYearFromDate } from './api';
 import { addClickListenerToMovie } from './clickToMovie';
+import {
+  API_KEY,
+  BASE_URL,
+  TREND_URL,
+  SEARCH_URL,
+  ID_URL,
+  LANGUAGE,
+} from './api-vars';
 
 import noImg from '../images/no-image.jpg';
 
+const axios = require('axios').default;
 // достает массив из локалсторедж по ключу, если нет массива или переменнос этим ключем то выводит []
 function loadArayFromLocalStorage(key) {
   try {

@@ -1,6 +1,6 @@
 import { refs } from './refs';
 import { showMoviesFromLocalstorage } from './localstorage';
-import { getRoute } from './routes';
+import { getRoute, setRoute } from './routes';
 
 // подсветка активной ссылки my-library и Home
 function highlightActiveLink() {

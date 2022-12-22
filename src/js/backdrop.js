@@ -6,6 +6,7 @@ import {
   showMoviesFromLocalstorage,
 } from './localstorage';
 import { getRoute } from './routes';
+import { getGenre } from './genres';
 
 // рендерит фильм на бэкдроп
 function renderMovieDetails(data) {

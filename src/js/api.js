@@ -1,4 +1,6 @@
 const axios = require('axios').default;
+// console.log(axios);
+
 import {
   API_KEY,
   BASE_URL,
@@ -9,6 +11,7 @@ import {
 } from './api-vars';
 import { displayPagination } from './pagination';
 import { renderMovies } from './rendering';
+import { renderMovieDetails } from './backdrop';
 
 // API запрос на сервер получает список жанров
 async function getGenres() {

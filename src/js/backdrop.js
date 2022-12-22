@@ -25,19 +25,21 @@ function renderMovieDetails(data) {
 <tbody>
   <tr>
     <td><span class="movie-detail__title-table-titles">Vote / Votes</span></td>
-    <td>${data.vote_average} / ${data.vote_count}</td>
+    <td><span class="movie-detail__rating"> ${
+      data.vote_average
+    } </span> /<span class="movie-detail__info"> ${data.vote_count}</span></td>
   </tr>
   <tr>
     <td><span class="movie-detail__title-table-titles">Popularity</span></td>
-    <td>${data.popularity}</td>
+    <td><span class="movie-detail__info">${data.popularity}</span></td>
   </tr>
   <tr>
     <td><span class="movie-detail__title-table-titles">Original Title</span></td>
-    <td>${data.original_title}</td>
+    <td><span class="movie-detail__info">${data.original_title}</span></td>
   </tr>
   <tr>
     <td><span class="movie-detail__title-table-titles">Genre</span></td>
-    <td>${getGenre(data.genres)}</td>
+    <td><span class="movie-detail__info">${getGenre(data.genres)}</span></td>
   </tr>
 </tbody>
 </table>

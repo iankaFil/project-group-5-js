@@ -14,6 +14,7 @@ import { startLoading, stopLoading } from './loader';
 function renderMovieDetails(data) {
   console.log(data);
   refs.backdrop.classList.remove('is-hidden');
+  refs.bodyEl.classList.add('hidden');
   // событие закрытия по escape, это событие не забыть удалить. когда модалка закрыта
   window.addEventListener('keydown', closeModalbyEscape);
   // удаление слушателя кнопки escape:
@@ -73,6 +74,7 @@ refs.backdrop.addEventListener('click', ({ target }) => {
   // закрытие бэкдропа
   if (target === refs.backdrop) {
     refs.backdrop.classList.add('is-hidden');
+    refs.bodyEl.classList.remove('hidden');
   }
 
   // ловим нажатие на кнопку js-watched

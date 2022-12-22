@@ -9,4 +9,5 @@ export const refs = {
   buttonLibraryQueue: document.querySelector('.js-queue'),
   notificationWarning: document.querySelector('.header__warning'),
   themeToggle: document.querySelector('.themetoggle'),
+  bodyEl: document.body,
 };

@@ -1,13 +1,14 @@
 import HystModal from 'hystmodal';
 import 'hystmodal/dist/hystmodal.min.css';
-import { refs } from './refs';
+// import { refs } from './refs';
 
-refs.openOurTeam.addEventListener('click', onClick);
+// refs.openOurTeam.addEventListener('click', onClick);
 
 const myModal = new HystModal({
-    linkAttributeName: 'data-hystmodal',
+  linkAttributeName: 'data-hystmodal',
+  closeOnButton: true,
 });
 
 function onClick() {
-    myModal.init();
+  myModal.init();
 }

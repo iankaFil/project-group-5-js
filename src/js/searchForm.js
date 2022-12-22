@@ -9,6 +9,7 @@ export function checkForm(event) {
 
   if (inputValue.length === 0) {
     // console.log('Search result not successful. Enter the correct movie name.');
+    refs.notificationWarning.style.visibility = 'visible';
     return false;
   } else {
     refs.searchForm.elements.search.value = inputValue;

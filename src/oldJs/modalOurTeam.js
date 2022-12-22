@@ -9,5 +9,6 @@ const myModal = new HystModal({
 });
 
 function onClick() {
+  console.log('UUUUUUUUUUUUUUUUUUUUUUUUUUUUU MODALKA');
   myModal.init();
 }

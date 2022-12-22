@@ -4,7 +4,6 @@ const LANGUAGE = 'en';
 //https://api.themoviedb.org/3/configuration/languages?api_key=31449444226ba6345698313fe055564a
 
 import noImg from './images/no-image.jpg';
-import Notiflix from "notiflix";
 
 let genres = [];
 

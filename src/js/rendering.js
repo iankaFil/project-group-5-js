@@ -24,10 +24,11 @@ export function renderMovies({ data }) {
         </a>
         <div class="movie__info-wrap">
         <h2 class="movie__title">${movie.title}</h2>
-        <p class="movie__description">${getGenreById(
-          movie.genre_ids,
-          genres
-        )} | <span>${getYearFromDate(movie.release_date)}</span></p>
+        <p class="movie__description"> ${movie.genre_ids} 
+        ${genres} 
+        ${getGenreById(movie.genre_ids, genres)} | <span>${getYearFromDate(
+        movie.release_date
+      )}</span></p>
         </div>
         </li>`;
     })

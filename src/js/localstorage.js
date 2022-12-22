@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { getYearFromDate } from './api';
+import { getYearFromDate, loadArrayMoviesByArrayOfIds } from './api';
 import { addClickListenerToMovie } from './clickToMovie';
 import {
   API_KEY,
@@ -12,7 +12,7 @@ import {
 
 import noImg from '../images/no-image.jpg';
 
-const axios = require('axios').default;
+// const axios = require('axios').default;
 // достает массив из локалсторедж по ключу, если нет массива или переменнос этим ключем то выводит []
 function loadArayFromLocalStorage(key) {
   try {
@@ -42,20 +42,28 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
   const queueArray = loadArayFromLocalStorage(keyOfStorage);
   if (queueArray.length > 0) {
     // проверка на пустой массив
-    const arrayOfPromises = queueArray.map(async movieId => {
-      const { data } = await axios.get(
-        `${ID_URL}${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
-      );
-      return data;
-    });
-    // 2. Запускаем все промисы параллельно и ждем их завершения
-    const movies = await Promise.all(arrayOfPromises);
-    console.log(movies);
+    let movies = await loadArrayMoviesByArrayOfIds(queueArray);
+    console.log(
+      '🚀 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ~ showMoviesFromLocalstorage ~ movies',
+      movies
+    );
+
     renderMoviesFromLocalstorageArray(movies);
   } else {
     refs.movieContainer.innerHTML = ''; // Если фильмов нет, то очищаем
   }
 }
+
+// async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
+//   const arrayOfPromises = arrayOfMovieIds.map(async movieId => {
+//     const { data } = await axios.get(
+//       `${ID_URL}${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
+//     );
+//     return data;
+//   });
+//   // 2. Запускаем все промисы параллельно и ждем их завершения
+//   return (movies = await Promise.all(arrayOfPromises));
+// }
 
 // сохраняет айди фильма в локалсторедж под ключем queue
 function addMovieToQueueList(id) {

@@ -1,4 +1,4 @@
-const axios = require('axios').default;
+// const axios = require('axios').default;
 // const BASE_URL = 'https://api.themoviedb.org/3';
 // const TREND_URL = `${BASE_URL}/trending/movie/week`;
 // const SEARCH_URL = `${BASE_URL}/search/movie`;

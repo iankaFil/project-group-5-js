@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { getGenres, getFilmsByUrl, getUrlFromSearchParam } from './api';
 import { showMoviesFromLocalstorage } from './localstorage';
 import { highlighteHeaderButtons } from './header';
+import { genres } from './rendering';
 
 // Объект с обработчиками роутов (навигация)
 const routes = {
@@ -24,6 +25,8 @@ if (routes[route]) {
   console.log('Route not found');
 }
 
+//---------
+
 // Функция, которая будет вызываться для обработки роута '/'
 function home() {
   console.log('Home page');
@@ -38,6 +41,8 @@ function home() {
 
   getGenres().then(genresArray => {
     genres = genresArray;
+    console.log('🚀 ~ file: routes.js:44 ~ getGenres ~ genres', genres);
+
     getFilmsByUrl(getUrlFromSearchParam());
   });
 }

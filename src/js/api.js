@@ -1,4 +1,5 @@
-const axios = require('axios').default;
+// const axios = require('axios').default;
+import axios from 'axios';
 // console.log(axios);
 
 import {
@@ -27,12 +28,29 @@ import { renderMovieDetails } from './backdrop';
 // }
 
 async function getGenres() {
-  return fetch(
-    `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
-  ).then(({ data }) => {
-    console.log('ЖАНРЫ ', data);
+  return axios
+    .get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
+    )
+    .then(({ data }) => {
+      console.log('ЖАНРЫ ', data);
+      // return data.json();
+      return data;
+    });
+}
+
+async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
+  const arrayOfPromises = arrayOfMovieIds.map(async movieId => {
+    const { data } = await axios.get(
+      `${ID_URL}${movieId}?api_key=${API_KEY}&language=${LANGUAGE}`
+    );
     return data;
   });
+
+  // 2. Запускаем все промисы параллельно и ждем их завершения
+  const movies = await Promise.all(arrayOfPromises);
+
+  return movies;
 }
 
 // функция формирует год из полной даты с API
@@ -108,4 +126,5 @@ export {
   getYearFromDate,
   showMovieDetails,
   getUrlFromSearchParam,
+  loadArrayMoviesByArrayOfIds,
 };

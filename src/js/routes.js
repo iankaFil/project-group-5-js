@@ -86,4 +86,4 @@ function displayElement(element, isHide) {
   }
 }
 
-export { getRoute, searchWordToInput };
+export { getRoute, setRoute, searchWordToInput };

@@ -54,7 +54,7 @@ function displayPagination(response) {
     }
 
     for (let i = startPaginationPage; i <= stopPaginationPage; i += 1) {
-      console.log('🚀 ~ file: index.js:333 ~ i', i);
+      // console.log('🚀 ~ file: index.js:333 ~ i', i);
 
       if (currentPage === i) {
         pages.push(

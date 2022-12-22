@@ -601,6 +601,7 @@ screen and (min-width: 1280px) and (min-resolution: 2dppx) {
 .movies__link {
   display: flex;
   flex-direction: column;
+
   height: 100%;
 }
 

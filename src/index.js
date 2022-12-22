@@ -31,7 +31,9 @@ window.addEventListener('load', highlightActiveLink); // подсветка кн
 buttonLibraryWatched.addEventListener('click', () => {
     showMoviesFromLocalstorage('watched');
     buttonLibraryWatched.classList.add('highlighted');
+    buttonLibraryWatched.classList.add('header__btn--active');
     buttonLibraryQueue.classList.remove('highlighted');
+    buttonLibraryQueue.classList.remove('header__btn--active');
     setRoute('library', { mode: 'watched' }); // переходим на  список watched
 });
 
@@ -40,6 +42,8 @@ buttonLibraryQueue.addEventListener('click', () => {
     showMoviesFromLocalstorage('queue');
     buttonLibraryQueue.classList.add('highlighted');
     buttonLibraryWatched.classList.remove('highlighted');
+    buttonLibraryQueue.classList.add('header__btn--active');
+    buttonLibraryWatched.classList.remove('header__btn--active');
     setRoute('library', { mode: 'queue' }); // переходим на  список queue
 });
 

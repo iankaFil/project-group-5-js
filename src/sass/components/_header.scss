@@ -111,6 +111,11 @@
   }
 }
 
+.header__btn--active {
+  background-color: $accentColor;
+  border: none;
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;

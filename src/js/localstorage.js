@@ -119,15 +119,18 @@ function renderMoviesFromLocalstorageArray(data) {
   const movies = data
     .map(movie => {
       return `
-      <li class="movie">
+      <li class="movie__item">
         <a href="#show-moovie=${movie.id}"
          class="movie__link" data-movie="${movie.id}">
+        <div class="movie__img-wrap">
         <img class="movie__image" ${
           movie.poster_path
             ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
             : 'src="' + noImg + '">'
         }
+        </div>
         </a>
+        <div class="movie__info-wrap">
         <h2 class="movie__title">${movie.title}</h2>
         <p class="movie__description">
           ${movie.genres.map(({ name }) => name).join(', ')}
@@ -136,6 +139,7 @@ function renderMoviesFromLocalstorageArray(data) {
         </span>
         <span class="movie__rating">${movie.vote_average}</span>
         </p>
+        </div>
         </li>`;
     })
     .join(''); //${getYearFromDate(movie.release_date)}    ${getGenreById(

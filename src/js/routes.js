@@ -6,9 +6,9 @@ import { highlighteHeaderButtons } from './header';
 // Объект с обработчиками роутов (навигация)
 const routes = {
   '/': home,
-  '/project-group-5-js/': home, // ИСПРАВИТЬ НА ПУТЬ ПРОЕКТА НА GITHUB
+  '/project-group-5-js/': home,
   '/library': library,
-  '/project-group-5-js/library': library, // ИСПРАВИТЬ НА ПУТЬ ПРОЕКТА НА GITHUB
+  '/project-group-5-js/library': library,
 };
 
 // Получаем текущий роут из URL
@@ -62,14 +62,15 @@ function searchWordToInput() {
 // Функция, которая будет вызываться для обработки роута '/library'
 function library() {
   displayElement(refs.searchForm, false); // убираю форму поиска
+  document.querySelector('.header__wrap').classList.add('visually-hidden');
   displayElement(refs.libraryButtonsBlock, true); // показываю кнопки watched и queue
 
-  const mode = getRoute('mode') || 'queue'; // если маршрут пустой то по умолчанию переходим на страницу 'queue'
+  const mode = getRoute('mode') || 'queue';
   console.log('🚀 ~ file: index.js:200 ~ library ~ mode', mode);
 
-  showMoviesFromLocalstorage(mode); // показываю фильмы из сохраненных в локалсторедже
-  setRoute('library', { mode: mode }); // по умочанию переходим на  список queue
-  highlighteHeaderButtons(); // крашу кнопки
+  showMoviesFromLocalstorage(mode);
+  setRoute('library', { mode: mode });
+  highlighteHeaderButtons();
 }
 
 function getRoute(key) {
@@ -79,15 +80,15 @@ function getRoute(key) {
 
 //setRoute('/', { search: 'avatar' }).
 function setRoute(route, params) {
-  // Генерируем URL с параметрами
+
   const searchParams = new URLSearchParams(params);
   const url = `${route}?${searchParams.toString()}`;
 
-  // Задаем URL в строке браузера
+
   window.history.pushState({}, '', url);
 }
 
-// показывает или склывает элемент true показать, false скрыть, также передаем элемент
+// показывает или скрывает элемент true показать, false скрыть
 function displayElement(element, isHide) {
   if (element) {
     // Скрываем элемент

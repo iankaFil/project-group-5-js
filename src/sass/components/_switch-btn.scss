@@ -6,10 +6,53 @@
   color: #baaeae;
 }
 
+.dark .movie-info {
+  background-color: #2b2727;
+}
+.dark .movie-detail__about-text {
+  color: #fefefe;
+}
+.dark .movie-detail__about {
+  color: #fefefe;
+}
+.dark .movie-detail__info {
+  color: #fefefe;
+}
+.dark .movie-detail__title {
+  color: #fefefe;
+}
+.dark .pagination__button {
+  background-color: transparent;
+  color: #fff;
+}
+
+.dark .pagination__button.back {
+  background-color: transparent;
+
+  &::after {
+    background-image: url('./../images/svg/arrow-left-dark.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+.dark .pagination__button.forward {
+  background-color: transparent;
+
+  &::after {
+    background-image: url('./../images/svg/arrow-right-dark.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.dark .current {
+  background-color: $btnActiveColor;
+}
+
 .dark .movie__title {
   color: #baaeae;
 }
-// .dark .pagination__button
+
 .switch-wrap {
   position: absolute;
   width: 40px;

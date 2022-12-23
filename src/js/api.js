@@ -15,7 +15,7 @@ import { displayPagination } from './pagination';
 import { renderMovies } from './rendering';
 import { renderMovieDetails } from './backdrop';
 
-// API запрос на сервер получает список жанров
+
 // async function getGenres() {
 //   return axios
 //     .get(
@@ -47,7 +47,7 @@ async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
     return data;
   });
 
-  // 2. Запускаем все промисы параллельно и ждем их завершения
+
   const movies = await Promise.all(arrayOfPromises);
 
   return movies;

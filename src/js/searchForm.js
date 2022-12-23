@@ -1,4 +1,4 @@
-//  проверка данных  в форме и если все гуд то отправка
+//  проверка данных  в форме 
 import { refs } from './refs';
 
 export function checkForm(event) {

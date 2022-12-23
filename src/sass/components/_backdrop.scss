@@ -54,7 +54,7 @@
     width: 806px;
     height: 558px;
     padding: 40px 12px;
-    gap: 8px;
+    gap: 16px;
   }
 }
 
@@ -123,6 +123,12 @@
   // margin-right: 40px;
   color: #8c8c8c;
   padding: 0;
+  @include desktop {
+    margin-right: 85px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1079px) {
+    margin-right: 40px;
+  }
 }
 
 .movie-detail__table {
@@ -160,7 +166,7 @@
   padding: 0;
   padding-left: 5px;
   padding-right: 5px;
-  margin: 0;
+  margin-left: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,6 +194,6 @@
   align-items: center;
 
   @include tablet {
-    gap: 15px;
+    gap: 7px;
   }
 }

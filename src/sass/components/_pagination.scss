@@ -55,6 +55,12 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+
+  &.dark::after {
+    background-image: url('./../images/svg/arrow-right-dark.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .current {

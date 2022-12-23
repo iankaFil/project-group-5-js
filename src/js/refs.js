@@ -13,4 +13,5 @@ export const refs = {
   buttonCloseBackdrop: document.querySelector('.js-close-backdrop'),
   html: document.querySelector('html'),
   iconTheme: document.querySelector('.themetoggle span'),
+  headerWrap: document.querySelector('.header__wrap'),
 };

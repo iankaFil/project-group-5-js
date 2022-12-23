@@ -21,12 +21,9 @@ if (routes[route]) {
   console.log('Route not found');
 }
 
-//---------
-
 const objParam = {
   arrayOfGenres: [],
 };
-
 
 function home() {
   console.log('Home page');
@@ -37,7 +34,6 @@ function home() {
   }
 
   getGenres().then(({ genres }) => {
-    // genres = genresArray;
     objParam.arrayOfGenres = genres;
     console.log('🚀 ~ file: routes.js:44 ~ getGenres ~ genres', objParam);
 
@@ -55,7 +51,7 @@ function searchWordToInput() {
 
 function library() {
   displayElement(refs.searchForm, false);
-  document.querySelector('.header__wrap').classList.add('visually-hidden');
+  refs.headerWrap.classList.add('visually-hidden');
   displayElement(refs.libraryButtonsBlock, true);
 
   const mode = getRoute('mode') || 'queue';
@@ -71,23 +67,17 @@ function getRoute(key) {
   return params.get(key);
 }
 
-//setRoute('/', { search: 'avatar' }).
 function setRoute(route, params) {
-
   const searchParams = new URLSearchParams(params);
   const url = `${route}?${searchParams.toString()}`;
-
 
   window.history.pushState({}, '', url);
 }
 
-
 function displayElement(element, isHide) {
   if (element) {
-
     element.style.display = isHide ? 'block' : 'none';
   }
 }
-// export const genres = [];
 
 export { getRoute, setRoute, searchWordToInput, objParam };

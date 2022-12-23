@@ -25,27 +25,32 @@ import { checkForm } from './js/searchForm';
 import { onThemeToggle } from './js/switch-btn';
 import noImg from './images/no-image.jpg';
 
-// let genres = [];
-
-// НАСТРОЙКА ПАГИНАЦИИ
-// let totalPages = 0;
-// let currentPage = 1;
-// let pageLinks = 5; //   количество кнопок ((нечетные числа, пример - 1 2 [3] 4 5))
-// const paginationRange = Math.floor(pageLinks / 2);
-// let startPaginationPage = 1;
-// let stopPaginationPage = pageLinks;
-//------------------------------------------------
-
-// const refs.movieContainer = document.querySelector('.js-movies-container');
-// const pagination = document.querySelector('.js-paginator');
-// const searchMovieInput = document.querySelector('.js-search-form__input');
-// const searchForm = document.querySelector('.js-search-form');
-// const backdrop = document.querySelector('.backdrop');
-// const libraryButtonsBlock = document.querySelector('.js-library-buttons-block');
-// const buttonLibraryWatched = document.querySelector('.js-watched');
-// const buttonLibraryQueue = document.querySelector('.js-queue');
-
 window.addEventListener('load', highlightActiveLink); // подсветка кнопок текущей страницы в хедере
+refs.themeToggle.addEventListener('click', onThemeToggle);
+refs.searchForm.addEventListener('submit', checkForm);
+-(
+  // let genres = [];
+
+  // НАСТРОЙКА ПАГИНАЦИИ
+  // let totalPages = 0;
+  // let currentPage = 1;
+  // let pageLinks = 5; //   количество кнопок ((нечетные числа, пример - 1 2 [3] 4 5))
+  // const paginationRange = Math.floor(pageLinks / 2);
+  // let startPaginationPage = 1;
+  // let stopPaginationPage = pageLinks;
+  //------------------------------------------------
+
+  // const refs.movieContainer = document.querySelector('.js-movies-container');
+  // const pagination = document.querySelector('.js-paginator');
+  // const searchMovieInput = document.querySelector('.js-search-form__input');
+  // const searchForm = document.querySelector('.js-search-form');
+  // const backdrop = document.querySelector('.backdrop');
+  // const libraryButtonsBlock = document.querySelector('.js-library-buttons-block');
+  // const buttonLibraryWatched = document.querySelector('.js-watched');
+  // const buttonLibraryQueue = document.querySelector('.js-queue');
+
+  window.addEventListener('load', highlightActiveLink)
+); // подсветка кнопок текущей страницы в хедере
 refs.themeToggle.addEventListener(
   'click',
   onThemeToggle

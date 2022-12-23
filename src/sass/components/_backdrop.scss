@@ -137,17 +137,16 @@
   margin-bottom: 20px;
   width: 100%;
 }
-
 .movie-detail__rating {
   width: 36px;
   height: 16px;
+  background-color: #ff6b01;
+  border-radius: 5px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16;
   margin-right: 5px;
   color: #ffffff;
-  background: #ff6b01;
-  border-radius: 5px;
 }
 
 .movie-detail__info {

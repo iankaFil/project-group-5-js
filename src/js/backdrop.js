@@ -32,9 +32,9 @@ function renderMovieDetails(data) {
         <tbody>
           <tr>
             <td><span class="movie-detail__title-table-titles">Vote / Votes</span></td>
-            <td><span class="movie-detail__rating"> ${
-              data.vote_average
-            } </span> /<span class="movie-detail__info"> ${
+            <td><span class="movie-detail__rating">${data.vote_average.toFixed(
+              1
+            )} </span> /<span class="movie-detail__info"> ${
     data.vote_count
   }</span></td>
           </tr>
@@ -78,7 +78,6 @@ function renderMovieDetails(data) {
   renderBackdropButtonsState();
 }
 
-
 refs.backdrop.addEventListener('click', ({ target }) => {
   // закрытие бэкдропа
   if (target === refs.backdrop) {
@@ -90,44 +89,37 @@ refs.backdrop.addEventListener('click', ({ target }) => {
     const idMovie = target.dataset.id;
     console.log('PRESSED js-watched', idMovie);
 
-
     if (loadArayFromLocalStorage('watched').includes(String(idMovie))) {
       console.log('УДАЛИТЬ ', idMovie);
       deleteMovieFromLocalStorage(idMovie, 'watched');
     } else {
-      
       addMovieToWatchedList(target.dataset.id);
     }
     renderBackdropButtonsState(target);
 
-    
     if (getRoute('mode')) {
-      showMoviesFromLocalstorage(getRoute('mode')); 
+      showMoviesFromLocalstorage(getRoute('mode'));
     }
   }
 
-  
   if (target.tagName === 'BUTTON' && target.classList.contains('js-queue')) {
     const idMovie = target.dataset.id;
     console.log('PRESSED js-queue');
-
 
     if (loadArayFromLocalStorage('queue').includes(String(idMovie))) {
       console.log('УДАЛИТЬ ', idMovie);
       deleteMovieFromLocalStorage(idMovie, 'queue');
     } else {
-
       addMovieToQueueList(target.dataset.id);
     }
     renderBackdropButtonsState(target);
 
     if (getRoute('mode')) {
-      showMoviesFromLocalstorage(getRoute('mode')); 
+      showMoviesFromLocalstorage(getRoute('mode'));
     }
   }
   console.dir(target);
 });
-
 
 function renderBackdropButtonsState() {
   const buttonJsWatched = refs.backdrop.querySelector('button.js-watched');

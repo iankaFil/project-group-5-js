@@ -165,6 +165,10 @@
   line-height: 14px;
   color: #000000;
 }
+
+.movie-detail__info--uppercase {
+  text-transform: uppercase;
+}
 .movie-detail__about-text {
   font-weight: 500;
   font-size: 12px;
@@ -206,4 +210,10 @@
   @include tablet {
     gap: 7px;
   }
+}
+.icon__close {
+  position: relative;
+  left: 78%;
+  top: 12px;
+  z-index: 3;
 }

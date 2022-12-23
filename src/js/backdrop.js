@@ -19,11 +19,10 @@ function renderMovieDetails(data) {
 
   const content = `
   <div class="image-wrap">
-  <img class="movie-detail__image" ${
-    data.poster_path
+  <img class="movie-detail__image" ${data.poster_path
       ? 'src="https://image.tmdb.org/t/p/w300' + data.poster_path + '">'
       : 'src="' + noImg + '">'
-  }
+    }
   </div>
 
     <div class="info-wrap">
@@ -33,10 +32,9 @@ function renderMovieDetails(data) {
           <tr>
             <td><span class="movie-detail__title-table-titles">Vote / Votes</span></td>
             <td><span class="movie-detail__rating">${data.vote_average.toFixed(
-              1
-            )} </span> /<span class="movie-detail__info"> ${
-    data.vote_count
-  }</span></td>
+      1
+    )} </span> /<span class="movie-detail__info"> ${data.vote_count
+    }</span></td>
           </tr>
           <tr>
             <td><span class="movie-detail__title-table-titles">Popularity</span></td>
@@ -44,15 +42,14 @@ function renderMovieDetails(data) {
           </tr>
           <tr>
             <td><span class="movie-detail__title-table-titles">Original Title</span></td>
-            <td><span class="movie-detail__info">${
-              data.original_title
-            }</span></td>
+            <td><span class="movie-detail__info movie-detail__info--uppercase">${data.original_title
+    }</span></td>
           </tr>
           <tr>
             <td><span class="movie-detail__title-table-titles">Genre</span></td>
             <td><span class="movie-detail__info">${getGenre(
-              data.genres
-            )}</span></td>
+      data.genres
+    )}</span></td>
           </tr>
         </tbody>
       </table>
@@ -62,13 +59,11 @@ function renderMovieDetails(data) {
       </p>
       <div class="movie-detail__buttons-wrapper">
         <button
-          class="movie-detail__button js-watched" data-id="${
-            data.id
-          }" type="button">add to Watched</button>
+          class="movie-detail__button js-watched" data-id="${data.id
+    }" type="button">add to Watched</button>
         <button
-          class="movie-detail__button js-queue" data-id="${
-            data.id
-          }" type="button">add to queue</button>
+          class="movie-detail__button js-queue" data-id="${data.id
+    }" type="button">add to queue</button>
       </div>
     </div>
   `;
@@ -78,11 +73,15 @@ function renderMovieDetails(data) {
   renderBackdropButtonsState();
 }
 
+refs.iconClose.addEventListener('click', () => {
+  refs.backdrop.classList.add('is-hidden');
+  // refs.bodyEl.classList.remove('hidden');
+})
 refs.backdrop.addEventListener('click', ({ target }) => {
   // закрытие бэкдропа
   if (target === refs.backdrop) {
     refs.backdrop.classList.add('is-hidden');
-    refs.bodyEl.classList.remove('hidden');
+    // refs.bodyEl.classList.remove('hidden');
   }
 
   if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {

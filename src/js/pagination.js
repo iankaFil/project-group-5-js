@@ -4,7 +4,7 @@ import { setPageToUrl } from './setPageUrl';
 import { getUrlFromSearchParam, getFilmsByUrl } from './api';
 
 let totalPages = 0;
-let startPage = 1;
+let firstPage = 1;
 let currentPage = 1;
 let pageLinks = 5;
 const paginationRange = Math.floor(pageLinks / 2);
@@ -22,12 +22,11 @@ function gotoPage({ target }) {
   }
 }
 
-//  функция отображения пагинации TODO устранить глюк при приближении к концу страниц, отображается меньше кнопок,
-// Добавить последнюю страницу и три точки ... на версии больше мобилки
+//  функция отображения пагинации
 function displayPagination(response) {
   let pages = [];
+  let lastPage = response.total_pages;
 
-  // if (totalPages > 1) {
   if (response.total_pages > 1) {
     if (pageLinks >= response.total_pages) {
       pageLinks = response.total_pages;
@@ -50,16 +49,19 @@ function displayPagination(response) {
       pages.push(
         `<button data-gotopage="${
           currentPage - 1
-        }" class="pagination__button back" type="button"></button>`
+        }" class="pagination__button back" type="button"></button>`,
+        `<span class="ellipsis"><sup>...</sup></span>`
       );
-      pages.push(
-        `<button class="pagination__button ellipsis" type="button">...</button>`
-      );
+      if (currentPage > 4) {
+        pages.splice(
+          1,
+          0,
+          `<button data-gotopage="${firstPage}" class="pagination__button" type="button">${firstPage}</button>`
+        );
+      }
     }
 
     for (let i = startPaginationPage; i <= stopPaginationPage; i += 1) {
-      // console.log('🚀 ~ file: index.js:333 ~ i', i);
-
       if (currentPage === i) {
         pages.push(
           `<button data-gotopage="${i}" class="pagination__button current" type="button">${i}</button>`
@@ -73,12 +75,17 @@ function displayPagination(response) {
 
     if (currentPage < response.total_pages) {
       pages.push(
-        `<button class="pagination__button ellipsis" type="button">...</button>`
-      );
-      pages.push(
+        `<span class="ellipsis"><sup>...</sup></span>`,
         `<button data-gotopage="${
           currentPage + 1
         }" class="pagination__button forward" type="button"></button>`
+      );
+    }
+    if (currentPage < response.total_pages - 3) {
+      pages.splice(
+        pages.length - 1,
+        0,
+        `<button data-gotopage="${lastPage}" class="pagination__button" type="button">${lastPage}</button>`
       );
     }
 

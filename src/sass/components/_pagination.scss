@@ -21,10 +21,15 @@
   border-radius: 5px;
   border: 0;
   background-color: #fff;
+}
 
-  &.ellipsis {
-    color: inherit;
-    cursor: default;
+.ellipsis {
+  display: none;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  @include tablet {
+    display: block;
   }
 }
 

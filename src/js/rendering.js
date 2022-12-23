@@ -9,7 +9,7 @@ import { notificationInvalidInput } from './notifications';
 
 export function renderMovies({ data }) {
   if (!data.results.length) {
-    notificationInvalidInput();
+    refs.notificationWarning.style.visibility = 'visible';
   }
 
   const movie = data.results

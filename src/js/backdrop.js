@@ -80,7 +80,7 @@ function renderMovieDetails(data) {
 
 refs.buttonCloseBackdrop.addEventListener('click', () => {
   refs.backdrop.classList.add('is-hidden');
-  // refs.bodyEl.classList.remove('hidden');
+  refs.bodyEl.classList.remove('hidden');
 });
 
 refs.backdrop.addEventListener('click', ({ target }) => {

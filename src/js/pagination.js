@@ -4,6 +4,7 @@ import { setPageToUrl } from './setPageUrl';
 import { getUrlFromSearchParam, getFilmsByUrl } from './api';
 
 let totalPages = 0;
+let startPage = 1;
 let currentPage = 1;
 let pageLinks = 5;
 const paginationRange = Math.floor(pageLinks / 2);
@@ -11,7 +12,6 @@ let startPaginationPage = 1;
 let stopPaginationPage = pageLinks;
 
 refs.pagination.addEventListener('click', gotoPage);
-
 
 function gotoPage({ target }) {
   if (target.tagName === 'BUTTON') {
@@ -42,13 +42,18 @@ function displayPagination(response) {
       stopPaginationPage = currentPage + paginationRange;
       if (stopPaginationPage > response.total_pages) {
         stopPaginationPage = response.total_pages;
+        startPaginationPage = response.total_pages - 4;
       }
     }
 
     if (currentPage > 1) {
       pages.push(
-        `<button data-gotopage="${currentPage - 1
+        `<button data-gotopage="${
+          currentPage - 1
         }" class="pagination__button back" type="button"></button>`
+      );
+      pages.push(
+        `<button class="pagination__button ellipsis" type="button">...</button>`
       );
     }
 
@@ -68,7 +73,11 @@ function displayPagination(response) {
 
     if (currentPage < response.total_pages) {
       pages.push(
-        `<button data-gotopage="${currentPage + 1
+        `<button class="pagination__button ellipsis" type="button">...</button>`
+      );
+      pages.push(
+        `<button data-gotopage="${
+          currentPage + 1
         }" class="pagination__button forward" type="button"></button>`
       );
     }

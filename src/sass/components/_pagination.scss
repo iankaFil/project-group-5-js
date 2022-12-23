@@ -21,6 +21,11 @@
   border-radius: 5px;
   border: 0;
   background-color: #fff;
+
+  &.ellipsis {
+    color: inherit;
+    cursor: default;
+  }
 }
 
 .pagination__button.back {

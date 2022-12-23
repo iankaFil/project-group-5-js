@@ -1,4 +1,3 @@
-//----------------------------------------------------------
 .backdrop {
   z-index: 1000;
   width: 100%;
@@ -24,45 +23,27 @@
 
 .movie-info {
   display: block;
-  // overflow-y: hidden;
-  // gap: 68px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   max-height: 90%;
-  overflow: auto;
-  // overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-  // font-weight: 500;
-  // font-size: 12px;
-  // line-height: 1.33;
-
-  //   padding-left: 20px;
-  //   padding-right: 20px;
-
-  // padding: 48px 20px 40px;
 
   @include mobile {
     width: 320px;
   }
 
   @include tablet {
-    // display: flex;
     width: 704px;
-    height: 552px;
-    // padding: 40px 72px 40px 36px;
-    // justify-content: space-between;
   }
 
   @media screen and (min-width: 1024px) {
     width: 806px;
-    height: 558px;
-    // padding: 40px 12px;
-    // gap: 16px;
   }
 }
 
@@ -88,6 +69,7 @@
   @include tablet {
     width: 264px;
     height: 374px;
+    margin-bottom: 0;
   }
 
   @media screen and (min-width: 1024px) {
@@ -101,7 +83,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 1.15;
-  color: #000000;
+  color: $mainTextColor;
   margin-bottom: 20px;
   text-transform: uppercase;
 
@@ -117,14 +99,14 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  color: #000000;
+  color: $mainTextColor;
 }
 
 .movie-detail__title-table-titles {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  // margin-right: 40px;
+
   color: #8c8c8c;
   padding: 0;
   @include desktop {
@@ -145,9 +127,7 @@
   width: 100%;
 }
 .movie-detail__rating {
-  width: 36px;
-  height: 16px;
-  background-color: #ff6b01;
+  background-color: $btnActiveColor;
   border-radius: 5px;
   padding: 1px 8px;
   font-weight: 500;
@@ -161,7 +141,14 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-  color: #000000;
+  color: $mainTextColor;
+
+  &.movie-votes {
+    background-color: $footerBckg;
+    border-radius: 5px;
+    padding: 1px 8px;
+    margin-left: 5px;
+  }
 }
 
 .movie-detail__info--uppercase {
@@ -171,7 +158,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.66;
-  color: #000000;
+  color: $mainTextColor;
 }
 
 .movie-detail__button {
@@ -183,23 +170,22 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  border: 1px solid #000;
+  border: 1px solid $mainTextColor;
   text-transform: uppercase;
   width: 110px;
   height: 44px;
   line-height: 1.33;
-  background-color: #fff;
+  background-color: $headerTextColor;
 }
 
 .movie-detail__button.highlighted {
   border: 0;
-  background-color: #ff6b01;
-  color: #fff;
+  background-color: $btnActiveColor;
+  color: $headerTextColor;
 }
 
 .movie-detail__buttons-wrapper {
   display: flex;
-  // justify-content: space-between;
   gap: 20px;
   margin-top: 20px;
   flex-direction: row;
@@ -210,20 +196,12 @@
   }
 }
 
-.icon__close {
-  // position: relative;
-  // left: 78%;
-  // top: 12px;
-  // z-index: 3;
-}
-
 // закрытие бэкдропа кнопка \
 .backdrop__close_button {
   padding: 0;
   position: absolute;
   top: 8px;
   right: 8px;
-  // background-color: #fff;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -244,7 +222,7 @@
   @include tablet {
     display: flex;
     width: 704px;
-    height: 552px;
+    // height: 552px;
     padding: 40px 72px 40px 36px;
     justify-content: space-between;
   }
@@ -255,6 +233,4 @@
     padding: 40px 12px;
     gap: 16px;
   }
-  // width: 100%;
-  // height: 100%;
 }

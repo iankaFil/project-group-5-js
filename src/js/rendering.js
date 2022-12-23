@@ -3,14 +3,15 @@ import { getGenreById } from './genres';
 import { getYearFromDate } from './api';
 import { addClickListenerToMovie } from './clickToMovie';
 import { objParam } from './routes';
-
-// let listGenresArrayFromApi = [];
-
 import noImg from '../images/no-image.jpg';
 import { startLoading, stopLoading } from './loader';
-
+import { notificationInvalidInput } from './notifications';
 
 export function renderMovies({ data }) {
+  if (!data.results.length) {
+    notificationInvalidInput();
+  }
+
   const movie = data.results
     .map(movie => {
       return `
@@ -18,9 +19,10 @@ export function renderMovies({ data }) {
         <a href="#show-moovie=${movie.id}" 
          class="movie__link" data-movie="${movie.id}">
         <div class="movie__img-wrap">
-        <img class="movie__image" ${movie.poster_path
-          ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
-          : 'src="' + noImg + '">'
+        <img class="movie__image" ${
+          movie.poster_path
+            ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
+            : 'src="' + noImg + '">'
         }
         </div>
         </a>

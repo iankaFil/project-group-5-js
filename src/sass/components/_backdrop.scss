@@ -21,6 +21,7 @@
 
 .movie-info {
   display: block;
+  // gap: 68px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -40,6 +41,21 @@
   //   padding-right: 20px;
 
   padding: 48px 20px 40px;
+
+  @include tablet {
+    display: flex;
+    width: 704px;
+    height: 552px;
+    padding: 40px 72px 40px 36px;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 806px;
+    height: 558px;
+    padding: 40px 12px;
+    gap: 8px;
+  }
 }
 
 // .movie-info {
@@ -52,20 +68,42 @@
 //   line-height: 1.33;
 //   overflow-y: scroll;
 // }
+.info-wrap {
+  @include tablet {
+    width: 264px;
+  }
 
+  @media screen and (min-width: 1024px) {
+    width: 100%;
+  }
+}
 .movie-detail__image {
-  width: 100%;
+  width: 240px;
+  height: 357px;
   border-radius: 5px;
   margin-bottom: 20px;
+  @include tablet {
+    width: 264px;
+    height: 374px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 375px;
+    height: 478px;
+  }
 }
 
 .movie-detail__title {
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 23px;
+  line-height: 1.15;
   color: #000000;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+  }
 }
 
 .movie-detail__about {
@@ -143,8 +181,13 @@
 
 .movie-detail__buttons-wrapper {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  gap: 20px;
   margin-top: 20px;
   flex-direction: row;
   align-items: center;
+
+  @include tablet {
+    gap: 15px;
+  }
 }

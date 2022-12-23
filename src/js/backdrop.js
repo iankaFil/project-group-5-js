@@ -14,49 +14,59 @@ function renderMovieDetails(data) {
   console.log(data);
   refs.backdrop.classList.remove('is-hidden');
   const content = `
-  
+  <div class="image-wrap">
   <img class="movie-detail__image" ${
     data.poster_path
       ? 'src="https://image.tmdb.org/t/p/w300' + data.poster_path + '">'
       : 'src="' + noImg + '">'
   }
-  <h1 class="movie-detail__title">${data.title}</h1>
-  <table class="movie-detail__table">
-<tbody>
-  <tr>
-    <td><span class="movie-detail__title-table-titles">Vote / Votes</span></td>
-    <td><span class="movie-detail__rating"> ${
-      data.vote_average
-    } </span> /<span class="movie-detail__info"> ${data.vote_count}</span></td>
-  </tr>
-  <tr>
-    <td><span class="movie-detail__title-table-titles">Popularity</span></td>
-    <td><span class="movie-detail__info">${data.popularity}</span></td>
-  </tr>
-  <tr>
-    <td><span class="movie-detail__title-table-titles">Original Title</span></td>
-    <td><span class="movie-detail__info">${data.original_title}</span></td>
-  </tr>
-  <tr>
-    <td><span class="movie-detail__title-table-titles">Genre</span></td>
-    <td><span class="movie-detail__info">${getGenre(data.genres)}</span></td>
-  </tr>
-</tbody>
-</table>
-<h2 class="movie-detail__about">About</h2>
-  <p class="movie-detail__about-text">
-  ${data.overview}
-  </p>
-  <div class="movie-detail__buttons-wrapper">
-  <button
-  class="movie-detail__button js-watched" data-id="${
-    data.id
-  }" type="button">add to Watched</button>
-  <button
-  class="movie-detail__button js-queue" data-id="${
-    data.id
-  }" type="button">add to queue</button>
   </div>
+
+    <div class="info-wrap">
+      <h1 class="movie-detail__title">${data.title}</h1>
+      <table class="movie-detail__table">
+        <tbody>
+          <tr>
+            <td><span class="movie-detail__title-table-titles">Vote / Votes</span></td>
+            <td><span class="movie-detail__rating"> ${
+              data.vote_average
+            } </span> /<span class="movie-detail__info"> ${
+    data.vote_count
+  }</span></td>
+          </tr>
+          <tr>
+            <td><span class="movie-detail__title-table-titles">Popularity</span></td>
+            <td><span class="movie-detail__info">${data.popularity}</span></td>
+          </tr>
+          <tr>
+            <td><span class="movie-detail__title-table-titles">Original Title</span></td>
+            <td><span class="movie-detail__info">${
+              data.original_title
+            }</span></td>
+          </tr>
+          <tr>
+            <td><span class="movie-detail__title-table-titles">Genre</span></td>
+            <td><span class="movie-detail__info">${getGenre(
+              data.genres
+            )}</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="movie-detail__about">About</h2>
+      <p class="movie-detail__about-text">
+        ${data.overview}
+      </p>
+      <div class="movie-detail__buttons-wrapper">
+        <button
+          class="movie-detail__button js-watched" data-id="${
+            data.id
+          }" type="button">add to Watched</button>
+        <button
+          class="movie-detail__button js-queue" data-id="${
+            data.id
+          }" type="button">add to queue</button>
+      </div>
+    </div>
   `;
   refs.backdrop.querySelector('.movie-info').innerHTML = content;
   renderBackdropButtonsState();

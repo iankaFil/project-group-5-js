@@ -27,9 +27,9 @@
 - [Владислав Шкарапута - Developer](https://github.com/Irfnekf)
 - [Володимир Бублик - Developer](https://github.com/volodymyr198)
 - [Олександр Куликов - Developer](https://github.com/kulykof)
-- [Олександр Сашин - Developer](https://github.com/AleksandrShteimakh)
+- [Олександр Штеймах - Developer](https://github.com/AleksandrShteimakh)
 - [Віталій Ленін - Developer](https://github.com/VitaliyLenin)
-- [Сергій Руденко - Developer](https://#)
+- [Сергій Руденко - Developer](https://github.com/Rudenko0339)
 
 #
 

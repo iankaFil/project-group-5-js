@@ -73,10 +73,10 @@ function renderMovieDetails(data) {
   renderBackdropButtonsState();
 }
 
-refs.iconClose.addEventListener('click', () => {
-  refs.backdrop.classList.add('is-hidden');
-  refs.bodyEl.classList.remove('hidden');
-})
+// refs.iconClose.addEventListener('click', () => {
+//   refs.backdrop.classList.add('is-hidden');
+//   refs.bodyEl.classList.remove('hidden');
+// })
 refs.backdrop.addEventListener('click', ({ target }) => {
   // закрытие бэкдропа
   if (target === refs.backdrop) {

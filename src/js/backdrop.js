@@ -35,6 +35,7 @@ function renderMovieDetails(data) {
             <td><span class="movie-detail__rating">${data.vote_average.toFixed(
               1
             )} </span> /<span class="movie-detail__info movie-votes"> ${
+
     data.vote_count
   }</span></td>
           </tr>

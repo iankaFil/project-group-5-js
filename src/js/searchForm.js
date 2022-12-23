@@ -1,18 +1,14 @@
-//  проверка данных  в форме 
+//  проверка данных  в форме
 import { refs } from './refs';
 
 export function checkForm(event) {
   event.preventDefault();
-  let inputValue = refs.searchForm.elements.search.value;
+  let inputValue = refs.searchForm.elements.search.value.trim();
 
-  inputValue = inputValue.trim();
-
-  if (inputValue.length === 0) {
-    // console.log('Search result not successful. Enter the correct movie name.');
+  if (!inputValue) {
     refs.notificationWarning.style.visibility = 'visible';
-    return false;
-  } else {
-    refs.searchForm.elements.search.value = inputValue;
-    refs.searchForm.submit();
+    return;
   }
+  refs.searchForm.elements.search.value = inputValue;
+  refs.searchForm.submit();
 }

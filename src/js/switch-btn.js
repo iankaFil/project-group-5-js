@@ -9,16 +9,22 @@ export function onThemeToggle(event) {
   }
   addDarkClassToHTML();
 }
-
 function addDarkClassToHTML() {
+  // const addClass = 'add';
+  // const removeClass = 'remove';
+  // const lightTheme = 'wb_sunny';
+  // const darkTheme = 'dark_mode';
   try {
     if (localStorage.getItem('theme') === 'dark') {
-      refs.html.classList.add('dark');
-      refs.iconTheme.textContent = 'dark_mode';
+      onToggleClassAndIcon('add', 'dark_mode');
     } else {
-      refs.html.classList.remove('dark');
-      refs.iconTheme.textContent = 'wb_sunny';
+      onToggleClassAndIcon('remove', 'wb_sunny');
     }
   } catch (err) {}
 }
 addDarkClassToHTML();
+
+function onToggleClassAndIcon(method, nameIcon) {
+  refs.html.classList[method]('dark');
+  refs.iconTheme.textContent = `${nameIcon}`;
+}

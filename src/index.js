@@ -16,10 +16,7 @@ import { checkForm } from './js/searchForm';
 import { onThemeToggle } from './js/switch-btn';
 import noImg from './images/no-image.jpg';
 
-
 window.addEventListener('load', highlightActiveLink); // подсветка кнопок текущей страницы в хедере
-refs.themeToggle.addEventListener(
-  'click',
-  onThemeToggle
-);
-refs.searchForm.addEventListener('submit', checkForm); 
+refs.themeToggle.addEventListener('click', onThemeToggle);
+refs.searchForm.addEventListener('submit', checkForm);
+searchWordToInput();

@@ -44,7 +44,9 @@
     background-position: center;
   }
 }
-
+.dark .icon__close {
+  fill: $headerTextColor;
+}
 .dark .current {
   background-color: $btnActiveColor;
 }

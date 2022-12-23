@@ -42,6 +42,7 @@
 
 .header--library {
   position: relative;
+  height: 230px;
   top: 0;
   left: 0;
 
@@ -58,6 +59,7 @@
   }
 
   @include tablet {
+    height: 216px;
     background-image: $bg-header-gradient, url(../images/library-tablet-min.png);
 
     @include retina {

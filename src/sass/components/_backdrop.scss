@@ -211,9 +211,19 @@
     gap: 7px;
   }
 }
-.icon__close {
-  position: relative;
-  left: 78%;
-  top: 12px;
-  z-index: 3;
-}
+// .backdrop__close {
+//   position: absolute;
+//   top: 8px;
+//   right: 8px;
+//   width: 24px;
+//   height: 24px;
+//   border: none;
+//   background: transparent;
+//   @media screen and (min-width: 768px) {
+//     display: none;
+//   }
+// }
+// .icon__close {
+//   width: 24px;
+//   height: 24px;
+// }

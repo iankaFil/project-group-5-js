@@ -75,13 +75,13 @@ function renderMovieDetails(data) {
 
 refs.iconClose.addEventListener('click', () => {
   refs.backdrop.classList.add('is-hidden');
-  // refs.bodyEl.classList.remove('hidden');
+  refs.bodyEl.classList.remove('hidden');
 })
 refs.backdrop.addEventListener('click', ({ target }) => {
   // закрытие бэкдропа
   if (target === refs.backdrop) {
     refs.backdrop.classList.add('is-hidden');
-    // refs.bodyEl.classList.remove('hidden');
+    refs.bodyEl.classList.remove('hidden');
   }
 
   if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {

@@ -9,7 +9,7 @@ import { objParam } from './routes';
 import noImg from '../images/no-image.jpg';
 import { startLoading, stopLoading } from './loader';
 
-// создает разметку списка фильмов и добавляет его в movieContainer
+
 export function renderMovies({ data }) {
   const movie = data.results
     .map(movie => {
@@ -18,10 +18,9 @@ export function renderMovies({ data }) {
         <a href="#show-moovie=${movie.id}" 
          class="movie__link" data-movie="${movie.id}">
         <div class="movie__img-wrap">
-        <img class="movie__image" ${
-          movie.poster_path
-            ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
-            : 'src="' + noImg + '">'
+        <img class="movie__image" ${movie.poster_path
+          ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
+          : 'src="' + noImg + '">'
         }
         </div>
         </a>

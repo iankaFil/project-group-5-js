@@ -11,14 +11,11 @@ const routes = {
   '/project-group-5-js/library': library,
 };
 
-// Получаем текущий роут из URL
 const route = window.location.pathname;
 console.log('ROUTE', route);
 console.log('window.location', window.location);
 
-// Проверяем, что у нас есть обработчик для этого роута
 if (routes[route]) {
-  // Вызываем обработчик роута
   routes[route]();
 } else {
   console.log('Route not found');
@@ -30,14 +27,11 @@ const objParam = {
   arrayOfGenres: [],
 };
 
-// Функция, которая будет вызываться для обработки роута '/'
+
 function home() {
   console.log('Home page');
-
-  // Парсим параметры запроса
   const params = new URLSearchParams(window.location.search);
 
-  // Проверяем, что есть параметр search
   if (params.has('search')) {
     console.log(`Search: ${params.get('search')}`);
   }
@@ -59,11 +53,10 @@ function searchWordToInput() {
   }
 }
 
-// Функция, которая будет вызываться для обработки роута '/library'
 function library() {
-  displayElement(refs.searchForm, false); // убираю форму поиска
+  displayElement(refs.searchForm, false);
   document.querySelector('.header__wrap').classList.add('visually-hidden');
-  displayElement(refs.libraryButtonsBlock, true); // показываю кнопки watched и queue
+  displayElement(refs.libraryButtonsBlock, true);
 
   const mode = getRoute('mode') || 'queue';
   console.log('🚀 ~ file: index.js:200 ~ library ~ mode', mode);
@@ -88,10 +81,10 @@ function setRoute(route, params) {
   window.history.pushState({}, '', url);
 }
 
-// показывает или скрывает элемент true показать, false скрыть
+
 function displayElement(element, isHide) {
   if (element) {
-    // Скрываем элемент
+
     element.style.display = isHide ? 'block' : 'none';
   }
 }

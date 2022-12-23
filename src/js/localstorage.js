@@ -14,7 +14,7 @@ import noImg from '../images/no-image.jpg';
 import { startLoading, stopLoading } from './loader';
 
 // const axios = require('axios').default;
-// достает массив из локалсторедж по ключу, если нет массива или переменнос этим ключем то выводит []
+
 function loadArayFromLocalStorage(key) {
   try {
     const serializedState = localStorage.getItem(key);
@@ -24,37 +24,32 @@ function loadArayFromLocalStorage(key) {
   }
 }
 
-// удаляет фильм  из списка в локалсторедж по ключу 'key' -watched или queue и значению id фильма
 function deleteMovieFromLocalStorage(movieId, key) {
   try {
     const Movies = JSON.parse(localStorage.getItem(key));
     const updatedMovies = Movies.filter(id => id !== movieId);
     localStorage.setItem(key, JSON.stringify(updatedMovies));
-  } catch (error) {}
+  } catch (error) { }
 }
 
-// сохраняет айди фильма в локалсторедж под ключем watched
 function addMovieToWatchedList(id) {
   saveIdMovieToLocalStorage(id, 'watched', 'queue');
 }
 
 async function showMoviesFromLocalstorage(keyOfStorage) {
-  //  показывает фильмы по ключу переменной в Localstorage
+
   const queueArray = loadArayFromLocalStorage(keyOfStorage);
   if (queueArray.length > 0) {
-    // проверка на пустой массив
     let movies = await loadArrayMoviesByArrayOfIds(queueArray);
     console.log(
       '🚀 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ~ showMoviesFromLocalstorage ~ movies',
       movies
     );
-
     renderMoviesFromLocalstorageArray(movies);
   } else {
     refs.movieContainer.innerHTML = ''; // Если фильмов нет, то очищаем
   }
 }
-
 // async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
 //   const arrayOfPromises = arrayOfMovieIds.map(async movieId => {
 //     const { data } = await axios.get(
@@ -66,12 +61,10 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
 //   return (movies = await Promise.all(arrayOfPromises));
 // }
 
-// сохраняет айди фильма в локалсторедж под ключем queue
 function addMovieToQueueList(id) {
   saveIdMovieToLocalStorage(id, 'queue', 'watched');
 }
 
-// начинка функции addMovieToWatchedList
 function saveIdMovieToLocalStorage(idMovie, key, keyToFindDuplicate) {
   let args = loadFromLocalStorage(key); // переписать на loadArayFromLocalStorage
   let duplicateKey = loadFromLocalStorage(keyToFindDuplicate); //  переписать на loadArayFromLocalStorage
@@ -114,7 +107,7 @@ function loadFromLocalStorage(key) {
   }
 }
 
-// выводит на страницу список фильмов из локалсторедж, тебует параметр data массив с списком объектов - фильмов
+
 // TODO Неплохо бы заменить эту функцию renderMovies предварительно приготовив нормально данные с локалстореджа, которые она сможет съесть
 function renderMoviesFromLocalstorageArray(data) {
   const movies = data
@@ -124,10 +117,9 @@ function renderMoviesFromLocalstorageArray(data) {
         <a href="#show-moovie=${movie.id}"
          class="movie__link" data-movie="${movie.id}">
         <div class="movie__img-wrap">
-        <img class="movie__image" ${
-          movie.poster_path
-            ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
-            : 'src="' + noImg + '">'
+        <img class="movie__image" ${movie.poster_path
+          ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
+          : 'src="' + noImg + '">'
         }
         </div>
         </a>

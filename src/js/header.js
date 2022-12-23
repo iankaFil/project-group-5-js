@@ -23,7 +23,7 @@ function highlightActiveLink() {
   }
 }
 
-// подсветка кнопок (Watched queue) на странице my -library
+
 function highlighteHeaderButtons() {
   // подсветка кнопок ЦФ
   if (getRoute('mode') === 'queue') {
@@ -41,7 +41,7 @@ refs.buttonLibraryWatched.addEventListener('click', () => {
   refs.buttonLibraryWatched.classList.add('header__btn--active');
   refs.buttonLibraryQueue.classList.remove('highlighted');
   refs.buttonLibraryQueue.classList.remove('header__btn--active');
-  setRoute('library', { mode: 'watched' }); // переходим на  список watched
+  setRoute('library', { mode: 'watched' });
 });
 
 // Клик на кнопку  QUEUE в хедере
@@ -51,7 +51,7 @@ refs.buttonLibraryQueue.addEventListener('click', () => {
   refs.buttonLibraryWatched.classList.remove('highlighted');
   refs.buttonLibraryQueue.classList.add('header__btn--active');
   refs.buttonLibraryWatched.classList.remove('header__btn--active');
-  setRoute('library', { mode: 'queue' }); // переходим на  список queue
+  setRoute('library', { mode: 'queue' });
 });
 
 export { highlighteHeaderButtons, highlightActiveLink };

@@ -15,10 +15,7 @@ function renderMovieDetails(data) {
   console.log(data);
   refs.backdrop.classList.remove('is-hidden');
   refs.bodyEl.classList.add('hidden');
-  // событие закрытия по escape, это событие не забыть удалить. когда модалка закрыта
   window.addEventListener('keydown', closeModalbyEscape);
-  // удаление слушателя кнопки escape:
-  //  window.removeEventListener("keydown", closeModalbyEscape);
 
   const content = `
   <div class="image-wrap">
@@ -81,7 +78,7 @@ function renderMovieDetails(data) {
   renderBackdropButtonsState();
 }
 
-// обработчик кликов на бэкдропе, закрытие его, реакция на кнопки ...
+
 refs.backdrop.addEventListener('click', ({ target }) => {
   // закрытие бэкдропа
   if (target === refs.backdrop) {
@@ -89,58 +86,54 @@ refs.backdrop.addEventListener('click', ({ target }) => {
     refs.bodyEl.classList.remove('hidden');
   }
 
-  // ловим нажатие на кнопку js-watched
   if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {
     const idMovie = target.dataset.id;
     console.log('PRESSED js-watched', idMovie);
 
-    // проверка, есть ли ужу в watched такой фильм если есть то deleteMovieFromLocalStorage
+
     if (loadArayFromLocalStorage('watched').includes(String(idMovie))) {
       console.log('УДАЛИТЬ ', idMovie);
       deleteMovieFromLocalStorage(idMovie, 'watched');
     } else {
-      // если же нет, то добавляем в список watched
+      
       addMovieToWatchedList(target.dataset.id);
     }
     renderBackdropButtonsState(target);
 
-    //проверяем, есть ли запрос mode
+    
     if (getRoute('mode')) {
-      showMoviesFromLocalstorage(getRoute('mode')); // обновляем содержимое списка на странице
+      showMoviesFromLocalstorage(getRoute('mode')); 
     }
   }
 
-  // ловим нажатие на кнопку js-queue
+  
   if (target.tagName === 'BUTTON' && target.classList.contains('js-queue')) {
     const idMovie = target.dataset.id;
     console.log('PRESSED js-queue');
 
-    // проверка, есть ли ужу в queue такой фильм если есть то deleteMovieFromLocalStorage
+
     if (loadArayFromLocalStorage('queue').includes(String(idMovie))) {
       console.log('УДАЛИТЬ ', idMovie);
       deleteMovieFromLocalStorage(idMovie, 'queue');
     } else {
-      // если же нет, то добавляем в список queue
+
       addMovieToQueueList(target.dataset.id);
     }
     renderBackdropButtonsState(target);
 
-    //проверяем, есть ли запрос mode
     if (getRoute('mode')) {
-      showMoviesFromLocalstorage(getRoute('mode')); // обновляем содержимое списка на странице
+      showMoviesFromLocalstorage(getRoute('mode')); 
     }
   }
-  // в консоль выводим место куда нажали
   console.dir(target);
 });
 
-// обновляет визуальное и текстовое состояния кнопок на бэкдропе TODO переписать на render и брать статус кнопок в свойствах объекта
+
 function renderBackdropButtonsState() {
   const buttonJsWatched = refs.backdrop.querySelector('button.js-watched');
 
   const buttonJsQueue = refs.backdrop.querySelector('button.js-queue');
 
-  // вынести этот код в отдельную функцию
   if (
     loadArayFromLocalStorage('watched').includes(
       String(buttonJsWatched.dataset.id)
@@ -163,7 +156,6 @@ function renderBackdropButtonsState() {
     buttonJsQueue.textContent = 'add to queue';
   }
 }
-// ф-я закрытия модалки по escape
 function closeModalbyEscape(event) {
   const isEscape = event.code === 'Escape';
   if (isEscape) {

@@ -5,7 +5,7 @@ export function addClickListenerToMovie() {
   document.querySelectorAll('.movie__link').forEach(element => {
     element.addEventListener('click', event => {
       showMovieDetails(element.dataset.movie);
-      event.preventDefault(); // предотвращаем открытие ссылки на карточке фильма
+      event.preventDefault();
     });
   });
 }

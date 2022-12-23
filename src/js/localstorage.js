@@ -29,7 +29,7 @@ function deleteMovieFromLocalStorage(movieId, key) {
     const Movies = JSON.parse(localStorage.getItem(key));
     const updatedMovies = Movies.filter(id => id !== movieId);
     localStorage.setItem(key, JSON.stringify(updatedMovies));
-  } catch (error) { }
+  } catch (error) {}
 }
 
 function addMovieToWatchedList(id) {
@@ -37,7 +37,6 @@ function addMovieToWatchedList(id) {
 }
 
 async function showMoviesFromLocalstorage(keyOfStorage) {
-
   const queueArray = loadArayFromLocalStorage(keyOfStorage);
   if (queueArray.length > 0) {
     let movies = await loadArrayMoviesByArrayOfIds(queueArray);
@@ -107,7 +106,6 @@ function loadFromLocalStorage(key) {
   }
 }
 
-
 // TODO Неплохо бы заменить эту функцию renderMovies предварительно приготовив нормально данные с локалстореджа, которые она сможет съесть
 function renderMoviesFromLocalstorageArray(data) {
   const movies = data
@@ -117,21 +115,26 @@ function renderMoviesFromLocalstorageArray(data) {
         <a href="#show-moovie=${movie.id}"
          class="movie__link" data-movie="${movie.id}">
         <div class="movie__img-wrap">
-        <img class="movie__image" ${movie.poster_path
-          ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
-          : 'src="' + noImg + '">'
+        <img class="movie__image" ${
+          movie.poster_path
+            ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
+            : 'src="' + noImg + '">'
         }
         </div>
         </a>
         <div class="movie__info-wrap">
         <h2 class="movie__title">${movie.title}</h2>
+        <div class="movie__container">
         <p class="movie__description">
           ${movie.genres.map(({ name }) => name).join(', ')}
          | <span>
         ${getYearFromDate(movie.release_date)}
         </span>
-        <span class="movie__rating">${movie.vote_average}</span>
+        <div class="movie__container-rating"><span class="movie__rating">${movie.vote_average.toFixed(
+          1
+        )}</span></div>
         </p>
+        </div>
         </div>
         </li>`;
     })

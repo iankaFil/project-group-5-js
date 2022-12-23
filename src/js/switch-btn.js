@@ -1,3 +1,5 @@
+import { refs } from './refs';
+
 export function onThemeToggle(event) {
   event.preventDefault();
   if (localStorage.getItem('theme') === 'dark') {
@@ -11,11 +13,11 @@ export function onThemeToggle(event) {
 function addDarkClassToHTML() {
   try {
     if (localStorage.getItem('theme') === 'dark') {
-      document.querySelector('html').classList.add('dark');
-      document.querySelector('.themetoggle span').textContent = 'dark_mode';
+      refs.html.classList.add('dark');
+      refs.iconTheme.textContent = 'dark_mode';
     } else {
-      document.querySelector('html').classList.remove('dark');
-      document.querySelector('.themetoggle span').textContent = 'wb_sunny';
+      refs.html.classList.remove('dark');
+      refs.iconTheme.textContent = 'wb_sunny';
     }
   } catch (err) {}
 }

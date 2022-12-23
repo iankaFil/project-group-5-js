@@ -92,7 +92,6 @@
 .movie__img-wrap:hover .movie__image {
   transform: scale(1.1);
 }
-
 .movie__info-wrap {
   display: flex;
   flex-direction: column;
@@ -116,7 +115,10 @@
     line-height: 24px;
   }
 }
-
+.movie__container {
+  display: flex;
+  gap: 8px;
+}
 .movie__description {
   font-weight: 500;
   font-size: 12px;
@@ -126,5 +128,33 @@
   @include desktop {
     font-size: 20px;
     line-height: 24px;
+  }
+}
+.movie__container-rating {
+  position: relative;
+  width: 36px;
+  height: 16px;
+  background-color: #ff6b08;
+  justify-content: baseline;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 5px;
+
+  @include desktop {
+    width: 40px;
+    height: 20px;
+    margin-top: 3px;
+  }
+}
+.movie__rating {
+  position: absolute;
+  top: 2;
+  left: 10;
+  font-size: 12px;
+  line-height: 14px;
+
+  @include desktop {
+    top: 4;
+    left: 11;
   }
 }

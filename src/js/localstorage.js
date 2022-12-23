@@ -112,7 +112,9 @@ function loadFromLocalStorage(key) {
     console.error('Get state error: ', error.message);
   }
 }
-
+function cate(num) {
+  return num < 0 ? Math.ceil(num) : Math.floor(num);
+}
 // выводит на страницу список фильмов из локалсторедж, тебует параметр data массив с списком объектов - фильмов
 // TODO Неплохо бы заменить эту функцию renderMovies предварительно приготовив нормально данные с локалстореджа, которые она сможет съесть
 function renderMoviesFromLocalstorageArray(data) {
@@ -132,13 +134,17 @@ function renderMoviesFromLocalstorageArray(data) {
         </a>
         <div class="movie__info-wrap">
         <h2 class="movie__title">${movie.title}</h2>
+       <div class="movie__container">
         <p class="movie__description">
           ${movie.genres.map(({ name }) => name).join(', ')}
          | <span>
         ${getYearFromDate(movie.release_date)}
         </span>
-        <span class="movie__rating">${movie.vote_average}</span>
+        <div class="movie__container-rating"><span class="movie__rating">${movie.vote_average.toFixed(
+          1
+        )}</span></div>
         </p>
+        </div>
         </div>
         </li>`;
     })

@@ -1,4 +1,3 @@
-// document.querySelector('.themetoggle').addEventListener('click', onThemeToggle);
 export function onThemeToggle(event) {
   event.preventDefault();
   if (localStorage.getItem('theme') === 'dark') {
@@ -20,3 +19,4 @@ function addDarkClassToHTML() {
     }
   } catch (err) {}
 }
+addDarkClassToHTML();

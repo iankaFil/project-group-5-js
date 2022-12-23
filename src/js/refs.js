@@ -10,7 +10,7 @@ export const refs = {
   notificationWarning: document.querySelector('.header__warning'),
   themeToggle: document.querySelector('.themetoggle'),
   bodyEl: document.body,
-
   buttonCloseBackdrop: document.querySelector('.js-close-backdrop'),
-
+  html: document.querySelector('html'),
+  iconTheme: document.querySelector('.themetoggle span'),
 };

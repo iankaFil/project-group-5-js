@@ -18,6 +18,9 @@
   visibility: hidden;
   pointer-events: none;
 }
+.icon__close {
+  display: block;
+}
 
 .movie-info {
   display: block;
@@ -219,8 +222,8 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background-color: #fff;
-  // background-color: transparent;
+  // background-color: #fff;
+  background-color: transparent;
   border: none;
 }
 
@@ -253,4 +256,3 @@
   // width: 100%;
   // height: 100%;
 }
-

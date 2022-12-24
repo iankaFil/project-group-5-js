@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { getGenres, getFilmsByUrl, getUrlFromSearchParam } from './api';
 import { showMoviesFromLocalstorage } from './localstorage';
 import { highlighteHeaderButtons } from './header';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const routes = {
   '/': home,
@@ -32,12 +33,24 @@ function home() {
     console.log(`Search: ${params.get('search')}`);
   }
 
-  getGenres().then(({ genres }) => {
-    objParam.arrayOfGenres = genres;
-    console.log('🚀 ~ file: routes.js:44 ~ getGenres ~ genres', objParam);
+  getGenres()
+    .then(({ genres }) => {
+      objParam.arrayOfGenres = genres;
+      try {
+        getFilmsByUrl(getUrlFromSearchParam());
+      } catch (error) {
+        Notify.failure(error);
 
-    getFilmsByUrl(getUrlFromSearchParam());
-  });
+        console.log('🚀 ~ file: routes.js:41 ~ getGenres ~ error', error);
+      }
+
+      // getFilmsByUrl(getUrlFromSearchParam());
+    })
+    .catch(error => {
+      Notify.failure(error.message);
+
+      console.log('🚀 ~ file: routes.js:41 ~ getGenres ~ error', error);
+    });
 }
 
 function searchWordToInput() {

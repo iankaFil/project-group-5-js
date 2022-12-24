@@ -14,4 +14,6 @@ export const refs = {
   html: document.querySelector('html'),
   iconTheme: document.querySelector('.themetoggle span'),
   headerWrap: document.querySelector('.header__wrap'),
+  links: document.querySelectorAll('a.header__menu-link'),
+  background: document.querySelector('.header'),
 };

@@ -13,8 +13,6 @@ import {
 import noImg from '../images/no-image.jpg';
 import { startLoading, stopLoading } from './loader';
 
-
-
 function loadArayFromLocalStorage(key) {
   try {
     const serializedState = localStorage.getItem(key);
@@ -29,7 +27,7 @@ function deleteMovieFromLocalStorage(movieId, key) {
     const Movies = JSON.parse(localStorage.getItem(key));
     const updatedMovies = Movies.filter(id => id !== movieId);
     localStorage.setItem(key, JSON.stringify(updatedMovies));
-  } catch (error) { }
+  } catch (error) {}
 }
 
 function addMovieToWatchedList(id) {
@@ -40,16 +38,11 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
   const queueArray = loadArayFromLocalStorage(keyOfStorage);
   if (queueArray.length > 0) {
     let movies = await loadArrayMoviesByArrayOfIds(queueArray);
-    console.log(
-      '🚀 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ~ showMoviesFromLocalstorage ~ movies',
-      movies
-    );
     renderMoviesFromLocalstorageArray(movies);
   } else {
     refs.movieContainer.innerHTML = '';
   }
 }
-
 
 function addMovieToQueueList(id) {
   saveIdMovieToLocalStorage(id, 'queue', 'watched');
@@ -77,7 +70,6 @@ function saveIdMovieToLocalStorage(idMovie, key, keyToFindDuplicate) {
   }
 }
 
-
 function saveToLocalStorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
@@ -86,7 +78,6 @@ function saveToLocalStorage(key, value) {
     console.error('Set state error: ', error.message);
   }
 }
-
 
 function loadFromLocalStorage(key) {
   try {
@@ -97,7 +88,6 @@ function loadFromLocalStorage(key) {
   }
 }
 
-
 function renderMoviesFromLocalstorageArray(data) {
   const movies = data
     .map(movie => {
@@ -106,9 +96,10 @@ function renderMoviesFromLocalstorageArray(data) {
         <a href="#show-moovie=${movie.id}"
          class="movie__link" data-movie="${movie.id}">
         <div class="movie__img-wrap">
-        <img class="movie__image" ${movie.poster_path
-          ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
-          : 'src="' + noImg + '">'
+        <img class="movie__image" ${
+          movie.poster_path
+            ? 'src="https://image.tmdb.org/t/p/w300' + movie.poster_path + '">'
+            : 'src="' + noImg + '">'
         }
         </div>
         </a>
@@ -129,7 +120,6 @@ function renderMoviesFromLocalstorageArray(data) {
         </li>`;
     })
     .join('');
-  console.log(data);
 
   startLoading();
   refs.movieContainer.innerHTML = movies;

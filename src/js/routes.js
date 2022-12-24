@@ -12,8 +12,6 @@ const routes = {
 };
 
 const route = window.location.pathname;
-console.log('ROUTE', route);
-console.log('window.location', window.location);
 
 if (routes[route]) {
   routes[route]();
@@ -25,7 +23,7 @@ const objParam = {
   arrayOfGenres: [],
 };
 
-function home() {
+async function home() {
   console.log('Home page');
   const params = new URLSearchParams(window.location.search);
 
@@ -33,24 +31,14 @@ function home() {
     console.log(`Search: ${params.get('search')}`);
   }
 
-  getGenres()
-    .then(({ genres }) => {
-      objParam.arrayOfGenres = genres;
-      try {
-        getFilmsByUrl(getUrlFromSearchParam());
-      } catch (error) {
-        Notify.failure(error);
-
-        console.log('🚀 ~ file: routes.js:41 ~ getGenres ~ error', error);
-      }
-
-      // getFilmsByUrl(getUrlFromSearchParam());
-    })
-    .catch(error => {
-      Notify.failure(error.message);
-
-      console.log('🚀 ~ file: routes.js:41 ~ getGenres ~ error', error);
-    });
+  try {
+    const arrOfGenres = await getGenres();
+    objParam.arrayOfGenres = arrOfGenres;
+    await getFilmsByUrl(getUrlFromSearchParam());
+  } catch (error) {
+    console.log('🚀 ~ file: routes.js:45 ~  ~ error', error);
+    Notify.failure(error.message);
+  }
 }
 
 function searchWordToInput() {

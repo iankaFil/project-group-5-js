@@ -14,16 +14,16 @@ import { renderMovies } from './rendering';
 import { renderMovieDetails } from './backdrop';
 
 async function getGenres() {
-  return axios
-    .get(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}`)
-    .then(({ data }) => {
-      console.log('ЖАНРЫ ', data);
-
-      return data;
-    })
-    .catch(function (error) {
-      throw error;
-    });
+  try {
+    const {
+      data: { genres },
+    } = await axios.get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}`
+    );
+    return genres;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
@@ -33,9 +33,7 @@ async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
     );
     return data;
   });
-
   const movies = await Promise.all(arrayOfPromises);
-
   return movies;
 }
 
@@ -47,16 +45,14 @@ function getYearFromDate(date) {
   return dateRelease.getFullYear();
 }
 
-function getFilmsByUrl(url) {
-  axios
-    .get(url)
-    .then(response => {
-      renderMovies(response);
-      displayPagination(response.data);
-    })
-    .catch(function (error) {
-      throw error;
-    });
+async function getFilmsByUrl(url) {
+  try {
+    const response = await axios.get(url);
+    renderMovies(response);
+    displayPagination(response.data);
+  } catch (error) {
+    throw error;
+  }
 }
 
 function showMovieDetails(id) {

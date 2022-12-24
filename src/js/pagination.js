@@ -42,19 +42,22 @@ function displayPagination(response) {
         stopPaginationPage = response.total_pages;
         startPaginationPage = response.total_pages - 4;
       }
+      if (response.total_pages < 5) {
+        startPaginationPage = 1;
+      }
     }
 
     if (currentPage > 1) {
       pages.push(
         `<button data-gotopage="${currentPage - 1
-        }" class="pagination__button back" type="button"></button>`,
-        `<span class="ellipsis"><sup>...</sup></span>`
+        }" class="pagination__button back" type="button"></button>`
       );
-      if (currentPage > 4) {
+      if ((currentPage >= 4) & (response.total_pages > 5)) {
         pages.splice(
           1,
           0,
-          `<button data-gotopage="${firstPage}" class="pagination__button" type="button">${firstPage}</button>`
+          `<button data-gotopage="${firstPage}" class="pagination__button" type="button">${firstPage}</button>`,
+          `<span class="ellipsis"><sup>...</sup></span>`
         );
       }
     }
@@ -73,15 +76,18 @@ function displayPagination(response) {
 
     if (currentPage < response.total_pages) {
       pages.push(
-        `<span class="ellipsis"><sup>...</sup></span>`,
         `<button data-gotopage="${currentPage + 1
         }" class="pagination__button forward" type="button"></button>`
       );
     }
-    if (currentPage < response.total_pages - 3) {
+    if (
+      (currentPage <= response.total_pages - 3) &
+      (response.total_pages > 5)
+    ) {
       pages.splice(
         pages.length - 1,
         0,
+        `<span class="ellipsis"><sup>...</sup></span>`,
         `<button data-gotopage="${lastPage}" class="pagination__button" type="button">${lastPage}</button>`
       );
     }

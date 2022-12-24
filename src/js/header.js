@@ -9,23 +9,19 @@ function highlightActiveLink() {
   for (const link of refs.links) {
     const linkPage = new URL(link.href).pathname;
     if (currentPage === linkPage) {
-      setHeaderLibrary(link, refs.background);
+      link.classList.add('active');
+      setHeader(refs.background, 'header--library');
     } else {
-      setHeaderHome(link, refs.background);
+      link.classList.remove('active');
+      setHeader(refs.background, 'header--home');
     }
   }
 }
-
-function setHeaderLibrary(link, bg) {
-  link.classList.add('active');
-  bg.classList.add('header--library');
-  bg.classList.remove('header--home');
-}
-
-function setHeaderHome(link, bg) {
-  link.classList.remove('active');
-  bg.classList.add('header--home');
-  bg.classList.remove('header--library');
+function setHeader(bg, bgClass) {
+  bg.classList.add(bgClass);
+  bg.classList.remove(
+    bgClass === 'header--library' ? 'header--home' : 'header--library'
+  );
 }
 
 function highlighteHeaderButtons() {
@@ -39,36 +35,41 @@ function highlighteHeaderButtons() {
 
 refs.buttonLibraryWatched.addEventListener('click', () => {
   showMoviesFromLocalstorage('watched');
-  setWatchedBtnActive();
-  removeQueueBtnActivity();
+  toggleButtonActivity(
+    refs.buttonLibraryWatched,
+    'header__btn--active',
+    'highlighted',
+    true
+  );
+  toggleButtonActivity(
+    refs.buttonLibraryQueue,
+    'header__btn--active',
+    'highlighted',
+    false
+  );
   setRoute('library', { mode: 'watched' });
 });
 
 refs.buttonLibraryQueue.addEventListener('click', () => {
   showMoviesFromLocalstorage('queue');
-  setQueueBtnActive();
-  removeWatchedBtnActivity();
+  toggleButtonActivity(
+    refs.buttonLibraryWatched,
+    'header__btn--active',
+    'highlighted',
+    false
+  );
+  toggleButtonActivity(
+    refs.buttonLibraryQueue,
+    'header__btn--active',
+    'highlighted',
+    true
+  );
   setRoute('library', { mode: 'queue' });
 });
 
-function setWatchedBtnActive() {
-  refs.buttonLibraryWatched.classList.add('highlighted');
-  refs.buttonLibraryWatched.classList.add('header__btn--active');
-}
-
-function removeWatchedBtnActivity() {
-  refs.buttonLibraryWatched.classList.remove('highlighted');
-  refs.buttonLibraryWatched.classList.remove('header__btn--active');
-}
-
-function setQueueBtnActive() {
-  refs.buttonLibraryQueue.classList.add('highlighted');
-  refs.buttonLibraryQueue.classList.add('header__btn--active');
-}
-
-function removeQueueBtnActivity() {
-  refs.buttonLibraryQueue.classList.remove('highlighted');
-  refs.buttonLibraryQueue.classList.remove('header__btn--active');
+function toggleButtonActivity(button, activeClass, highlightedClass, isActive) {
+  button.classList.toggle(activeClass, isActive);
+  button.classList.toggle(highlightedClass, isActive);
 }
 
 export { highlighteHeaderButtons, highlightActiveLink };

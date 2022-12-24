@@ -49,7 +49,8 @@ function displayPagination(response) {
 
     if (currentPage > 1) {
       pages.push(
-        `<button data-gotopage="${currentPage - 1
+        `<button data-gotopage="${
+          currentPage - 1
         }" class="pagination__button back" type="button"></button>`
       );
       if ((currentPage >= 4) & (response.total_pages > 5)) {
@@ -57,7 +58,7 @@ function displayPagination(response) {
           1,
           0,
           `<button data-gotopage="${firstPage}" class="pagination__button" type="button">${firstPage}</button>`,
-          `<span class="ellipsis"><sup>...</sup></span>`
+          `<span class="ellipsis starting"><sup>...</sup></span>`
         );
       }
     }
@@ -76,7 +77,8 @@ function displayPagination(response) {
 
     if (currentPage < response.total_pages) {
       pages.push(
-        `<button data-gotopage="${currentPage + 1
+        `<button data-gotopage="${
+          currentPage + 1
         }" class="pagination__button forward" type="button"></button>`
       );
     }
@@ -87,7 +89,7 @@ function displayPagination(response) {
       pages.splice(
         pages.length - 1,
         0,
-        `<span class="ellipsis"><sup>...</sup></span>`,
+        `<span class="ellipsis ending"><sup>...</sup></span>`,
         `<button data-gotopage="${lastPage}" class="pagination__button" type="button">${lastPage}</button>`
       );
     }
@@ -95,7 +97,6 @@ function displayPagination(response) {
     refs.pagination.innerHTML = pages.join('');
   }
 }
-
 
 function scrollTop() {
   window.scrollTo(0, 0);

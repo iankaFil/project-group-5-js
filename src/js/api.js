@@ -1,6 +1,4 @@
-
 import axios from 'axios';
-
 
 import {
   API_KEY,
@@ -15,18 +13,16 @@ import { displayPagination } from './pagination';
 import { renderMovies } from './rendering';
 import { renderMovieDetails } from './backdrop';
 
-
-
-
 async function getGenres() {
   return axios
-    .get(
-      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}`
-    )
+    .get(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}`)
     .then(({ data }) => {
       console.log('ЖАНРЫ ', data);
 
       return data;
+    })
+    .catch(function (error) {
+      throw error;
     });
 }
 
@@ -38,12 +34,10 @@ async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
     return data;
   });
 
-
   const movies = await Promise.all(arrayOfPromises);
 
   return movies;
 }
-
 
 function getYearFromDate(date) {
   if (!date) {
@@ -53,27 +47,17 @@ function getYearFromDate(date) {
   return dateRelease.getFullYear();
 }
 
-
 function getFilmsByUrl(url) {
   axios
     .get(url)
     .then(response => {
       renderMovies(response);
-
       displayPagination(response.data);
     })
     .catch(function (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.data.status_message);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log('Error', error.message);
-      }
+      throw error;
     });
 }
-
 
 function showMovieDetails(id) {
   console.log(id);
@@ -84,14 +68,7 @@ function showMovieDetails(id) {
       renderMovieDetails(response.data);
     })
     .catch(function (error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.data.status_message);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log('Error', error.message);
-      }
+      throw error;
     });
 }
 
@@ -101,15 +78,20 @@ function getUrlFromSearchParam() {
   const page = new URL(currentURL).searchParams.get('page');
   let query = '';
   if (searchWord) {
-    query = page
-      ? `${SEARCH_URL}?api_key=${API_KEY}&query=${searchWord}&page=${page}&language=${LANGUAGE}`
-      : `${SEARCH_URL}?api_key=${API_KEY}&query=${searchWord}&language=${LANGUAGE}`;
+    query = getUrl(SEARCH_URL, searchWord, page);
   } else {
-    query = page
-      ? `${TREND_URL}?api_key=${API_KEY}&page=${page}&language=${LANGUAGE}`
-      : `${TREND_URL}?api_key=${API_KEY}&language=${LANGUAGE}`;
+    query = getUrl(TREND_URL, null, page);
   }
   return query;
+}
+
+function getUrl(baseUrl, searchWord, page) {
+  return (
+    baseUrl +
+    `?api_key=${API_KEY}&language=${LANGUAGE}` +
+    (searchWord ? `&query=${searchWord}` : '') +
+    (page ? `&page=${page}` : '')
+  );
 }
 
 export {

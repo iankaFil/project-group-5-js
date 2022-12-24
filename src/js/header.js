@@ -2,30 +2,33 @@ import { refs } from './refs';
 import { showMoviesFromLocalstorage } from './localstorage';
 import { getRoute, setRoute } from './routes';
 
-
 function highlightActiveLink() {
   const currentURL = window.location.href;
   const currentPage = new URL(currentURL).pathname;
 
-  const links = document.querySelectorAll('a.header__menu-link');
-  const background = document.querySelector('.header');
-  for (const link of links) {
+  for (const link of refs.links) {
     const linkPage = new URL(link.href).pathname;
     if (currentPage === linkPage) {
-      link.classList.add('active');
-      background.classList.add('header--library');
-      background.classList.remove('header--home');
+      setHeaderLibrary(link, refs.background);
     } else {
-      link.classList.remove('active');
-      background.classList.add('header--home');
-      background.classList.remove('header--library');
+      setHeaderHome(link, refs.background);
     }
   }
 }
 
+function setHeaderLibrary(link, bg) {
+  link.classList.add('active');
+  bg.classList.add('header--library');
+  bg.classList.remove('header--home');
+}
+
+function setHeaderHome(link, bg) {
+  link.classList.remove('active');
+  bg.classList.add('header--home');
+  bg.classList.remove('header--library');
+}
 
 function highlighteHeaderButtons() {
-
   if (getRoute('mode') === 'queue') {
     refs.buttonLibraryQueue.classList.add('highlighted');
   }
@@ -34,24 +37,38 @@ function highlighteHeaderButtons() {
   }
 }
 
-
 refs.buttonLibraryWatched.addEventListener('click', () => {
   showMoviesFromLocalstorage('watched');
-  refs.buttonLibraryWatched.classList.add('highlighted');
-  refs.buttonLibraryWatched.classList.add('header__btn--active');
-  refs.buttonLibraryQueue.classList.remove('highlighted');
-  refs.buttonLibraryQueue.classList.remove('header__btn--active');
+  setWatchedBtnActive();
+  removeQueueBtnActivity();
   setRoute('library', { mode: 'watched' });
 });
 
-
 refs.buttonLibraryQueue.addEventListener('click', () => {
   showMoviesFromLocalstorage('queue');
-  refs.buttonLibraryQueue.classList.add('highlighted');
-  refs.buttonLibraryWatched.classList.remove('highlighted');
-  refs.buttonLibraryQueue.classList.add('header__btn--active');
-  refs.buttonLibraryWatched.classList.remove('header__btn--active');
+  setQueueBtnActive();
+  removeWatchedBtnActivity();
   setRoute('library', { mode: 'queue' });
 });
+
+function setWatchedBtnActive() {
+  refs.buttonLibraryWatched.classList.add('highlighted');
+  refs.buttonLibraryWatched.classList.add('header__btn--active');
+}
+
+function removeWatchedBtnActivity() {
+  refs.buttonLibraryWatched.classList.remove('highlighted');
+  refs.buttonLibraryWatched.classList.remove('header__btn--active');
+}
+
+function setQueueBtnActive() {
+  refs.buttonLibraryQueue.classList.add('highlighted');
+  refs.buttonLibraryQueue.classList.add('header__btn--active');
+}
+
+function removeQueueBtnActivity() {
+  refs.buttonLibraryQueue.classList.remove('highlighted');
+  refs.buttonLibraryQueue.classList.remove('header__btn--active');
+}
 
 export { highlighteHeaderButtons, highlightActiveLink };

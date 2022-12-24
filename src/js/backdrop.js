@@ -125,10 +125,12 @@ refs.backdrop.addEventListener('click', ({ target }) => {
 });
 
 function renderBackdropButtonsState() {
+  addAndRemoveToWatched();
+  addAndRemoveToQueue();
+}
+
+function addAndRemoveToWatched() {
   const buttonJsWatched = refs.backdrop.querySelector('button.js-watched');
-
-  const buttonJsQueue = refs.backdrop.querySelector('button.js-queue');
-
   if (
     loadArayFromLocalStorage('watched').includes(
       String(buttonJsWatched.dataset.id)
@@ -140,7 +142,9 @@ function renderBackdropButtonsState() {
     buttonJsWatched.classList.remove('highlighted');
     buttonJsWatched.textContent = 'add to watched';
   }
-
+}
+function addAndRemoveToQueue() {
+  const buttonJsQueue = refs.backdrop.querySelector('button.js-queue');
   if (
     loadArayFromLocalStorage('queue').includes(String(buttonJsQueue.dataset.id))
   ) {
@@ -151,6 +155,7 @@ function renderBackdropButtonsState() {
     buttonJsQueue.textContent = 'add to queue';
   }
 }
+
 function closeModalbyEscape(event) {
   const isEscape = event.code === 'Escape';
   if (isEscape) {

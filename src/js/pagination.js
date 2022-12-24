@@ -22,7 +22,6 @@ function gotoPage({ target }) {
   }
 }
 
-//  функция отображения пагинации
 function displayPagination(response) {
   let pages = [];
   let lastPage = response.total_pages;
@@ -47,8 +46,7 @@ function displayPagination(response) {
 
     if (currentPage > 1) {
       pages.push(
-        `<button data-gotopage="${
-          currentPage - 1
+        `<button data-gotopage="${currentPage - 1
         }" class="pagination__button back" type="button"></button>`,
         `<span class="ellipsis"><sup>...</sup></span>`
       );
@@ -76,8 +74,7 @@ function displayPagination(response) {
     if (currentPage < response.total_pages) {
       pages.push(
         `<span class="ellipsis"><sup>...</sup></span>`,
-        `<button data-gotopage="${
-          currentPage + 1
+        `<button data-gotopage="${currentPage + 1
         }" class="pagination__button forward" type="button"></button>`
       );
     }
@@ -93,7 +90,7 @@ function displayPagination(response) {
   }
 }
 
-// скролит страницу  вверх
+
 function scrollTop() {
   window.scrollTo(0, 0);
 }

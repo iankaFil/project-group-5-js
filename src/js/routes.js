@@ -3,7 +3,6 @@ import { getGenres, getFilmsByUrl, getUrlFromSearchParam } from './api';
 import { showMoviesFromLocalstorage } from './localstorage';
 import { highlighteHeaderButtons } from './header';
 
-// Объект с обработчиками роутов (навигация)
 const routes = {
   '/': home,
   '/project-group-5-js/': home,

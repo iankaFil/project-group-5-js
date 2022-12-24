@@ -2,7 +2,7 @@ import { refs } from './refs';
 import { showMoviesFromLocalstorage } from './localstorage';
 import { getRoute, setRoute } from './routes';
 
-// подсветка активной ссылки my-library и Home
+
 function highlightActiveLink() {
   const currentURL = window.location.href;
   const currentPage = new URL(currentURL).pathname;
@@ -25,7 +25,7 @@ function highlightActiveLink() {
 
 
 function highlighteHeaderButtons() {
-  // подсветка кнопок ЦФ
+
   if (getRoute('mode') === 'queue') {
     refs.buttonLibraryQueue.classList.add('highlighted');
   }
@@ -34,7 +34,7 @@ function highlighteHeaderButtons() {
   }
 }
 
-// Клик на кнопку  WATCHED в хедере
+
 refs.buttonLibraryWatched.addEventListener('click', () => {
   showMoviesFromLocalstorage('watched');
   refs.buttonLibraryWatched.classList.add('highlighted');
@@ -44,7 +44,7 @@ refs.buttonLibraryWatched.addEventListener('click', () => {
   setRoute('library', { mode: 'watched' });
 });
 
-// Клик на кнопку  QUEUE в хедере
+
 refs.buttonLibraryQueue.addEventListener('click', () => {
   showMoviesFromLocalstorage('queue');
   refs.buttonLibraryQueue.classList.add('highlighted');

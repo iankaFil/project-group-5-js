@@ -10,17 +10,14 @@ export function onThemeToggle(event) {
   addDarkClassToHTML();
 }
 function addDarkClassToHTML() {
-  // const addClass = 'add';
-  // const removeClass = 'remove';
-  // const lightTheme = 'wb_sunny';
-  // const darkTheme = 'dark_mode';
+
   try {
     if (localStorage.getItem('theme') === 'dark') {
       onToggleClassAndIcon('add', 'dark_mode');
     } else {
       onToggleClassAndIcon('remove', 'wb_sunny');
     }
-  } catch (err) {}
+  } catch (err) { }
 }
 addDarkClassToHTML();
 

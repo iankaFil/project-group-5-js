@@ -8,13 +8,13 @@ function getGenreById(ids, arrGanres) {
       }
     }
   }
-  // console.log(arrNamesGenres);
+
   return arrNamesGenres.length > 0
     ? arrNamesGenres.slice(0, 3).join(', ')
     : 'Genre not set';
 }
 
-// функция генерирует жанры TODO пересмотреть устройство, возможно заменить просто join
+
 function getGenre(arr) {
   let genresOutput = [];
   for (const genre of arr) {

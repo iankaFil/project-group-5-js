@@ -1,6 +1,6 @@
-// const axios = require('axios').default;
+
 import axios from 'axios';
-// console.log(axios);
+
 
 import {
   API_KEY,
@@ -16,25 +16,16 @@ import { renderMovies } from './rendering';
 import { renderMovieDetails } from './backdrop';
 
 
-// async function getGenres() {
-//   return axios
-//     .get(
-//       `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
-//     )
-//     .then(({ data }) => {
-//       console.log('ЖАНРЫ ', data.genres);
-//       return data.genres;
-//     });
-// }
+
 
 async function getGenres() {
   return axios
     .get(
-      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}` //language=en-US
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE}`
     )
     .then(({ data }) => {
       console.log('ЖАНРЫ ', data);
-      // return data.json();
+
       return data;
     });
 }
@@ -53,7 +44,7 @@ async function loadArrayMoviesByArrayOfIds(arrayOfMovieIds) {
   return movies;
 }
 
-// функция формирует год из полной даты с API
+
 function getYearFromDate(date) {
   if (!date) {
     return 'no data';
@@ -62,14 +53,13 @@ function getYearFromDate(date) {
   return dateRelease.getFullYear();
 }
 
-// // API запрос возвращает список фильмов по URL запроса
+
 function getFilmsByUrl(url) {
   axios
     .get(url)
     .then(response => {
       renderMovies(response);
-      // currentPage = response.data.page;
-      // totalPages = response.data.total_pages;
+
       displayPagination(response.data);
     })
     .catch(function (error) {
@@ -84,7 +74,7 @@ function getFilmsByUrl(url) {
     });
 }
 
-// API запрос, получаем инфу о фильме по его ID
+
 function showMovieDetails(id) {
   console.log(id);
   const url = `${ID_URL}${id}?api_key=${API_KEY}&language=${LANGUAGE}`;
@@ -105,7 +95,6 @@ function showMovieDetails(id) {
     });
 }
 
-// генерит URL запроса к API в зависимости от параметров в адресной строке браузера
 function getUrlFromSearchParam() {
   const currentURL = window.location.href;
   const searchWord = new URL(currentURL).searchParams.get('search');

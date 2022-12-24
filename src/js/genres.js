@@ -3,7 +3,7 @@ function getGenreById(ids, arrGanres) {
 
   for (const id of ids) {
     for (const genre of arrGanres) {
-      if (genre.id === id) {
+      if (genre.id === id && genre.name.length < 10) {
         arrNamesGenres.push(genre.name);
       }
     }
@@ -13,7 +13,6 @@ function getGenreById(ids, arrGanres) {
     ? arrNamesGenres.slice(0, 3).join(', ')
     : 'Genre not set';
 }
-
 
 function getGenre(arr) {
   let genresOutput = [];

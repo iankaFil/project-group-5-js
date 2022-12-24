@@ -129,11 +129,10 @@ function renderMoviesFromLocalstorageArray(data) {
           ${movie.genres.map(({ name }) => name).join(', ')}
          | <span>
         ${getYearFromDate(movie.release_date)}
-         <div class="movie__container-rating"><span class="movie__rating">${movie.vote_average.toFixed(
-           1
-         )}</span></div>
         </span>
-       
+        <div class="movie__container-rating"><span class="movie__rating">${movie.vote_average.toFixed(
+          1
+        )}</span></div>
         </p>
         </div>
         </div>

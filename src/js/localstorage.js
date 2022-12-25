@@ -13,7 +13,7 @@ import {
 import noImg from '../images/no-image.jpg';
 import { startLoading, stopLoading } from './loader';
 
-function loadArayFromLocalStorage(key) {
+function loadArrayFromLocalStorage(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? [] : JSON.parse(serializedState);
@@ -35,7 +35,7 @@ function addMovieToWatchedList(id) {
 }
 
 async function showMoviesFromLocalstorage(keyOfStorage) {
-  const queueArray = loadArayFromLocalStorage(keyOfStorage);
+  const queueArray = loadArrayFromLocalStorage(keyOfStorage);
   if (queueArray.length > 0) {
     let movies = await loadArrayMoviesByArrayOfIds(queueArray);
     renderMoviesFromLocalstorageArray(movies);
@@ -129,7 +129,7 @@ function renderMoviesFromLocalstorageArray(data) {
 }
 
 export {
-  loadArayFromLocalStorage,
+  loadArrayFromLocalStorage,
   deleteMovieFromLocalStorage,
   addMovieToWatchedList,
   showMoviesFromLocalstorage,

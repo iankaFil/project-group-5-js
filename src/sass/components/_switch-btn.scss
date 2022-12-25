@@ -96,10 +96,12 @@
 .dark .hystmodal__subtitle,
 .dark .hystmodal__text,
 .dark .hystmodal__icon {
+  @include animation(color, box-shadow, null);
   color: #fefefe;
 }
 
 .hystmodal__item {
+  @include animation(color, box-shadow, null);
   border-radius: 15px;
   overflow: hidden;
 }

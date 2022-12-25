@@ -90,7 +90,6 @@ refs.backdrop.addEventListener('click', ({ target }) => {
 
   if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {
     const idMovie = target.dataset.id;
-    console.log('PRESSED js-watched', idMovie);
     if (loadArrayFromLocalStorage('watched').includes(String(idMovie))) {
       deleteMovieFromLocalStorage(idMovie, 'watched');
     } else {

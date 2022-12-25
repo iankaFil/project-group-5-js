@@ -7,11 +7,6 @@ export function addClickListenerToMovie() {
       try {
         showMovieDetails(element.dataset.movie);
       } catch (error) {
-        console.log(
-          '🚀 ~ file: clickToMovie.js:10 WWWWWWWWWWWW ~ document.querySelectorAll ~ error',
-          error
-        );
-
         Notify.failure(error.message);
       }
       event.preventDefault();

@@ -16,4 +16,5 @@ export const refs = {
   headerWrap: document.querySelector('.header__wrap'),
   links: document.querySelectorAll('a.header__menu-link'),
   background: document.querySelector('.header'),
+  libraryNotification: document.querySelector('.library-notification'),
 };

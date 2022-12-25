@@ -93,6 +93,7 @@
 .dark .hystmodal__window {
   background-color: #2b2727;
 }
+
 .dark .hystmodal__title,
 .dark .hystmodal__subtitle,
 .dark .hystmodal__text,
@@ -100,7 +101,14 @@
   color: #fefefe;
 }
 
-.dark.hystmodal__link:hover,
-.dark.hystmodal__link:focus {
+.dark .hystmodal__item:hover {
+  box-shadow: 0px 0px 8px 0px #ff6b08;
+  border-radius: 15px;
+}
+
+.dark .hystmodal__item:hover .hystmodal__title,
+.dark .hystmodal__item:hover .hystmodal__subtitle,
+.dark .hystmodal__item:hover .hystmodal__text,
+.dark .hystmodal__item:hover .hystmodal__icon {
   color: #ff6b08;
 }

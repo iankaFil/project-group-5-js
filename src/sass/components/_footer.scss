@@ -69,7 +69,11 @@
     @include font(400, 25px, 1.19, $mainTextColor);
   }
 }
-
+.hystmodal__subtitle {
+  max-width: 150px;
+  text-align: center;
+  line-height: 1.1;
+}
 .hystmodal__list {
   display: flex;
   flex-wrap: wrap;

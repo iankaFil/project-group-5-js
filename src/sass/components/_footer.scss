@@ -70,10 +70,12 @@
   }
 }
 .hystmodal__subtitle {
+  margin-top: 5px;
   max-width: 150px;
   text-align: center;
   line-height: 1.1;
 }
+
 .hystmodal__list {
   display: flex;
   flex-wrap: wrap;
@@ -95,7 +97,7 @@
   &:hover,
   &:focus {
     color: $accentColor;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   }
 }
 

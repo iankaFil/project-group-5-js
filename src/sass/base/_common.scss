@@ -1,7 +1,15 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 body {
   font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
+main {
+  flex: 1;
+}
+
 .container {
   width: 100%;
   margin: 0 auto;
@@ -20,26 +28,7 @@ body {
     max-width: 1280px;
   }
 }
-// padding-top: 20px;
-// padding-bottom: 40px;
-// @media screen and (max-width: 767px) {
-//   min-width: 320px;
-// }
-// @media screen and (min-width: 768px) {
-//   padding-left: 32px;
-//   padding-right: 32px;
-//   padding-top: 60px;
-//   padding-bottom: 60px;
-// }
-// @media screen and (min-width: 1280px) {
-//   max-width: 1280px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   padding-left: 32px;
-//   padding-right: 32px;
-//   padding-top: 60px;
-//   padding-bottom: 60px;
-// }
+
 .js-show {
   visibility: visible;
 }

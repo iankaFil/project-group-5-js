@@ -7,7 +7,6 @@ import {
   ID_URL,
   LANGUAGE,
 } from './js/api-vars';
-// import { displayPagination } from './js/pagination';
 import { getFilmsByUrl, getGenres, getYearFromDate } from './js/api';
 import { getGenreById, getGenre } from './js/genres';
 import { highlightActiveLink } from './js/header';

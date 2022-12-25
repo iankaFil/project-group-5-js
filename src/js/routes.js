@@ -16,7 +16,6 @@ const route = window.location.pathname;
 if (routes[route]) {
   routes[route]();
 } else {
-  console.log('Route not found');
 }
 
 const objParam = {
@@ -24,19 +23,13 @@ const objParam = {
 };
 
 async function home() {
-  console.log('Home page');
   const params = new URLSearchParams(window.location.search);
-
-  if (params.has('search')) {
-    console.log(`Search: ${params.get('search')}`);
-  }
 
   try {
     const arrOfGenres = await getGenres();
     objParam.arrayOfGenres = arrOfGenres;
     await getFilmsByUrl(getUrlFromSearchParam());
   } catch (error) {
-    console.log('🚀 ~ file: routes.js:45 ~  ~ error', error);
     Notify.failure(error.message);
   }
 }
@@ -55,7 +48,6 @@ function library() {
   displayElement(refs.libraryButtonsBlock, true);
 
   const mode = getRoute('mode') || 'queue';
-  console.log('🚀 ~ file: index.js:200 ~ library ~ mode', mode);
 
   showMoviesFromLocalstorage(mode);
   setRoute('library', { mode: mode });

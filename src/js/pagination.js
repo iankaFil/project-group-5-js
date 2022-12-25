@@ -3,9 +3,14 @@ import { refs } from './refs';
 import { setPageToUrl } from './setPageUrl';
 import { getUrlFromSearchParam, getFilmsByUrl } from './api';
 
+// const page = new URL(currentURL).searchParams.get('page');
+
+let currentPage =
+  Number(new URL(window.location.href).searchParams.get('page')) || 1;
+console.log('🚀 ~ file: pagination.js:9 ~ currentPage', currentPage);
+
 let totalPages = 0;
 let firstPage = 1;
-let currentPage = 1;
 let pageLinks = 5;
 const paginationRange = Math.floor(pageLinks / 2);
 let startPaginationPage = 1;

@@ -39,8 +39,10 @@ async function showMoviesFromLocalstorage(keyOfStorage) {
   if (queueArray.length > 0) {
     let movies = await loadArrayMoviesByArrayOfIds(queueArray);
     renderMoviesFromLocalstorageArray(movies);
+    refs.libraryNotification.classList.toggle('is-hidden', true);
   } else {
     refs.movieContainer.innerHTML = '';
+    refs.libraryNotification.classList.toggle('is-hidden', false);
   }
 }
 

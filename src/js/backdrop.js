@@ -1,6 +1,6 @@
 import { refs } from './refs';
 import {
-  loadArayFromLocalStorage,
+  loadArrayFromLocalStorage,
   deleteMovieFromLocalStorage,
   addMovieToWatchedList,
   showMoviesFromLocalstorage,
@@ -90,8 +90,7 @@ refs.backdrop.addEventListener('click', ({ target }) => {
 
   if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {
     const idMovie = target.dataset.id;
-    console.log('PRESSED js-watched', idMovie);
-    if (loadArayFromLocalStorage('watched').includes(String(idMovie))) {
+    if (loadArrayFromLocalStorage('watched').includes(String(idMovie))) {
       deleteMovieFromLocalStorage(idMovie, 'watched');
     } else {
       addMovieToWatchedList(target.dataset.id);
@@ -105,7 +104,7 @@ refs.backdrop.addEventListener('click', ({ target }) => {
 
   if (target.tagName === 'BUTTON' && target.classList.contains('js-queue')) {
     const idMovie = target.dataset.id;
-    if (loadArayFromLocalStorage('queue').includes(String(idMovie))) {
+    if (loadArrayFromLocalStorage('queue').includes(String(idMovie))) {
       deleteMovieFromLocalStorage(idMovie, 'queue');
     } else {
       addMovieToQueueList(target.dataset.id);
@@ -120,32 +119,19 @@ refs.backdrop.addEventListener('click', ({ target }) => {
 });
 
 function renderBackdropButtonsState() {
-  addAndRemoveToWatched();
-  addAndRemoveToQueue();
+  addAndRemoveToLists('watched', 'watched', 'watched');
+  addAndRemoveToLists('queue', 'queue', 'queue');
 }
 
-function addAndRemoveToWatched() {
-  const buttonJsWatched = refs.backdrop.querySelector('button.js-watched');
-  if (
-    loadArayFromLocalStorage('watched').includes(
-      String(buttonJsWatched.dataset.id)
-    )
-  ) {
-    onToggleClassAndText('add', buttonJsWatched, 'remove from watched');
+function addAndRemoveToLists(listName, buttonClass, toggleText) {
+  const button = refs.backdrop.querySelector(`button.js-${buttonClass}`);
+  if (loadArrayFromLocalStorage(listName).includes(String(button.dataset.id))) {
+    onToggleClassAndText('add', button, `remove from ${toggleText}`);
   } else {
-    onToggleClassAndText('remove', buttonJsWatched, 'add to watched');
+    onToggleClassAndText('remove', button, `add to ${toggleText}`);
   }
 }
-function addAndRemoveToQueue() {
-  const buttonJsQueue = refs.backdrop.querySelector('button.js-queue');
-  if (
-    loadArayFromLocalStorage('queue').includes(String(buttonJsQueue.dataset.id))
-  ) {
-    onToggleClassAndText('add', buttonJsQueue, 'remove from queue');
-  } else {
-    onToggleClassAndText('remove', buttonJsQueue, 'add to queue');
-  }
-}
+
 function onToggleClassAndText(method, btnName, textInBtn) {
   btnName.classList[method]('highlighted');
   btnName.textContent = `${textInBtn}`;

@@ -163,9 +163,7 @@
 }
 
 .logo__text {
-  font-size: 30px;
-  line-height: 35px;
-  color: $headerTextColor;
+  @include font(500, 30px, 1.2, $headerTextColor);
   display: none;
   @include tablet {
     display: block;
@@ -183,12 +181,10 @@
 }
 
 .navigation__link {
+  @include font(500, 12px, 1.1, $headerTextColor);
   position: relative;
   display: block;
   cursor: pointer;
-  color: $headerTextColor;
-  font-size: 12px;
-  line-height: 14px;
   padding-top: 40px;
   padding-bottom: 3px;
   text-transform: uppercase;
@@ -213,12 +209,9 @@
 }
 
 .header__warning {
+  @include font(400, 14px, 1.14, $errorColor);
   visibility: hidden;
   margin-top: 20px;
-  color: #ff001b;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
 
   @media screen and (max-width: 376px) {
     text-align: initial;

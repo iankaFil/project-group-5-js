@@ -79,11 +79,8 @@
 }
 
 .movie-detail__title {
+  @include font(500, 20px, 1.15, $mainTextColor);
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.15;
-  color: $mainTextColor;
   margin-bottom: 20px;
   text-transform: uppercase;
 
@@ -93,22 +90,15 @@
 }
 
 .movie-detail__about {
+  @include font(500, 12px, 1.33, $mainTextColor);
   font-style: normal;
   margin-bottom: 8px;
   text-transform: uppercase;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  color: $mainTextColor;
 }
 
 .movie-detail__title-table-titles {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+  @include font(500, 12px, 1.33, $movieTitleColor);
   margin-right: 41px;
-
-  color: #8c8c8c;
   padding: 0;
   @include desktop {
     margin-right: 85px;
@@ -128,21 +118,15 @@
   width: 100%;
 }
 .movie-detail__rating {
+  @include font(500, 12px, 1.16, $headerTextColor);
   background-color: $btnActiveColor;
   border-radius: 5px;
   padding: 1px 8px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.16;
   margin-right: 5px;
-  color: #ffffff;
 }
 
 .movie-detail__info {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: $mainTextColor;
+  @include font(500, 12px, 1.1, $mainTextColor);
 
   &.movie-votes {
     background-color: $footerBckg;
@@ -156,10 +140,7 @@
   text-transform: uppercase;
 }
 .movie-detail__about-text {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.66;
-  color: $mainTextColor;
+  @include font(500, 12px, 1.66, $mainTextColor);
 }
 
 .movie-detail__button {
@@ -209,12 +190,9 @@
 }
 
 .movie-info-content {
+  @include font(500, 12px, 1.33, $color);
   display: block;
   padding: 48px 20px 40px;
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
 
   @include mobile {
     width: 320px;
@@ -223,7 +201,6 @@
   @include tablet {
     display: flex;
     width: 704px;
-    // height: 552px;
     padding: 40px 72px 40px 36px;
     justify-content: space-between;
   }

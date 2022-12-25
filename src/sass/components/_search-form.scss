@@ -21,13 +21,10 @@
 }
 
 .search-form__input {
+  @include font(400, 14px, 1.1, $headerTextColor);
   width: 100%;
   border: none;
   background-color: transparent;
-  color: $headerTextColor;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
 }
 
 .search-form__input:hover,

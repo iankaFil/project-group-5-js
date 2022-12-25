@@ -26,10 +26,10 @@ function setHeader(bg, bgClass) {
 
 function highlighteHeaderButtons() {
   if (getRoute('mode') === 'queue') {
-    refs.buttonLibraryQueue.classList.add('highlighted');
+    refs.buttonLibraryQueue.classList.add('header__btn--active');
   }
   if (getRoute('mode') === 'watched') {
-    refs.buttonLibraryWatched.classList.add('highlighted');
+    refs.buttonLibraryWatched.classList.add('header__btn--active');
   }
 }
 

@@ -90,3 +90,17 @@
 .material-icons {
   color: $headerTextColor;
 }
+.dark .hystmodal__window {
+  background-color: #2b2727;
+}
+.dark .hystmodal__title,
+.dark .hystmodal__subtitle,
+.dark .hystmodal__text,
+.dark .hystmodal__icon {
+  color: #fefefe;
+}
+
+.dark.hystmodal__link:hover,
+.dark.hystmodal__link:focus {
+  color: #ff6b08;
+}

@@ -77,46 +77,38 @@ function renderMovieDetails(data) {
   renderBackdropButtonsState();
 }
 
-refs.buttonCloseBackdrop.addEventListener('click', () => {
-  refs.backdrop.classList.add('is-hidden');
-  refs.bodyEl.classList.remove('hidden');
-});
-
-refs.backdrop.addEventListener('click', ({ target }) => {
-  if (target === refs.backdrop) {
+function handleBackdropClick(event) {
+  const target = event.target;
+  if (target === refs.backdrop || target.closest('.js-close-backdrop')) {
     refs.backdrop.classList.add('is-hidden');
     refs.bodyEl.classList.remove('hidden');
-  }
-
-  if (target.tagName === 'BUTTON' && target.classList.contains('js-watched')) {
-    const idMovie = target.dataset.id;
-    if (loadArrayFromLocalStorage('watched').includes(String(idMovie))) {
-      deleteMovieFromLocalStorage(idMovie, 'watched');
-    } else {
-      addMovieToWatchedList(target.dataset.id);
+  } else if (target.tagName === 'BUTTON') {
+    const classList = target.classList;
+    if (classList.contains('js-watched')) {
+      const idMovie = target.dataset.id;
+      if (loadArrayFromLocalStorage('watched').includes(String(idMovie))) {
+        deleteMovieFromLocalStorage(idMovie, 'watched');
+      } else {
+        addMovieToWatchedList(idMovie);
+      }
+      renderBackdropButtonsState(target);
+    } else if (classList.contains('js-queue')) {
+      const idMovie = target.dataset.id;
+      if (loadArrayFromLocalStorage('queue').includes(String(idMovie))) {
+        deleteMovieFromLocalStorage(idMovie, 'queue');
+      } else {
+        addMovieToQueueList(idMovie);
+      }
+      renderBackdropButtonsState(target);
     }
-    renderBackdropButtonsState(target);
-
-    if (getRoute('mode')) {
-      showMoviesFromLocalstorage(getRoute('mode'));
-    }
-  }
-
-  if (target.tagName === 'BUTTON' && target.classList.contains('js-queue')) {
-    const idMovie = target.dataset.id;
-    if (loadArrayFromLocalStorage('queue').includes(String(idMovie))) {
-      deleteMovieFromLocalStorage(idMovie, 'queue');
-    } else {
-      addMovieToQueueList(target.dataset.id);
-    }
-    renderBackdropButtonsState(target);
-
     if (getRoute('mode')) {
       showMoviesFromLocalstorage(getRoute('mode'));
     }
   }
   console.dir(target);
-});
+}
+
+refs.backdrop.addEventListener('click', handleBackdropClick);
 
 function renderBackdropButtonsState() {
   addAndRemoveToLists('watched', 'watched', 'watched');

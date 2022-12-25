@@ -23,6 +23,12 @@
   background-color: #fff;
 }
 
+.first-page,
+.last-page {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
 .ellipsis {
   display: none;
   padding-right: 15px;

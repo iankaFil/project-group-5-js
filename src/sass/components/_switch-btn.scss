@@ -99,9 +99,19 @@
   color: #fefefe;
 }
 
-.dark .hystmodal__item:hover {
-  box-shadow: 0px 0px 8px 0px #ff6b08;
+.hystmodal__item {
   border-radius: 15px;
+  overflow: hidden;
+}
+
+.hystmodal__item:hover,
+.hystmodal__item:focus {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.dark .hystmodal__item:hover,
+.dark .hystmodal__item:focus {
+  box-shadow: 0px 0px 8px 0px #ff6b08;
 }
 
 .dark .hystmodal__item:hover .hystmodal__title,

@@ -57,7 +57,7 @@ function displayPagination(response) {
         pages.splice(
           1,
           0,
-          `<button data-gotopage="${firstPage}" class="pagination__button" type="button">${firstPage}</button>`,
+          `<button data-gotopage="${firstPage}" class="pagination__button first-page" type="button">${firstPage}</button>`,
           `<span class="ellipsis starting"><sup>...</sup></span>`
         );
       }
@@ -90,7 +90,7 @@ function displayPagination(response) {
         pages.length - 1,
         0,
         `<span class="ellipsis ending"><sup>...</sup></span>`,
-        `<button data-gotopage="${lastPage}" class="pagination__button" type="button">${lastPage}</button>`
+        `<button data-gotopage="${lastPage}" class="pagination__button last-page" type="button">${lastPage}</button>`
       );
     }
 

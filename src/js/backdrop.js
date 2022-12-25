@@ -11,7 +11,6 @@ import { getGenre } from './genres';
 import { startLoading, stopLoading } from './loader';
 
 function renderMovieDetails(data) {
-  console.log(data);
   refs.backdrop.classList.remove('is-hidden');
   refs.bodyEl.classList.add('hidden');
   window.addEventListener('keydown', closeModalbyEscape);
@@ -105,7 +104,6 @@ function handleBackdropClick(event) {
       showMoviesFromLocalstorage(getRoute('mode'));
     }
   }
-  console.dir(target);
 }
 
 refs.backdrop.addEventListener('click', handleBackdropClick);

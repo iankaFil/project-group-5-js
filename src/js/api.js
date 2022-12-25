@@ -56,7 +56,6 @@ async function getFilmsByUrl(url) {
 }
 
 function showMovieDetails(id) {
-  console.log(id);
   const url = `${ID_URL}${id}?api_key=${API_KEY}&language=${LANGUAGE}`;
   axios
     .get(url)

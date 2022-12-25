@@ -1,5 +1,4 @@
 .header {
-  // position: relative;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -36,10 +35,6 @@
   }
 }
 
-// .header__btn {
-//   visibility: hidden;
-// }
-
 .header--library {
   position: relative;
   height: 230px;
@@ -51,7 +46,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  // z-index: 100;
 
   @include retina {
     background-image: $bg-header-gradient,
@@ -178,13 +172,9 @@
   }
 }
 .navigation__list {
-  //   @extend %flex;
   display: flex;
-  //   justify-content: center;
   align-items: center;
   margin-left: auto;
-
-  //   min-width: 281px;
   list-style: none;
 }
 
@@ -203,8 +193,6 @@
   padding-bottom: 3px;
   text-transform: uppercase;
   border: none;
-  //   transition: color ;
-  //   @include font(14px, 500, 16px, 0.02em);
 
   &:hover,
   &:focus {
@@ -224,18 +212,6 @@
   background-color: $errorColor;
 }
 
-// .navigation__btn {
-//   border: none;
-//   background-color: transparent;
-//   display: block;
-//   color: inherit;
-//   font-size: 12px;
-//   line-height: 14px;
-//   padding-bottom: 2px;
-//   padding-top: 5px;
-//   text-transform: uppercase;
-// }
-
 .header__warning {
   visibility: hidden;
   margin-top: 20px;
@@ -243,13 +219,13 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
+
   @media screen and (max-width: 376px) {
     text-align: initial;
   }
   @media screen and (min-width: 377px) {
     text-align: center;
   }
-  // text-align: left;
 
   @include tablet {
     width: 100%;

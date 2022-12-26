@@ -107,7 +107,7 @@
 
 .movie__title {
   @include font(500, 12px, 1.2, $mainTextColor);
-
+  cursor: default;
   @include desktop {
     font-size: 20px;
   }

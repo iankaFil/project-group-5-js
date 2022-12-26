@@ -38,7 +38,7 @@ function renderMovieDetails(data) {
           </tr>
           <tr>
             <td><span class="movie-detail__title-table-titles">Popularity</span></td>
-            <td><span class="movie-detail__info">${data.popularity}</span></td>
+            <td><span class="movie-detail__info">${data.popularity.toFixed()}</span></td>
           </tr>
           <tr>
             <td><span class="movie-detail__title-table-titles">Original Title</span></td>
